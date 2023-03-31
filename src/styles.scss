@@ -1,17 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
 // @import url('/node_modules/bootstrap/dist/css/bootstrap.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
-@import url(./assets/css/bootstrap.css);
+// @import url(./assets/css/bootstrap.css);
+
+:root {
+  // color
+  --white-color: #fff;
+  --black-color: #000;
+  --text-color: #212529;
+  --logo-color: #f8f9fa;
+  // pixel
+  --header-height: 6.5rem;
+  --footer-height: 5.3rem;
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
   font-family: 'Poppins', sans-serif;
+  line-height: 1.6rem;
+  box-sizing: border-box;
 }
 
 body {
   background: #ecf0f3;
+  font-size: 1.4rem;
+  color: var(--white-color);
 }
 
 @keyframes scaleButton {
