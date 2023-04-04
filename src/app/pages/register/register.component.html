@@ -7,29 +7,35 @@
       />
     </div>
     <div class="text-center mt-4 name">Welcome to DH Shop</div>
-    <form class="p-2 mt-3">
+    <form class="p-2 mt-3"[formGroup]="registersForm" (ngSubmit)="signup()">
       <div class="form-field d-flex align-items-center">
         <span class="far fa-user"></span>
-        <input type="text" name="username" id="username" placeholder="Username" />
+        <input formControlName ="fullname"   type="text" name="username" id="username" placeholder="Username" />
       </div>
+      <small  *ngIf="registersForm.controls['fullname'].dirty && registersForm.hasError('required','fullname')" class="text-danger" >Vui lòng nhập thông tin người dùng! </small>
+
       <div class="form-field d-flex align-items-center">
         <span class="far fa-user"></span>
-        <input type="email" name="gmail" id="gmail" placeholder="Gmail" />
+        <input formControlName ="email" type="email" name="gmail" id="gmail" placeholder="Gmail" />
       </div>
+      <small  *ngIf="registersForm.controls['email'].dirty && registersForm.hasError('required','email')" class="text-danger" >Vui lòng nhập thông tin email </small>
       <div class="form-field d-flex align-items-center">
         <span class="fas fa-key"></span>
-        <input type="password" name="password" id="pwd" placeholder="Password" />
+        <input formControlName ="password" type="password" name="password" id="pwd" placeholder="Password" />
       </div>
+      <small  *ngIf="registersForm.controls['password'].dirty && registersForm.hasError('required','password')" class="text-danger" >Vui lòng nhập mật khẩu </small>
+
       <div class="form-field d-flex align-items-center">
         <span class="fas fa-key"></span>
         <input
+          formControlName ="cfpassword"
           type="password"
           name="confirm-password"
           id="confirm-password"
           placeholder="Confirm Password"
         />
       </div>
-      <button class="btn mt-3 button-login">Register</button>
+      <button [disabled]="registersForm.invalid" class="btn mt-3 button-login" type="submit">Register</button>
     </form>
     <div class="text-center fs-6">
       <span>Already have an account? </span><a href="#">Sign in</a>
