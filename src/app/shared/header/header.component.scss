@@ -3,3 +3,44 @@
   height: var(--header-height);
   background-color: var(--white-color);
 }
+
+.navigation {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  padding: 0 20px;
+  justify-content: space-between;
+}
+
+.icon {
+  font-size: 2.4rem;
+  cursor: pointer;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 999px;
+  object-fit: cover;
+  margin-right: 4px;
+}
+
+.name-account {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.arrow {
+  border: solid;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 2px;
+  transform: rotate(45deg);
+  margin-left: 2px;
+}
