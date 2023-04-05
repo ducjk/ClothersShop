@@ -10,8 +10,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ProductComponent } from './pages/product/product.component';
-import{FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MasterComponent } from './shared/master/master.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,8 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     SidebarComponent,
     FooterComponent,
     ProductComponent,
+    MasterComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule,FormsModule,ReactiveFormsModule,HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

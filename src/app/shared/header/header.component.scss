@@ -7,20 +7,14 @@
 .navigation {
   display: flex;
   height: 100%;
-  align-items: center;
-  padding: 0 20px;
-  justify-content: space-between;
-}
-
-.icon {
-  font-size: 2.4rem;
-  cursor: pointer;
+  justify-content: flex-end;
 }
 
 .account {
   display: flex;
   align-items: center;
   cursor: pointer;
+  margin-right: 20px;
 }
 
 .avatar {

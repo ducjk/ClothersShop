@@ -7,19 +7,42 @@
       />
     </div>
     <div class="text-center mt-4 name">Welcome to DH Shop</div>
-    <form class="p-3 mt-3"[formGroup]="loginForm" (ngSubmit)="login()">
+    <form class="p-3 mt-3" [formGroup]="loginForm" (ngSubmit)="login()" method="post">
       <div class="form-field d-flex align-items-center">
         <span class="far fa-user"></span>
-        <input formControlName ="email" type="text" name="userName" id="userName" placeholder="Username" />
+        <input
+          formControlName="email"
+          type="text"
+          name="userName"
+          id="userName"
+          placeholder="Username"
+          autofocus
+        />
       </div>
-      <small  *ngIf="loginForm.controls['email'].dirty && loginForm.hasError('required','email')" class="text-danger" >Vui lòng nhập tài khoản </small>
+      <small
+        *ngIf="loginForm.controls['email'].dirty && loginForm.hasError('required', 'email')"
+        class="text-danger"
+        >Vui lòng nhập tài khoản
+      </small>
       <div class="form-field d-flex align-items-center">
         <span class="fas fa-key"></span>
-        <input formControlName ="password" type="password" name="password" id="pwd" placeholder="Password" />
+        <input
+          formControlName="password"
+          type="password"
+          name="password"
+          id="pwd"
+          placeholder="Password"
+        />
       </div>
-      <small  *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')" class="text-danger" >Vui lòng nhập mật khẩu </small>
+      <small
+        *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')"
+        class="text-danger"
+        >Vui lòng nhập mật khẩu
+      </small>
 
-      <button  [disabled]="loginForm.invalid" class="btn mt-3 button-login" type="submit">Login</button>
+      <button [disabled]="loginForm.invalid" class="btn mt-3 button-login" type="submit">
+        Login
+      </button>
     </form>
     <div class="text-center fs-6"><a href="#">Forget password?</a> or <a href="#">Sign up</a></div>
   </div>
