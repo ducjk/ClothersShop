@@ -2,7 +2,26 @@
   width: 260px;
   height: 100vh;
   background-color: #222e3c;
+  position: relative;
+  transition: all linear 0.4s;
+}
+
+.wrapper {
   position: fixed;
+  width: 260px;
+  height: 100vh;
+}
+
+.hidden-sidebar.side-bar {
+  margin-left: -260px;
+}
+
+.icon {
+  position: absolute;
+  top: 22px;
+  right: -36px;
+  font-size: 2.4rem;
+  cursor: pointer;
 }
 
 .logo {
@@ -23,7 +42,8 @@
   display: block;
   padding: 24px 24px 8px;
   color: #ced4da;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
+  font-weight: 600;
   cursor: default;
 }
 .list-item {

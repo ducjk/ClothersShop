@@ -2,4 +2,10 @@
   width: 100%;
   height: var(--footer-height);
   background-color: var(--white-color);
+  line-height: var(--footer-height);
+}
+
+.footer-content {
+  margin-left: 20px;
+  color: #6c757d;
 }
