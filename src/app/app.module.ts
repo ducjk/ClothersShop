@@ -12,6 +12,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { ProductComponent } from './pages/product/product.component';
 import{FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SupplierComponent } from './pages/supplier/supplier.component';
+import { SearchComponent } from './pages/search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     SidebarComponent,
     FooterComponent,
     ProductComponent,
+    SupplierComponent,
+    SearchComponent,
   ],
   imports: [BrowserModule, AppRoutingModule,FormsModule,ReactiveFormsModule,HttpClientModule],
   providers: [],
