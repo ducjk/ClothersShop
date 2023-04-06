@@ -3,16 +3,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { ProductComponent } from './pages/product/product.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { MasterComponent } from './shared/master/master.component';
+import { SupplierComponent } from './pages/supplier/supplier.component';
 
 const routes: Routes = [
-  { path: 'home', component: ProductComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  {path:'supplier', component: SupplierComponent},
   {
     path: '',
     component: MasterComponent,
-    children: [{ path: 'product', component: ProductComponent }],
+    children: [
+      { path: 'product', component: ProductComponent },
+      { path: 'supplier', component: SupplierComponent },
+    ],
   },
 ];
 

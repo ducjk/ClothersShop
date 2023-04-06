@@ -7,25 +7,24 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
+import { SearchComponent } from './shared/search/search.component';
 import { ProductComponent } from './pages/product/product.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { MasterComponent } from './shared/master/master.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { ProductComponent } from './pages/product/product.component';
-import{FormsModule,ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    RegisterComponent,
     LoginComponent,
-    SidebarComponent,
-    FooterComponent,
+    SearchComponent,
     ProductComponent,
+    RegisterComponent,
+    FooterComponent,
+    HeaderComponent,
+    MasterComponent,
+    SidebarComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   providers: [CookieService],

@@ -1,6 +1,20 @@
 <h3>Quản Lý Nhà Cung Cấp</h3>
 <div class="Search">
-     <app-search></app-search>
+  <div class="search-form">
+    <form class="frmSearch">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Tìm kiếm ở đây" autofocus />
+        <div class="input-group-btn">
+          <button class="btn btn-info" type="submit">
+            <i class="glyphicon glyphicon-search"></i>Tìm kiếm
+          </button>
+          <a style="margin-left: 6px" class="btn btn-primary">
+            <i class="fa fa-plus"></i>Bổ sung
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 <div class="table-responsive">
   <table class="table">
@@ -24,14 +38,14 @@
         <td>{{ item.Country }}</td>
         <td>{{ item.City }}</td>
         <td>
-            <a href="" class="btn-sup"> 
-                <i class="fa fa-edit"></i>
+          <a href="" class="btn-sup">
+            <i class="fa fa-edit"></i>
+          </a>
+          <a href="" class="btn-sup">
+            <a href="" class="btn-sup">
+              <i class="fa fa-trash"></i>
             </a>
-            <a href="" class="btn-sup"> 
-                <a href="" class="btn-sup"> 
-                <i class="fa fa-trash"></i>
-                </a>
-            </a>
+          </a>
         </td>
       </tr>
     </tbody>
