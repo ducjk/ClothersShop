@@ -14,6 +14,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { MasterComponent } from './shared/master/master.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { SupplierComponent } from './pages/supplier/supplier.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     HeaderComponent,
     MasterComponent,
     SidebarComponent,
+    SupplierComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   providers: [CookieService],
