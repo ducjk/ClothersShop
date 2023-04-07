@@ -11,7 +11,7 @@ export class HeaderComponent {
   user!: User;
   constructor(private userService: UserService) {}
   ngOnInit(): void {
-    this.user = this.userService.getUser();
+    this.user = JSON.parse(sessionStorage.getItem('user') || '{}');
   }
 
   onHiddenSideBar() {}

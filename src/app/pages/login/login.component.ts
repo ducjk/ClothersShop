@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Route, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AccountServiceService } from 'src/app/core/service/account.service';
 import jwt_decode from 'jwt-decode';
@@ -13,6 +13,7 @@ import { User } from 'src/app/components/user';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  returnUrl!: string;
   user!: User;
   public loginForm!: FormGroup;
   constructor(
@@ -20,8 +21,11 @@ export class LoginComponent implements OnInit {
     private account: AccountServiceService,
     private router: Router,
     private cookieService: CookieService,
-    private userService: UserService
-  ) {}
+    private userService: UserService,
+    private route: ActivatedRoute
+  ) {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
@@ -64,9 +68,11 @@ export class LoginComponent implements OnInit {
         const tokenInfo = this.getDecodedAccessToken(res.access_token);
         const { id, fullname, gender, birthday, photo, email, phone, address } = tokenInfo;
         this.user = { id, fullname, gender, birthday, phone, email, photo, address };
+        sessionStorage.setItem('user', JSON.stringify(this.user));
+
         this.userService.setUser(this.user);
 
-        this.router.navigate(['/']);
+        this.router.navigateByUrl(this.returnUrl);
       },
       (err) => {
         this.loginForm.reset();
