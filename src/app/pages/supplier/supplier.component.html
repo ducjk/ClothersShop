@@ -1,11 +1,11 @@
 <h3>Quản Lý Nhà Cung Cấp</h3>
 <div class="Search">
   <div class="search-form">
-    <form class="frmSearch">
+    <form class="frmSearch"[formGroup]="searchForm" (ngSubmit)="onSearch()">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Tìm kiếm ở đây" autofocus />
+        <input formControlName="searchValue" type="text" class="form-control" placeholder="Tìm kiếm ở đây" autofocus />
         <div class="input-group-btn">
-          <button class="btn btn-info" type="submit">
+          <button class="btn btn-info" type="submit" >
             <i class="glyphicon glyphicon-search"></i>Tìm kiếm
           </button>
           <a style="margin-left: 6px" class="btn btn-primary">
@@ -30,7 +30,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of suppires" class="th-body">
+      <tr *ngFor="let item of suppliers">
         <td>{{ item.SupplierName }}</td>
         <td>{{ item.ContactName }}</td>
         <td>{{ item.Address }}</td>
