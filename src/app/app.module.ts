@@ -15,6 +15,9 @@ import { HeaderComponent } from './shared/header/header.component';
 import { MasterComponent } from './shared/master/master.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { SupplierComponent } from './pages/supplier/supplier.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { NotfoundComponent } from './shared/notfound/notfound.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,8 +30,10 @@ import { SupplierComponent } from './pages/supplier/supplier.component';
     MasterComponent,
     SidebarComponent,
     SupplierComponent,
+    ProfileComponent,
+    NotfoundComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule],
   providers: [CookieService],
   bootstrap: [AppComponent],
 })

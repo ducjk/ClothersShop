@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { User } from 'src/app/components/user';
 import { UserService } from 'src/app/core/service/userService/user.service';
 
@@ -9,10 +11,28 @@ import { UserService } from 'src/app/core/service/userService/user.service';
 })
 export class HeaderComponent {
   user!: User;
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private cookie: CookieService
+  ) {}
   ngOnInit(): void {
     this.user = JSON.parse(sessionStorage.getItem('user') || '{}');
   }
 
-  onHiddenSideBar() {}
+  logout() {
+    this.userService.setUser({
+      id: 0,
+      fullname: '',
+      email: '',
+      gender: '',
+      address: '',
+      phone: '',
+      birthday: '',
+      photo: '',
+    });
+    sessionStorage.removeItem('user');
+    this.cookie.delete('token');
+    this.router.navigate(['/login']);
+  }
 }
