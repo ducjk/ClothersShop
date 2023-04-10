@@ -17,7 +17,10 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { SupplierComponent } from './pages/supplier/supplier.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EditComponent } from './pages/supplier/edit/edit.component';
+import { IndexComponent } from './pages/supplier/index/index.component';
+import { DeleteComponent } from './pages/supplier/delete/delete.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,8 +35,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SupplierComponent,
     ProfileComponent,
     NotfoundComponent,
+    EditComponent,
+    IndexComponent,
+    DeleteComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule],
+
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgxPaginationModule,
+  ],
   providers: [CookieService],
   bootstrap: [AppComponent],
 })
