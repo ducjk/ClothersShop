@@ -1,19 +1,23 @@
 <div class="Search">
-  <div class="search-form">
+  <div class="search-form" style="padding: 12px">
     <form class="frmSearch" [formGroup]="searchForm" (ngSubmit)="onSearch()">
       <div class="input-group">
         <input
+          class="inputSearch"
           formControlName="searchValue"
           type="text"
-          class="form-control"
           placeholder="Tìm kiếm ở đây"
           autofocus
         />
         <div class="input-group-btn">
-          <button class="btn btn-info" type="submit">
+          <button class="btn btn-info" type="submit" style="font-size: 14px">
             <i class="glyphicon glyphicon-search"></i>Tìm kiếm
           </button>
-          <a style="margin-left: 6px" class="btn btn-primary" routerLink="/home/supplier/edit/0">
+          <a
+            style="margin-left: 6px; font-size: 14px"
+            class="btn btn-primary btn-add"
+            routerLink="/home/supplier/edit/0"
+          >
             <i class="fa fa-plus"></i>Bổ sung
           </a>
         </div>
@@ -35,7 +39,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of suppliers | paginate : { itemsPerPage: 2, currentPage: p }">
+      <tr
+        *ngFor="let item of suppliers | paginate : { itemsPerPage: 5, currentPage: p }"
+        class="th-body"
+      >
         <td>{{ item.SupplierName }}</td>
         <td>{{ item.ContactName }}</td>
         <td>{{ item.Address }}</td>
@@ -46,7 +53,12 @@
           <a routerLink="/home/supplier/edit/{{ item.id }}" class="btn-sup">
             <i class="fa fa-edit"></i>
           </a>
-          <a href="" class="btn-sup" routerLink="/home/supplier/delete/{{ item.id }}">
+          <a
+            href=""
+            class="btn-sup"
+            routerLink="/home/supplier/delete/{{ item.id }}"
+            style="color: red"
+          >
             <i class="fa fa-trash"></i>
           </a>
         </td>
