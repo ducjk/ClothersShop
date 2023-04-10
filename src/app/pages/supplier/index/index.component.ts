@@ -10,6 +10,7 @@ import { SupplierService } from 'src/app/core/service/supplier.service';
 })
 export class IndexComponent implements OnInit {
   public searchForm!: FormGroup;
+  p: number = 1;
   suppliers: Supplier[] = [];
   constructor(private supplier: SupplierService, private formBuilder: FormBuilder) {}
   ngOnInit(): void {

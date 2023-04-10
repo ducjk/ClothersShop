@@ -35,7 +35,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of suppliers">
+      <tr *ngFor="let item of suppliers | paginate : { itemsPerPage: 5, currentPage: p }">
         <td>{{ item.SupplierName }}</td>
         <td>{{ item.ContactName }}</td>
         <td>{{ item.Address }}</td>
@@ -47,21 +47,13 @@
             <i class="fa fa-edit"></i>
           </a>
           <a href="" class="btn-sup" routerLink="/home/supplier/delete/{{ item.id }}">
-              <i class="fa fa-trash"></i>
-            </a>
-        
+            <i class="fa fa-trash"></i>
+          </a>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
-<div class="pagination">
-  <a href="#">&laquo;</a>
-  <a href="#">1</a>
-  <a href="#">2</a>
-  <a href="#">3</a>
-  <a href="#">4</a>
-  <a href="#">5</a>
-  <a href="#">6</a>
-  <a href="#">&raquo;</a>
+<div class="clearfix">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>

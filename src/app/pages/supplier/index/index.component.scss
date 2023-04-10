@@ -32,9 +32,9 @@ h3 {
   justify-content: center;
 }
 
-.pagination a {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
+.clearfix {
+  position: relative;
+  right: 35%;
+  left: 35%;
+  font-size: 14px;
 }

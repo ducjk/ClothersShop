@@ -18,6 +18,8 @@ import { SupplierComponent } from './pages/supplier/supplier.component';
 import { EditComponent } from './pages/supplier/edit/edit.component';
 import { IndexComponent } from './pages/supplier/index/index.component';
 import { DeleteComponent } from './pages/supplier/delete/delete.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,16 @@ import { DeleteComponent } from './pages/supplier/delete/delete.component';
     IndexComponent,
     DeleteComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
+  
+  ],
   providers: [CookieService],
   bootstrap: [AppComponent],
 })
