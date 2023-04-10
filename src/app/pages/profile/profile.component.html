@@ -1,1 +1,75 @@
-<p>profile works!</p>
+<!-- <div class="wrapper">
+  <form [formGroup]="editForm" (ngSubmit)="save()" class="formInput">
+    <div class="mb-3">
+      <label for="exampleInputsupplierName1" class="form-label">Tên Nhà Cung Cấp</label>
+      <input
+        formControlName="SupplierName"
+        type="text"
+        class="form-control"
+        id="exampleInputsupplierName1"
+      />
+    </div>
+    <small
+      *ngIf="
+        editForm.controls['SupplierName'].dirty && editForm.hasError('required', 'SupplierName')
+      "
+      class="text-danger"
+      >*
+    </small>
+
+    <div class="mb-3">
+      <label for="exampleInputContactName1" class="form-label">Tên Nhà Giao Dịch</label>
+      <input
+        formControlName="ContactName"
+        type="text"
+        class="form-control"
+        id="exampleInputContactName1"
+      />
+    </div>
+    <small
+      *ngIf="editForm.controls['ContactName'].dirty && editForm.hasError('required', 'ContactName')"
+      class="text-danger"
+      >*
+    </small>
+    <div class="mb-3">
+      <label for="exampleInputAddress1" class="form-label">Địa Chỉ</label>
+      <input formControlName="Address" type="text" class="form-control" id="exampleInputAddress1" />
+    </div>
+    <small
+      *ngIf="editForm.controls['Address'].dirty && editForm.hasError('required', 'Address')"
+      class="text-danger"
+      >*
+    </small>
+    <div class="mb-3">
+      <label for="exampleInputPhone1" class="form-label">SĐT</label>
+      <input formControlName="Phone" type="text" class="form-control" id="exampleInputPhone1" />
+    </div>
+    <small
+      *ngIf="editForm.controls['Phone'].dirty && editForm.hasError('required', 'Phone')"
+      class="text-danger"
+      >*
+    </small>
+    <div class="mb-3">
+      <label for="exampleInputCountry1" class="form-label">Quốc Gia</label>
+      <input formControlName="Country" type="text" class="form-control" id="exampleInputCountry1" />
+    </div>
+    <small
+      *ngIf="editForm.controls['Country'].dirty && editForm.hasError('required', 'Country')"
+      class="text-danger"
+      >*
+    </small>
+    <div class="mb-3">
+      <label for="exampleInputCity1" class="form-label">Thành Phố</label>
+      <input formControlName="City" type="text" class="form-control" id="exampleInputCity1" />
+    </div>
+    <small
+      *ngIf="editForm.controls['City'].dirty && editForm.hasError('required', 'City')"
+      class="text-danger"
+      >*
+    </small>
+    <div class="button">
+      <button [disabled]="editForm.invalid" type="submit" class="btn btn-primary">Save</button>
+      <button type="button" class="btn btn-warning" routerLink="/home/supplier">Cancel</button>
+    </div>
+  </form>
+</div> -->
