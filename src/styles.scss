@@ -12,6 +12,7 @@
   // pixel
   --header-height: 6.5rem;
   --footer-height: 5.3rem;
+  --primary-color: #1e90ff;
 }
 
 * {
@@ -40,5 +41,11 @@ body {
   }
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
