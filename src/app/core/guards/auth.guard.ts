@@ -13,13 +13,15 @@ import { UserService } from '../service/userService/user.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  isLogined!: boolean;
+  isLogined = false;
   constructor(private userService: UserService, private router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    this.isLogined = !!this.userService.getUser();
+    if (typeof this.userService.getUser() !== 'undefined') {
+      this.isLogined = true;
+    }
     if (!this.isLogined) {
       this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
     }

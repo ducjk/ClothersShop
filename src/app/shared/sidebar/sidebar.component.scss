@@ -51,18 +51,14 @@
   padding: 0;
 }
 .item {
-  font-size: 1.4rem;
-  color: #e9ecef;
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  color: #e9ecef80;
 
   :hover {
-    color: #1e36bd;
+    color: #e9ecef;
   }
-}
-
-.active {
-  background: linear-gradient(to right, rgba(#fff, 0.6), rgba(#fff, 0.2));
-  color: #1e36bd;
-  font-weight: 600;
 }
 
 .item-link {
@@ -72,4 +68,23 @@
   height: 100%;
   display: block;
   padding: 10px 26px;
+  color: #e9ecef80;
+}
+
+.icon-item {
+  font-size: 1.4rem;
+  margin-right: 4px;
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.active {
+  background: linear-gradient(
+    90deg,
+    rgba(59, 125, 221, 0.1),
+    rgba(59, 125, 221, 0.0875) 50%,
+    transparent
+  );
+  color: #e9ecef;
+  font-weight: 600;
 }

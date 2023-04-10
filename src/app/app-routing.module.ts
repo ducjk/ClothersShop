@@ -6,6 +6,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { MasterComponent } from './shared/master/master.component';
 import { SupplierComponent } from './pages/supplier/supplier.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { NotfoundComponent } from './shared/notfound/notfound.component';
 import { EditComponent } from './pages/supplier/edit/edit.component';
 import { IndexComponent } from './pages/supplier/index/index.component';
 import { DeleteComponent } from './pages/supplier/delete/delete.component';
@@ -19,8 +21,10 @@ const routes: Routes = [
     component: MasterComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: 'product', pathMatch: 'full' },
+      { path: '', redirectTo: 'supplier', pathMatch: 'full' },
       { path: 'product', component: ProductComponent },
+      { path: 'category', component: SupplierComponent },
+      { path: 'profile', component: ProfileComponent },
       {
         path: 'supplier',
         component: SupplierComponent,
@@ -36,6 +40,7 @@ const routes: Routes = [
       },
     ],
   },
+  { path: '**', component: NotfoundComponent },
 ];
 
 @NgModule({

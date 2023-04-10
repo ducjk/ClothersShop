@@ -14,10 +14,11 @@ import { HeaderComponent } from './shared/header/header.component';
 import { MasterComponent } from './shared/master/master.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { SupplierComponent } from './pages/supplier/supplier.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { NotfoundComponent } from './shared/notfound/notfound.component';
 import { EditComponent } from './pages/supplier/edit/edit.component';
 import { IndexComponent } from './pages/supplier/index/index.component';
 import { DeleteComponent } from './pages/supplier/delete/delete.component';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
@@ -31,17 +32,19 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MasterComponent,
     SidebarComponent,
     SupplierComponent,
+    ProfileComponent,
+    NotfoundComponent,
     EditComponent,
     IndexComponent,
     DeleteComponent,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    Ng2SearchPipeModule,
     NgxPaginationModule,
   ],
   providers: [CookieService],
