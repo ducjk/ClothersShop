@@ -15,6 +15,9 @@ import { HeaderComponent } from './shared/header/header.component';
 import { MasterComponent } from './shared/master/master.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { SupplierComponent } from './pages/supplier/supplier.component';
+import { EditComponent } from './pages/supplier/edit/edit.component';
+import { IndexComponent } from './pages/supplier/index/index.component';
+import { DeleteComponent } from './pages/supplier/delete/delete.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +30,9 @@ import { SupplierComponent } from './pages/supplier/supplier.component';
     MasterComponent,
     SidebarComponent,
     SupplierComponent,
+    EditComponent,
+    IndexComponent,
+    DeleteComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   providers: [CookieService],

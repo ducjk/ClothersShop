@@ -1,0 +1,67 @@
+<div class="Search">
+  <div class="search-form">
+    <form class="frmSearch" [formGroup]="searchForm" (ngSubmit)="onSearch()">
+      <div class="input-group">
+        <input
+          formControlName="searchValue"
+          type="text"
+          class="form-control"
+          placeholder="Tìm kiếm ở đây"
+          autofocus
+        />
+        <div class="input-group-btn">
+          <button class="btn btn-info" type="submit">
+            <i class="glyphicon glyphicon-search"></i>Tìm kiếm
+          </button>
+          <a style="margin-left: 6px" class="btn btn-primary" routerLink="/home/supplier/edit/0">
+            <i class="fa fa-plus"></i>Bổ sung
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr class="th-primary">
+        <th>Tên nhà cung cấp</th>
+        <th>Tên nhà giao dịch</th>
+        <th>Địa chỉ</th>
+        <th>Điện thoại</th>
+        <th>Quốc gia</th>
+        <th>Thành phố</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of suppliers">
+        <td>{{ item.SupplierName }}</td>
+        <td>{{ item.ContactName }}</td>
+        <td>{{ item.Address }}</td>
+        <td>{{ item.Phone }}</td>
+        <td>{{ item.Country }}</td>
+        <td>{{ item.City }}</td>
+        <td>
+          <a routerLink="/home/supplier/edit/{{ item.id }}" class="btn-sup">
+            <i class="fa fa-edit"></i>
+          </a>
+          <a href="" class="btn-sup" routerLink="/home/supplier/delete/{{ item.id }}">
+              <i class="fa fa-trash"></i>
+            </a>
+        
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="pagination">
+  <a href="#">&laquo;</a>
+  <a href="#">1</a>
+  <a href="#">2</a>
+  <a href="#">3</a>
+  <a href="#">4</a>
+  <a href="#">5</a>
+  <a href="#">6</a>
+  <a href="#">&raquo;</a>
+</div>

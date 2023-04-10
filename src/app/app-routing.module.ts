@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { ProductComponent } from './pages/product/product.component';
@@ -6,6 +6,9 @@ import { RegisterComponent } from './pages/register/register.component';
 import { MasterComponent } from './shared/master/master.component';
 import { SupplierComponent } from './pages/supplier/supplier.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { EditComponent } from './pages/supplier/edit/edit.component';
+import { IndexComponent } from './pages/supplier/index/index.component';
+import { DeleteComponent } from './pages/supplier/delete/delete.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -18,7 +21,19 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'product', pathMatch: 'full' },
       { path: 'product', component: ProductComponent },
-      { path: 'supplier', component: SupplierComponent },
+      {
+        path: 'supplier',
+        component: SupplierComponent,
+        children: [
+          { path: 'edit/:id', component: EditComponent },
+          { path: '', redirectTo: 'index', pathMatch: 'full' },
+          { path: 'index', component: IndexComponent },
+          {
+            path: 'delete/:id',
+            component: DeleteComponent,
+          },
+        ],
+      },
     ],
   },
 ];
