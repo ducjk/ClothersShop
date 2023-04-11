@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Supplier } from 'src/app/components/supplier';
 import { SupplierService } from 'src/app/core/service/supplier.service';
+import { Country } from 'src/app/components/country';
 
 @Component({
   selector: 'app-edit',
@@ -12,7 +11,7 @@ import { SupplierService } from 'src/app/core/service/supplier.service';
 })
 export class EditComponent implements OnInit {
   public editForm!: FormGroup;
-  countrys: any;
+  countries: Country[] = [];
   constructor(
     private supplier: SupplierService,
     private formBuilder: FormBuilder,
@@ -28,6 +27,7 @@ export class EditComponent implements OnInit {
       Country: ['', Validators.required],
       City: ['', Validators.required],
     });
+
     this.router.paramMap.subscribe((params) => {
       let id: number = parseInt(params.get('id')!);
       if (id != 0) {
@@ -55,7 +55,7 @@ export class EditComponent implements OnInit {
       }
     });
     this.supplier.getcountry().subscribe((res: any) => {
-      this.countrys = res;
+      this.countries = res;
       console.log(res);
     });
   }

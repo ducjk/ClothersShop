@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { Supplier } from 'src/app/components/supplier';
+import { Country } from 'src/app/components/country';
 @Injectable({
   providedIn: 'root',
 })
@@ -37,8 +38,8 @@ export class SupplierService {
     let url = `${this.urlAPI}/Supplier/` + id;
     return this.http.delete<Supplier[]>(url, { headers: this.headers });
   }
-  getcountry(): any {
+  getcountry(): Observable<Country[]> {
     let url = `${this.urlAPI}/Country`;
-    return this.http.get(url, { headers: this.headers });
+    return this.http.get<Country[]>(url, { headers: this.headers });
   }
 }
