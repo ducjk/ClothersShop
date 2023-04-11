@@ -59,12 +59,14 @@
       </small>
       <div class="mb-3">
         <label for="exampleInputCountry1" class="form-label">Quốc Gia</label>
-        <input
-          formControlName="Country"
-          type="text"
-          class="form-control"
-          id="exampleInputCountry1"
-        />
+        <select class="form-control">
+          <option
+            *ngFor="let country of countries"
+            [selected]="country.CountryName == editForm.value.Country"
+          >
+            {{ country.CountryName }}
+          </option>
+        </select>
       </div>
       <small
         *ngIf="editForm.controls['Country'].dirty && editForm.hasError('required', 'Country')"
