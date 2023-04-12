@@ -27,3 +27,7 @@ input {
 input:focus {
   background-color: rgba($color: var(--primary-color), $alpha: 1);
 }
+
+.option-select {
+  font-size: 1.4rem;
+}
