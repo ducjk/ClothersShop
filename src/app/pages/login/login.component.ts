@@ -4,7 +4,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AccountServiceService } from 'src/app/core/service/account.service';
 import jwt_decode from 'jwt-decode';
-import { UserService } from 'src/app/core/service/userService/user.service';
+import { UserService } from 'src/app/core/service/user.service';
 import { User } from 'src/app/components/user';
 
 @Component({

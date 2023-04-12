@@ -8,7 +8,7 @@ import { SupplierService } from 'src/app/core/service/supplier.service';
   templateUrl: './delete.component.html',
   styleUrls: ['./delete.component.scss'],
 })
-export class DeleteComponent implements OnInit {
+export class DeleteSupplierComponent implements OnInit {
   deleteForm!: FormGroup;
   constructor(
     private supplier: SupplierService,
@@ -32,11 +32,11 @@ export class DeleteComponent implements OnInit {
         let mySup = res;
         this.deleteForm = this.formBuilder.group({
           SupplierName: [{ value: mySup.SupplierName, disabled: true }],
-          ContactName: [{value:mySup.ContactName,disabled:true}],
-          Address: [{value:mySup.Address,disabled:true}],
-          Phone: [{value:mySup.Phone,disabled:true}],
-          Country: [{value:mySup.Country,disabled:true}],
-          City: [{value:mySup.City,disabled:true}],
+          ContactName: [{ value: mySup.ContactName, disabled: true }],
+          Address: [{ value: mySup.Address, disabled: true }],
+          Phone: [{ value: mySup.Phone, disabled: true }],
+          Country: [{ value: mySup.Country, disabled: true }],
+          City: [{ value: mySup.City, disabled: true }],
         });
       });
     });

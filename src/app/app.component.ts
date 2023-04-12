@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService } from './core/service/userService/user.service';
+import { UserService } from './core/service/user.service';
 import { User } from './components/user';
 import { CookieService } from 'ngx-cookie-service';
 import jwt_decode from 'jwt-decode';

@@ -59,7 +59,8 @@
       </small>
       <div class="mb-3">
         <label for="exampleInputCountry1" class="form-label">Quốc Gia</label>
-        <select class="form-control">
+        <select class="form-control option-select" formControlName="Country">
+          <option>--Chọn Quốc Gia--</option>
           <option
             *ngFor="let country of countries"
             [selected]="country.CountryName == editForm.value.Country"

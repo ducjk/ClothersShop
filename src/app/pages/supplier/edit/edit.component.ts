@@ -3,20 +3,22 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { SupplierService } from 'src/app/core/service/supplier.service';
 import { Country } from 'src/app/components/country';
+import { CountriesService } from 'src/app/core/service/countries.service';
 
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
-export class EditComponent implements OnInit {
+export class EditSupplierComponent implements OnInit {
   public editForm!: FormGroup;
   countries: Country[] = [];
   constructor(
     private supplier: SupplierService,
     private formBuilder: FormBuilder,
     private router: ActivatedRoute,
-    private route: Router
+    private route: Router,
+    private country: CountriesService
   ) {}
   ngOnInit(): void {
     this.editForm = this.formBuilder.group({
@@ -54,10 +56,7 @@ export class EditComponent implements OnInit {
         });
       }
     });
-    this.supplier.getcountry().subscribe((res: any) => {
-      this.countries = res;
-      console.log(res);
-    });
+    this.countries = this.country.getCountries();
   }
   save() {
     this.router.paramMap.subscribe((params) => {

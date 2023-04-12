@@ -1,0 +1,34 @@
+<div class="background">
+  <div class="wrapper">
+    <form [formGroup]="editForm" (ngSubmit)="save()" class="formInput">
+      <div class="mb-3">
+        <label for="CategoryName" class="form-label">Tên loại hàng</label>
+        <input formControlName="CategoryName" type="text" class="form-control" id="CategoryName" />
+      </div>
+      <small
+        *ngIf="
+          editForm.controls['CategoryName'].dirty && editForm.hasError('required', 'CategoryName')
+        "
+        class="text-danger"
+        >*
+      </small>
+
+      <div class="mb-3">
+        <label for="Description" class="form-label">Mô tả</label>
+        <input formControlName="Description" type="text" class="form-control" id="Description" />
+      </div>
+      <small
+        *ngIf="
+          editForm.controls['Description'].dirty && editForm.hasError('required', 'Description')
+        "
+        class="text-danger"
+        >*
+      </small>
+
+      <div class="button">
+        <button [disabled]="editForm.invalid" type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-warning" routerLink="/home/category">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

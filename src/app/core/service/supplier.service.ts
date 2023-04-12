@@ -1,45 +1,28 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CookieService } from 'ngx-cookie-service';
 import { Supplier } from 'src/app/components/supplier';
-import { Country } from 'src/app/components/country';
+import { ApiService } from './api.service';
 @Injectable({
   providedIn: 'root',
 })
 export class SupplierService {
-  auth_token = this.cookieService.get('token');
-  headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    Authorization: 'Bearer ' + this.auth_token,
-  });
-  private urlAPI = 'http://localhost:3000';
-  constructor(private http: HttpClient, private cookieService: CookieService) {}
+  names = 'Suppliers';
+  name = 'Supplier';
+  constructor(private apiService: ApiService) {}
   getSuppliers(searchvalue: any = null): Observable<Supplier[]> {
-    let url = `${this.urlAPI}/Suppliers`;
-    if (searchvalue != null) {
-      url = `${url}?SupplierName_like=` + searchvalue;
-    }
-    return this.http.get<Supplier[]>(url, { headers: this.headers });
+    return this.apiService.getList(searchvalue, this.names, this.name);
   }
+
   getByid(id: number): Observable<Supplier> {
-    let url = `${this.urlAPI}/Suppliers/` + id;
-    return this.http.get<Supplier>(url, { headers: this.headers });
+    return this.apiService.getByid(id, this.names);
   }
   update(data: Supplier[], id: number): Observable<Supplier[]> {
-    let url = `${this.urlAPI}/Suppliers/` + id;
-    return this.http.put<Supplier[]>(url, data, { headers: this.headers });
+    return this.apiService.update(data, id, this.names);
   }
   add(data: Supplier[]): Observable<Supplier[]> {
-    let url = `${this.urlAPI}/Suppliers`;
-    return this.http.post<Supplier[]>(url, data, { headers: this.headers });
+    return this.apiService.add(data, this.names);
   }
-  delete(id: number): Observable<Supplier[]> {
-    let url = `${this.urlAPI}/Suppliers/` + id;
-    return this.http.delete<Supplier[]>(url, { headers: this.headers });
-  }
-  getcountry(): Observable<Country[]> {
-    let url = `${this.urlAPI}/Countries`;
-    return this.http.get<Country[]>(url, { headers: this.headers });
+  delete(id: number): Observable<any> {
+    return this.apiService.delete(id, this.names);
   }
 }
