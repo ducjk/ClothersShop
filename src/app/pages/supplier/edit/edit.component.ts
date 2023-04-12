@@ -9,7 +9,7 @@ import { Country } from 'src/app/components/country';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
-export class EditComponent implements OnInit {
+export class EditSupplierComponent implements OnInit {
   public editForm!: FormGroup;
   countries: Country[] = [];
   constructor(

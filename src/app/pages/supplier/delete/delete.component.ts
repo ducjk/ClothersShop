@@ -8,7 +8,7 @@ import { SupplierService } from 'src/app/core/service/supplier.service';
   templateUrl: './delete.component.html',
   styleUrls: ['./delete.component.scss'],
 })
-export class DeleteComponent implements OnInit {
+export class DeleteSupplierComponent implements OnInit {
   deleteForm!: FormGroup;
   constructor(
     private supplier: SupplierService,

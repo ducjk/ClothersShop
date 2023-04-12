@@ -16,10 +16,14 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { SupplierComponent } from './pages/supplier/supplier.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
-import { EditComponent } from './pages/supplier/edit/edit.component';
-import { IndexComponent } from './pages/supplier/index/index.component';
-import { DeleteComponent } from './pages/supplier/delete/delete.component';
+import { EditSupplierComponent } from './pages/supplier/edit/edit.component';
+import { IndexSupplierComponent } from './pages/supplier/index/index.component';
+import { DeleteSupplierComponent } from './pages/supplier/delete/delete.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { EmployeeComponent } from './pages/employee/employee.component';
+import { IndexEmployeeComponent } from './pages/employee/index/index.component';
+import { DeleteEmployeeComponent } from './pages/employee/delete/delete.component';
+import { EditEmployeeComponent } from './pages/employee/edit/edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,9 +38,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
     SupplierComponent,
     ProfileComponent,
     NotfoundComponent,
-    EditComponent,
-    IndexComponent,
-    DeleteComponent,
+    EditEmployeeComponent,
+    EmployeeComponent,
+    EditSupplierComponent,
+    IndexEmployeeComponent,
+    DeleteEmployeeComponent,
+    IndexSupplierComponent,
+    DeleteSupplierComponent,
   ],
 
   imports: [

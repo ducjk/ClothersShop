@@ -1,0 +1,29 @@
+.formInput {
+  width: 800px;
+  box-shadow: 0px 0px 3px #5f5f5f, 0px 0px 0px 5px #ecf0f3, 8px 8px 15px #a7aaa7,
+    -8px -8px 15px #fff;
+  padding: 20px;
+}
+
+.btn.btn-warning {
+  margin-left: 10px;
+}
+button {
+  font-size: 15px;
+  padding: 8px 15px;
+}
+.wrapper {
+  min-height: 500px;
+  padding: 30px 30px 30px 30px;
+  display: flex;
+  justify-content: center;
+  margin: 0 -12px;
+}
+
+input {
+  height: 30px;
+  font-size: 1.4rem;
+}
+input:focus {
+  background-color: rgba($color: var(--primary-color), $alpha: 1);
+}

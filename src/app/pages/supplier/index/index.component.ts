@@ -8,7 +8,7 @@ import { SupplierService } from 'src/app/core/service/supplier.service';
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
-export class IndexComponent implements OnInit {
+export class IndexSupplierComponent implements OnInit {
   public searchForm!: FormGroup;
   p: number = 1;
   i: number = 1;

@@ -8,9 +8,13 @@ import { SupplierComponent } from './pages/supplier/supplier.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
-import { EditComponent } from './pages/supplier/edit/edit.component';
-import { IndexComponent } from './pages/supplier/index/index.component';
-import { DeleteComponent } from './pages/supplier/delete/delete.component';
+import { EditSupplierComponent } from './pages/supplier/edit/edit.component';
+import { IndexSupplierComponent } from './pages/supplier/index/index.component';
+import { DeleteSupplierComponent } from './pages/supplier/delete/delete.component';
+import { EmployeeComponent } from './pages/employee/employee.component';
+import { EditEmployeeComponent } from './pages/employee/edit/edit.component';
+import { IndexEmployeeComponent } from './pages/employee/index/index.component';
+import { DeleteEmployeeComponent } from './pages/employee/delete/delete.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -29,12 +33,25 @@ const routes: Routes = [
         path: 'supplier',
         component: SupplierComponent,
         children: [
-          { path: 'edit/:id', component: EditComponent },
+          { path: 'edit/:id', component: EditSupplierComponent },
           { path: '', redirectTo: 'index', pathMatch: 'full' },
-          { path: 'index', component: IndexComponent },
+          { path: 'index', component: IndexSupplierComponent },
           {
             path: 'delete/:id',
-            component: DeleteComponent,
+            component: DeleteSupplierComponent,
+          },
+        ],
+      },
+      {
+        path: 'employee',
+        component: EmployeeComponent,
+        children: [
+          { path: 'editemployee/:id', component: EditEmployeeComponent },
+          { path: '', redirectTo: 'indexEmployee', pathMatch: 'full' },
+          { path: 'indexEmployee', component: IndexEmployeeComponent },
+          {
+            path: 'deleteEmployee/:id',
+            component: DeleteEmployeeComponent,
           },
         ],
       },
