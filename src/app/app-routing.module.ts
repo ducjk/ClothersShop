@@ -46,11 +46,11 @@ const routes: Routes = [
         path: 'employee',
         component: EmployeeComponent,
         children: [
-          { path: 'editemployee/:id', component: EditEmployeeComponent },
-          { path: '', redirectTo: 'indexEmployee', pathMatch: 'full' },
-          { path: 'indexEmployee', component: IndexEmployeeComponent },
+          { path: 'edit/:id', component: EditEmployeeComponent },
+          { path: '', redirectTo: 'index', pathMatch: 'full' },
+          { path: 'index', component: IndexEmployeeComponent },
           {
-            path: 'deleteEmployee/:id',
+            path: 'delete/:id',
             component: DeleteEmployeeComponent,
           },
         ],

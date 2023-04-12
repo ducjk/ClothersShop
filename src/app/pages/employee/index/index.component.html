@@ -16,7 +16,7 @@
           <a
             style="margin-left: 6px; font-size: 14px"
             class="btn btn-primary btn-add"
-            routerLink="/home/employee/editemployee/0"
+            routerLink="/home/employee/edit/0"
           >
             <i class="fa fa-plus"></i>Bổ sung
           </a>
@@ -40,10 +40,10 @@
             alt="User profile picture"
           />
           <div class="action-profile" style="position: absolute; top: 6px; right: 20px">
-            <a href="/home/employee/editemployee/{{ item.id }}" class="btn btn-xs btn-primary">
+            <a href="/home/employee/edit/{{ item.id }}" class="btn btn-xs btn-primary">
               <i class="fa fa-edit"> </i>
             </a>
-            <a href="/home/employee/deleteEmployee/{{ item.id }}" class="btn btn-xs btn-danger">
+            <a href="/home/employee/delete/{{ item.id }}" class="btn btn-xs btn-danger">
               <i class="fa fa-trash"> </i>
             </a>
           </div>
