@@ -1,0 +1,82 @@
+<div class="Search">
+  <div class="search-form" style="padding: 12px">
+    <form class="frmSearch" [formGroup]="searchForm" (ngSubmit)="onSearch()">
+      <div class="input-group">
+        <input
+          class="inputSearch"
+          formControlName="searchValue"
+          type="text"
+          placeholder="Tìm kiếm ở đây"
+          autofocus
+        />
+        <div class="input-group-btn">
+          <button class="btn btn-info" type="submit" style="font-size: 14px">
+            <i class="glyphicon glyphicon-search"></i>Tìm kiếm
+          </button>
+          <a
+            style="margin-left: 6px; font-size: 14px"
+            class="btn btn-primary btn-add"
+            routerLink="/home/employee/editemployee/0"
+          >
+            <i class="fa fa-plus"></i>Bổ sung
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="container">
+    <div
+      class="row"
+      *ngFor="let item of Employees | paginate : { itemsPerPage: 6, currentPage: p }"
+    >
+      <div
+        class="box box-primary"
+        style="width: 350px; border: 1px solid rgba(0, 0, 0, 0.08); margin: 8px 8px"
+      >
+        <div class="box-body box-profile" style="position: relative">
+          <img
+            class="profile-user-img img-responsive img-circle"
+            src="{{ item.photo }}"
+            alt="User profile picture"
+          />
+          <div class="action-profile" style="position: absolute; top: 6px; right: 20px">
+            <a href="/home/employee/editemployee/{{ item.id }}" class="btn btn-xs btn-primary">
+              <i class="fa fa-edit"> </i>
+            </a>
+            <a href="/home/employee/deleteEmployee/{{ item.id }}" class="btn btn-xs btn-danger">
+              <i class="fa fa-trash"> </i>
+            </a>
+          </div>
+          <h3 class="profile-username text-center">{{ item.fullname }}</h3>
+
+          <ul class="list-group list-group-unbordered">
+            <li class="list-group-item">
+              <b>Ngày sinh</b>
+              <p class="pull-right">{{ item.birthday }}</p>
+            </li>
+            <li class="list-group-item">
+              <b>Email</b>
+              <p class="pull-right">{{ item.email }}</p>
+            </li>
+            <li class="list-group-item" style="border: none">
+              <b>Giới tính</b>
+              <p class="">{{ item.gender }}</p>
+            </li>
+            <li class="list-group-item" style="border: none">
+              <b>Địa chỉ</b>
+              <p class="">{{ item.address }}</p>
+            </li>
+            <li class="list-group-item" style="border: none">
+              <b>SDT</b>
+              <p class="">{{ item.phone }}</p>
+            </li>
+          </ul>
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </div>
+  </div>
+  <div class="panigation">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>

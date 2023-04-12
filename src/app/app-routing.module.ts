@@ -15,6 +15,10 @@ import { CategoryComponent } from './pages/category/category.component';
 import { EditCategoryComponent } from './pages/category/edit/edit.component';
 import { IndexCategoryComponent } from './pages/category/index/index.component';
 import { DeleteCategoryComponent } from './pages/category/delete/delete.component';
+import { EmployeeComponent } from './pages/employee/employee.component';
+import { EditEmployeeComponent } from './pages/employee/edit/edit.component';
+import { IndexEmployeeComponent } from './pages/employee/index/index.component';
+import { DeleteEmployeeComponent } from './pages/employee/delete/delete.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -51,6 +55,19 @@ const routes: Routes = [
           {
             path: 'delete/:id',
             component: DeleteSupplierComponent,
+          },
+        ],
+      },
+      {
+        path: 'employee',
+        component: EmployeeComponent,
+        children: [
+          { path: 'editemployee/:id', component: EditEmployeeComponent },
+          { path: '', redirectTo: 'indexEmployee', pathMatch: 'full' },
+          { path: 'indexEmployee', component: IndexEmployeeComponent },
+          {
+            path: 'deleteEmployee/:id',
+            component: DeleteEmployeeComponent,
           },
         ],
       },

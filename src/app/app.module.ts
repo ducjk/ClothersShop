@@ -24,6 +24,10 @@ import { CategoryComponent } from './pages/category/category.component';
 import { IndexCategoryComponent } from './pages/category/index/index.component';
 import { DeleteCategoryComponent } from './pages/category/delete/delete.component';
 import { EditCategoryComponent } from './pages/category/edit/edit.component';
+import { EmployeeComponent } from './pages/employee/employee.component';
+import { IndexEmployeeComponent } from './pages/employee/index/index.component';
+import { DeleteEmployeeComponent } from './pages/employee/delete/delete.component';
+import { EditEmployeeComponent } from './pages/employee/edit/edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +49,13 @@ import { EditCategoryComponent } from './pages/category/edit/edit.component';
     IndexCategoryComponent,
     DeleteCategoryComponent,
     EditCategoryComponent,
+    EditEmployeeComponent,
+    EmployeeComponent,
+    EditSupplierComponent,
+    IndexEmployeeComponent,
+    DeleteEmployeeComponent,
+    IndexSupplierComponent,
+    DeleteSupplierComponent,
   ],
 
   imports: [
