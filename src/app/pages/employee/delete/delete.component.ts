@@ -52,7 +52,7 @@ export class DeleteEmployeeComponent {
       let id: number = parseInt(params.get('id')!);
       this.employee.delete(id).subscribe((res) => {
         alert('Xoa thanh cong');
-        this.route.navigate(['/home/supplier']);
+        this.route.navigate(['/home/employee']);
       });
     });
   }

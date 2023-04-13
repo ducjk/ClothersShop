@@ -32,8 +32,11 @@
       </small>
       <div class="mb-3">
         <label for="exampleInputgender" class="form-label">Giới Tính</label>
-        <input formControlName="gender" type="text" class="form-control" id="exampleInputgender" />
-     
+        <select class="form-control option-select" formControlName="gender">
+          <option selected>--Chọn giới tính--</option>
+          <option [selected]="editEmployeeForm.value.gender === 'Male'">Nam</option>
+          <option [selected]="editEmployeeForm.value.gender === 'Female'">Nữ</option>
+        </select>
       </div>
       <div class="mb-3">
         <label for="exampleInputAddress1" class="form-label">Địa Chỉ</label>
@@ -86,7 +89,8 @@
           type="file"
           class="form-control"
           name="uploadPhoto"
-          onchange="document.getElementById('photo').src = window.URL.createObjectURL(this.files[0])"
+          id="image"
+          onchange="document.getElementById('photo').src=window.URL.createObjectURL(this.files[0])"
         />
       </div>
       <div class="mb-3">
