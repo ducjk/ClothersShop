@@ -17,7 +17,7 @@ export class HeaderComponent {
     private cookie: CookieService
   ) {}
   ngOnInit(): void {
-    this.user = JSON.parse(sessionStorage.getItem('user') || '{}');
+    this.user = this.userService.getUser();
   }
 
   logout() {

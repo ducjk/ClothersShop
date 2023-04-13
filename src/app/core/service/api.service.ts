@@ -33,16 +33,16 @@ export class ApiService {
     let url = `${this.urlAPI}/${names}/` + id;
     return this.http.get<any>(url, { headers: this.headers });
   }
-  update(data: any[], id: number, names: string): Observable<any[]> {
+  update(data: any, id: number, names: string): Observable<any> {
     let url = `${this.urlAPI}/${names}/` + id;
-    return this.http.put<any[]>(url, data, { headers: this.headers });
+    return this.http.put<any>(url, data, { headers: this.headers });
   }
-  add(data: any[], names: string): Observable<any[]> {
+  add(data: any, names: string): Observable<any> {
     let url = `${this.urlAPI}/${names}`;
-    return this.http.post<any[]>(url, data, { headers: this.headers });
+    return this.http.post<any>(url, data, { headers: this.headers });
   }
   delete(id: number, names: string): Observable<any> {
     let url = `${this.urlAPI}/${names}/` + id;
-    return this.http.delete<any[]>(url, { headers: this.headers });
+    return this.http.delete<any>(url, { headers: this.headers });
   }
 }
