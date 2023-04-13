@@ -56,7 +56,9 @@ export class EditSupplierComponent implements OnInit {
         });
       }
     });
-    this.countries = this.country.getCountries();
+    this.country.getCountries().subscribe((res) => {
+      this.countries = res;
+    });
   }
   save() {
     this.router.paramMap.subscribe((params) => {

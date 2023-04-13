@@ -31,26 +31,10 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
-  }
-  login(): void {
-    this.account.getList().subscribe(
-      (res) => {
-        const user = res.find((a: any) => {
-          return (
-            a.email == this.loginForm.value.email && a.password == this.loginForm.value.password
-          );
-        });
-        if (user) {
-          this.loginForm.reset();
-          this.router.navigate(['/']);
-        } else {
-          alert('Failed to login');
-        }
-      },
-      (err) => {
-        alert('Something went wrong');
-      }
-    );
+
+    if (this.cookieService.get('token')) {
+      this.cookieService.deleteAll('token');
+    }
   }
 
   getDecodedAccessToken(token: string): any {

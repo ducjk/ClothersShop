@@ -3,21 +3,21 @@
   box-shadow: 0px 0px 3px #5f5f5f, 0px 0px 0px 5px #ecf0f3, 8px 8px 15px #a7aaa7,
     -8px -8px 15px #fff;
   padding: 20px;
+  margin-top: 80px;
 }
 
 .btn.btn-warning {
   margin-left: 10px;
 }
 button {
-  font-size: 15px;
-  padding: 8px 15px;
+  font-size: 14px;
+  padding: 6px 12px;
 }
 .wrapper {
   min-height: 500px;
-  padding: 30px 30px 30px 30px;
+
   display: flex;
   justify-content: center;
-  margin: 0 -12px;
 }
 
 input {
@@ -30,4 +30,13 @@ input:focus {
 
 .option-select {
   font-size: 1.4rem;
+}
+
+.email-control {
+  height: 3rem;
+  background-color: #e2dada;
+  border: 1px solid rgba($color: #000000, $alpha: 0.17);
+  border-radius: 4px;
+  padding: 0.375rem 0.75rem;
+  cursor: default;
 }

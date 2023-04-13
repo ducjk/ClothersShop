@@ -17,10 +17,10 @@ export class CategoryService {
   getByid(id: number): Observable<Category> {
     return this.apiService.getByid(id, this.names);
   }
-  update(data: Category[], id: number): Observable<Category[]> {
+  update(data: Category, id: number): Observable<Category[]> {
     return this.apiService.update(data, id, this.names);
   }
-  add(data: Category[]): Observable<Category[]> {
+  add(data: Category): Observable<Category[]> {
     return this.apiService.add(data, this.names);
   }
   delete(id: number): Observable<any> {

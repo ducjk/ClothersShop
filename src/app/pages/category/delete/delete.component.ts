@@ -33,6 +33,7 @@ export class DeleteCategoryComponent {
       });
     });
   }
+
   onSubmit() {
     this.router.paramMap.subscribe((params) => {
       let id: number = parseInt(params.get('id')!);

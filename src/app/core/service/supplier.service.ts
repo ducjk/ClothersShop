@@ -16,10 +16,10 @@ export class SupplierService {
   getByid(id: number): Observable<Supplier> {
     return this.apiService.getByid(id, this.names);
   }
-  update(data: Supplier[], id: number): Observable<Supplier[]> {
+  update(data: Supplier[], id: number): Observable<Supplier> {
     return this.apiService.update(data, id, this.names);
   }
-  add(data: Supplier[]): Observable<Supplier[]> {
+  add(data: Supplier[]): Observable<Supplier> {
     return this.apiService.add(data, this.names);
   }
   delete(id: number): Observable<any> {
