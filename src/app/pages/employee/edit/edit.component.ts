@@ -10,8 +10,9 @@ import { EmployeeService } from 'src/app/core/service/employee.service';
   styleUrls: ['./edit.component.scss'],
 })
 export class EditEmployeeComponent {
-  public editEmployeeForm!: FormGroup;
+  editEmployeeForm!: FormGroup;
   Employee!: Employee;
+  submited=false
   img: string = 'http://dummyimage.com/176x196.png/dddddd/000000';
   constructor(
     private employee: EmployeeService,
@@ -37,7 +38,7 @@ export class EditEmployeeComponent {
           this.Employee = res;
           this.editEmployeeForm = this.formBuilder.group({
             fullname: [this.Employee.fullname, Validators.required],
-            email: [this.Employee.email, Validators.required],
+            email: [this.Employee.email, [Validators.required, Validators.email]],
             gender: [this.Employee.gender, Validators.required],
             address: [this.Employee.address, Validators.required],
             phone: [this.Employee.phone, Validators.required],
@@ -48,7 +49,7 @@ export class EditEmployeeComponent {
       } else if (id == 0) {
         this.editEmployeeForm = this.formBuilder.group({
           fullname: ['', Validators.required],
-          email: ['', Validators.required],
+          email: ['', [Validators.required, Validators.email]],
           gender: ['', Validators.required],
           address: ['', Validators.required],
           phone: ['', Validators.required],

@@ -32,7 +32,7 @@ export class RegisterComponent {
           this.router.navigate(['/login']);
         },
         (err) => {
-          alert('Sai kia má');
+          alert('Error');
         }
       );
     else alert('xác nhận mật khẩu không đúng');

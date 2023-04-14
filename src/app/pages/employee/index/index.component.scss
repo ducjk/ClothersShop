@@ -18,8 +18,8 @@
   flex-wrap: wrap;
 }
 .img-circle {
-  width: 80px;
-  height: 80px;
+  max-width: 80px;
+  max-height: 80px;
   border-radius: 50%;
   border: 1px solid var(--white-color);
 }
@@ -29,8 +29,4 @@
   text-align: center;
   display: flex;
   justify-content: center;
-}
-
-.img-circle:hover {
-  border: 5px solid #a9a9a9;
 }
