@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Employee } from 'src/app/components/employee';
 import { EmployeeService } from 'src/app/core/service/employee.service';
 
 @Component({
@@ -10,7 +11,8 @@ import { EmployeeService } from 'src/app/core/service/employee.service';
 })
 export class EditEmployeeComponent {
   public editEmployeeForm!: FormGroup;
-
+  Employee!: Employee;
+  img: string = 'http://dummyimage.com/176x196.png/dddddd/000000';
   constructor(
     private employee: EmployeeService,
     private formBuilder: FormBuilder,
@@ -19,29 +21,28 @@ export class EditEmployeeComponent {
   ) {}
   ngOnInit(): void {
     this.editEmployeeForm = this.formBuilder.group({
-      fullname: ['', Validators.required],
-      email: ['', Validators.required],
-      gender: ['', Validators.required],
-      address: ['', Validators.required],
-      phone: ['', Validators.required],
-      birthday: ['', Validators.required],
-      anh: ['', Validators.required],
+      fullname: [''],
+      email: [''],
+      gender: [''],
+      address: [''],
+      phone: [''],
+      birthday: [''],
+      anh: [''],
     });
 
     this.router.paramMap.subscribe((params) => {
       let id: number = parseInt(params.get('id')!);
-      if (id != 0) {
+      if (id > 0) {
         this.employee.getByid(id).subscribe((res) => {
-          let myEmployee = res;
-
+          this.Employee = res;
           this.editEmployeeForm = this.formBuilder.group({
-            fullname: [myEmployee.fullname],
-            email: [myEmployee.email],
-            gender: [myEmployee.gender],
-            address: [myEmployee.address],
-            phone: [myEmployee.phone],
-            birthday: [myEmployee.birthday],
-            anh: [myEmployee.photo],
+            fullname: [this.Employee.fullname, Validators.required],
+            email: [this.Employee.email, Validators.required],
+            gender: [this.Employee.gender, Validators.required],
+            address: [this.Employee.address, Validators.required],
+            phone: [this.Employee.phone, Validators.required],
+            birthday: [this.Employee.birthday, Validators.required],
+            anh: [this.Employee.photo],
           });
         });
       } else if (id == 0) {
@@ -52,7 +53,7 @@ export class EditEmployeeComponent {
           address: ['', Validators.required],
           phone: ['', Validators.required],
           birthday: ['', Validators.required],
-          anh: ['', Validators.required],
+          anh: [''],
         });
       }
     });
@@ -65,7 +66,7 @@ export class EditEmployeeComponent {
           alert('Thêm thành công');
           this.route.navigate(['/home/employee']);
         });
-      } else if (id != 0) {
+      } else if (id > 0) {
         this.employee.update(this.editEmployeeForm.value, id).subscribe((res) => {
           alert('Chỉnh sửa thành công');
           this.route.navigate(['/home/employee']);
@@ -73,15 +74,5 @@ export class EditEmployeeComponent {
       }
     });
   }
-  onSelectImg(e:any){
-    if(e.target.files){
-      var reader=new FileReader();
-      reader.readAsDataURL(e.target.files)
-      reader.onload=(event:any) =>{
-        this.editEmployeeForm.value.anh=event.target.result
-
-      }
-    }
-
-  }
+  uploadPhoto() {}
 }
