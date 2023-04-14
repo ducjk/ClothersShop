@@ -56,14 +56,11 @@ export class ProfileComponent {
 
         const { id, fullname, gender, birthday, photo, email, phone, address } = res;
         this.userService.setUser({ id, fullname, gender, birthday, photo, email, phone, address });
-        console.log('user: ', this.userService.getUser());
 
         sessionStorage.setItem('user', JSON.stringify(this.userService.getUser()));
-
-        this.ref.markForCheck();
       },
       (error) => {
-        console.log('error');
+        console.log('error: ', error);
       }
     );
   }

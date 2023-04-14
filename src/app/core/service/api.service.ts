@@ -18,6 +18,10 @@ export class ApiService {
 
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 
+  setToken(token: string) {
+    this.auth_token = token;
+  }
+
   callAPI(url: string): Observable<any> {
     return this.http.get<any>(`${this.urlAPI}${url}`, { headers: this.headers });
   }

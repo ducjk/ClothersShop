@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { AccountServiceService } from 'src/app/core/service/account.service';
+import { AccountService } from 'src/app/core/service/account.service';
 import jwt_decode from 'jwt-decode';
 import { UserService } from 'src/app/core/service/user.service';
 import { User } from 'src/app/components/user';
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   public loginForm!: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
-    private account: AccountServiceService,
+    private account: AccountService,
     private router: Router,
     private cookieService: CookieService,
     private userService: UserService,
@@ -48,6 +48,9 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this.account.onLogin(this.loginForm.value).subscribe(
       (res: any) => {
+        if (this.cookieService.get('token')) {
+          this.cookieService.deleteAll('token');
+        }
         this.cookieService.set('token', res.access_token);
         const tokenInfo = this.getDecodedAccessToken(res.access_token);
         const { id, fullname, gender, birthday, photo, email, phone, address } = tokenInfo;
