@@ -17,7 +17,9 @@ export class HeaderComponent {
     private cookie: CookieService
   ) {}
   ngOnInit(): void {
-    this.user = this.userService.getUser();
+    this.userService.getUser().subscribe((newUser) => {
+      this.user = newUser;
+    });
   }
 
   logout() {
@@ -32,7 +34,7 @@ export class HeaderComponent {
       photo: '',
     });
     sessionStorage.removeItem('user');
-    this.cookie.delete('token');
+    this.cookie.deleteAll('token');
     this.router.navigate(['/login']);
   }
 }

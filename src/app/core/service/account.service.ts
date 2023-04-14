@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class AccountServiceService {
+export class AccountService {
   apiURL = environment.apiURL;
   constructor(private http: HttpClient) {}
   getList(): Observable<any> {

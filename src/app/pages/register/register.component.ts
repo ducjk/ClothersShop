@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AccountServiceService } from 'src/app/core/service/account.service';
+import { AccountService } from 'src/app/core/service/account.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -12,7 +12,7 @@ export class RegisterComponent {
   public registersForm!: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
-    private account: AccountServiceService,
+    private account: AccountService,
     private router: Router
   ) {}
   ngOnInit(): void {
