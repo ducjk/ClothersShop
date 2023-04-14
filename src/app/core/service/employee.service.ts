@@ -12,7 +12,7 @@ export class EmployeeService {
   names = 'Employees';
   name = 'Employee';
   constructor(private apiService: ApiService) {}
-  getSuppliers(searchvalue: any = null): Observable<Employee[]> {
+  getEmployees(searchvalue: any = null): Observable<Employee[]> {
     return this.apiService.getList(searchvalue, this.names, this.name);
   }
 
