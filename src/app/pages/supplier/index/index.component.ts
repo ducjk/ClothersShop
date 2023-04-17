@@ -22,6 +22,7 @@ export class IndexSupplierComponent implements OnInit {
       this.suppliers = res;
     });
   }
+
   onSearch() {
     this.supplier.getSuppliers(this.searchForm.value.searchValue).subscribe((res) => {
       this.suppliers = res;
