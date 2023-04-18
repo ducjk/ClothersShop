@@ -19,10 +19,10 @@ export class EmployeeService {
   getByid(id: number): Observable<Employee> {
     return this.apiService.getByid(id, this.names);
   }
-  update(data: Employee[], id: number): Observable<Employee> {
+  update(data: Employee, id: number): Observable<Employee> {
     return this.apiService.update(data, id, this.names);
   }
-  add(data: Employee[]): Observable<Employee> {
+  add(data: Employee): Observable<Employee> {
     return this.apiService.add(data, this.names);
   }
   delete(id: number): Observable<any> {
