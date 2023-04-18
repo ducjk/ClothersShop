@@ -8,10 +8,16 @@ import { DatetimeService } from 'src/app/core/service/date.service';
 })
 export class SupplierComponent {
   datetime: string = '';
+  idTime: any;
   constructor(private dateService: DatetimeService) {}
   ngOnInit(): void {
-    setInterval(() => {
+    this.idTime = setInterval(() => {
       this.datetime = this.dateService.getTime();
     }, 1000);
+  }
+  ngOnDestroy() {
+    if (this.idTime) {
+      clearInterval(this.idTime);
+    }
   }
 }

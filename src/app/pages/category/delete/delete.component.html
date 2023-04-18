@@ -1,32 +1,29 @@
-<div class="background">
-  <div class="wrapper">
-    <form [formGroup]="deleteForm" (ngSubmit)="onSubmit()" class="deleteform">
-      <div class="mb-3">
-        <label for="CategoryName" class="form-label">Tên loại hàng</label>
-        <input formControlName="CategoryName" type="text" class="form-control" id="CategoryName" />
-      </div>
-      <small
-        *ngIf="
-          deleteForm.controls['CategoryName'].dirty &&
-          deleteForm.hasError('required', 'CategoryName')
-        "
-        class="text-danger"
-        >*
-      </small>
+<div class="wrapper">
+  <form [formGroup]="deleteForm" (ngSubmit)="onSubmit()" class="deleteform">
+    <div class="mb-3">
+      <label for="CategoryName" class="form-label">Tên loại hàng</label>
+      <input formControlName="CategoryName" type="text" class="form-control" id="CategoryName" />
+    </div>
+    <small
+      *ngIf="
+        deleteForm.controls['CategoryName'].dirty && deleteForm.hasError('required', 'CategoryName')
+      "
+      class="text-danger"
+      >*
+    </small>
 
-      <div class="mb-3">
-        <label for="Description" class="form-label">Mô tả</label>
-        <input formControlName="Description" type="text" class="form-control" id="Description" />
-      </div>
-      <small
-        *ngIf="
-          deleteForm.controls['Description'].dirty && deleteForm.hasError('required', 'Description')
-        "
-        class="text-danger"
-        >*
-      </small>
-      <button type="submit" class="btn btn-danger">Delete</button>
-      <button type="button" class="btn btn-warning" routerLink="/home/category">Cancel</button>
-    </form>
-  </div>
+    <div class="mb-3">
+      <label for="Description" class="form-label">Mô tả</label>
+      <input formControlName="Description" type="text" class="form-control" id="Description" />
+    </div>
+    <small
+      *ngIf="
+        deleteForm.controls['Description'].dirty && deleteForm.hasError('required', 'Description')
+      "
+      class="text-danger"
+      >*
+    </small>
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <button type="button" class="btn btn-warning" routerLink="/home/category">Cancel</button>
+  </form>
 </div>

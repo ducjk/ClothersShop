@@ -1,52 +1,40 @@
-<div class="background">
-  <div class="wrapper">
-    <form [formGroup]="deleteForm" (ngSubmit)="onSubmit()" class="deleteform">
-      <div class="mb-3">
-        <label for="exampleInputsupplierName1" class="form-label">Tên Nhà Cung Cấp</label>
-        <input
-          formControlName="SupplierName"
-          type="text"
-          class="form-control"
-          id="exampleInputsupplierName1"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputContactName1" class="form-label">Tên Nhà Giao Dịch</label>
-        <input
-          formControlName="ContactName"
-          type="text"
-          class="form-control"
-          id="exampleInputContactName1"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputAddress1" class="form-label">Địa Chỉ</label>
-        <input
-          formControlName="Address"
-          type="text"
-          class="form-control"
-          id="exampleInputAddress1"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputPhone1" class="form-label">SĐT</label>
-        <input formControlName="Phone" type="text" class="form-control" id="exampleInputPhone1" />
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputCountry1" class="form-label">Quốc Gia</label>
-        <input
-          formControlName="Country"
-          type="text"
-          class="form-control"
-          id="exampleInputCountry1"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputCity1" class="form-label">Thành Phố</label>
-        <input formControlName="City" type="text" class="form-control" id="exampleInputCity1" />
-      </div>
-      <button type="submit" class="btn btn-danger">Delete</button>
-      <button type="button" class="btn btn-warning" routerLink="/home/supplier">Cancel</button>
-    </form>
-  </div>
+<div class="wrapper">
+  <form [formGroup]="deleteForm" (ngSubmit)="onSubmit()" class="deleteform">
+    <div class="mb-3">
+      <label for="exampleInputsupplierName1" class="form-label">Tên Nhà Cung Cấp</label>
+      <input
+        formControlName="SupplierName"
+        type="text"
+        class="form-control"
+        id="exampleInputsupplierName1"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputContactName1" class="form-label">Tên Nhà Giao Dịch</label>
+      <input
+        formControlName="ContactName"
+        type="text"
+        class="form-control"
+        id="exampleInputContactName1"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputAddress1" class="form-label">Địa Chỉ</label>
+      <input formControlName="Address" type="text" class="form-control" id="exampleInputAddress1" />
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPhone1" class="form-label">SĐT</label>
+      <input formControlName="Phone" type="text" class="form-control" id="exampleInputPhone1" />
+    </div>
+    <div class="mb-3 country-item">
+      <label for="exampleInputCountry1" class="form-label">Quốc Gia</label>
+      <input formControlName="Country" type="text" class="form-control" id="exampleInputCountry1" />
+    </div>
+    <div class="mb-3 country-item">
+      <label for="exampleInputCity1" class="form-label">Thành Phố</label>
+      <input formControlName="City" type="text" class="form-control" id="exampleInputCity1" />
+    </div>
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <button type="button" class="btn btn-warning" routerLink="/home/supplier">Cancel</button>
+  </form>
 </div>

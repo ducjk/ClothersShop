@@ -15,17 +15,17 @@ export class AppComponent {
   constructor(private userService: UserService, private cookieService: CookieService) {}
 
   ngOnInit(): void {
-    // this.token = this.cookieService.get('token');
-    // if (this.token) {
-    //   const tokenInfo = this.getDecodedAccessToken(this.token);
-    //   if (tokenInfo) {
-    //     const { id, fullname, gender, birthday, photo, email, phone, address } = tokenInfo;
-    //     this.user = { id, fullname, gender, birthday, phone, email, photo, address };
-    //     sessionStorage.setItem('user', JSON.stringify(this.user));
-    //     this.user = JSON.parse(sessionStorage.getItem('user') || '{}');
-    //     this.userService.setUser(this.user);
-    //   }
-    // }
+    this.token = this.cookieService.get('token');
+    if (this.token) {
+      const tokenInfo = this.getDecodedAccessToken(this.token);
+      if (tokenInfo) {
+        const { id, fullname, gender, birthday, photo, email, phone, address } = tokenInfo;
+        this.user = { id, fullname, gender, birthday, phone, email, photo, address };
+        sessionStorage.setItem('user', JSON.stringify(this.user));
+        this.user = JSON.parse(sessionStorage.getItem('user') || '{}');
+        this.userService.setUser(this.user);
+      }
+    }
   }
 
   getDecodedAccessToken(token: string): any {

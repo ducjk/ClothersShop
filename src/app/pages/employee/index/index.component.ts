@@ -20,6 +20,7 @@ export class IndexEmployeeComponent implements OnInit {
     });
     this.employee.getEmployees(this.searchForm.value.searchValue).subscribe((res) => {
       this.Employees = res;
+      console.log(this.Employees);
     });
   }
   onSearch() {
