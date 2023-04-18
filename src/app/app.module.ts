@@ -58,7 +58,7 @@ import { IndexProductComponent } from './pages/product/index/index.component';
     IndexSupplierComponent,
     DeleteSupplierComponent,
     IndexProductComponent,
-    ProductComponent,
+  
 
   ],
 
