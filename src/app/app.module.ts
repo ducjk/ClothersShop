@@ -28,6 +28,8 @@ import { EmployeeComponent } from './pages/employee/employee.component';
 import { IndexEmployeeComponent } from './pages/employee/index/index.component';
 import { DeleteEmployeeComponent } from './pages/employee/delete/delete.component';
 import { EditEmployeeComponent } from './pages/employee/edit/edit.component';
+import { OrderComponent } from './pages/order/order.component';
+import { IndexOrderComponent } from './pages/order/index/index.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +58,8 @@ import { EditEmployeeComponent } from './pages/employee/edit/edit.component';
     DeleteEmployeeComponent,
     IndexSupplierComponent,
     DeleteSupplierComponent,
+    OrderComponent,
+    IndexOrderComponent,
   ],
 
   imports: [

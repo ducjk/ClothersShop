@@ -1,0 +1,82 @@
+<div class="wrapper">
+  <div class="Search">
+    <div class="search-form">
+      <form class="frmSearch" [formGroup]="searchForm" (ngSubmit)="onSearch()">
+        <div class="input-group">
+          <div class="fillter">
+            <select class="chosse-page-size">
+              <option>--Trạng Thái--</option>
+              <option>Chờ xác nhận</option>
+              <option>Đang giao</option>
+              <option>Hoàn thành</option>
+            </select>
+          </div>
+          <input
+            class="inputSearch"
+            formControlName="searchValue"
+            type="text"
+            placeholder="Tìm kiếm ở đây"
+            autofocus
+          />
+          <div class="input-group-btn">
+            <button class="btn btn-info" type="submit" style="font-size: 14px">
+              <i class="glyphicon glyphicon-search"></i>Tìm kiếm
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="fillter">
+    <span>Hiện </span>
+    <select class="chosse-page-size">
+      <option>5</option>
+      <option>10</option>
+      <option>15</option>
+      <option>20</option>
+    </select>
+    <span> danh mục</span>
+  </div>
+  <div class="table-responsive table-content">
+    <table class="table">
+      <thead>
+        <tr class="th-primary">
+          <th>Tên khách hàng</th>
+          <th>Ngày lập</th>
+          <th>Nhân viên phụ trách</th>
+          <th>Thời điểm duyệt</th>
+          <th>Ngày nhận hàng</th>
+          <th>Thời điểm kết thúc</th>
+          <th>Trạng thái</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let item of suppliers | paginate : { itemsPerPage: 5, currentPage: p }"
+          class="th-body"
+        >
+          <td>{{ item.SupplierName }}</td>
+          <td>{{ item.ContactName }}</td>
+          <td>{{ item.Address }}</td>
+          <td>{{ item.Phone }}</td>
+          <td>{{ item.Country }}</td>
+          <td>{{ item.City }}</td>
+          <td>
+            <div class="activity">
+              <a routerLink="/home/supplier/edit/{{ item.id }}" class="btn-sup">
+                <i class="fa-solid fa-bars"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pagination">
+    <pagination-controls
+      (pageChange)="p = $event"
+      previousLabel="Trước"
+      nextLabel="Sau"
+    ></pagination-controls>
+  </div>
+</div>

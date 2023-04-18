@@ -19,6 +19,8 @@ import { EmployeeComponent } from './pages/employee/employee.component';
 import { EditEmployeeComponent } from './pages/employee/edit/edit.component';
 import { IndexEmployeeComponent } from './pages/employee/index/index.component';
 import { DeleteEmployeeComponent } from './pages/employee/delete/delete.component';
+import { OrderComponent } from './pages/order/order.component';
+import { IndexOrderComponent } from './pages/order/index/index.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -69,6 +71,19 @@ const routes: Routes = [
             path: 'delete/:id',
             component: DeleteEmployeeComponent,
           },
+        ],
+      },
+      {
+        path: 'order',
+        component: OrderComponent,
+        children: [
+          { path: '', redirectTo: 'index', pathMatch: 'full' },
+          // { path: 'edit/:id', component: EditCategoryComponent },
+          { path: 'index', component: IndexOrderComponent },
+          // {
+          //   path: 'delete/:id',
+          //   component: DeleteCategoryComponent,
+          // },
         ],
       },
     ],

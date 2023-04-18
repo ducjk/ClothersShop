@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Supplier } from 'src/app/components/supplier';
 import { ApiService } from './api.service';
+import { Order } from 'src/app/components/order';
 @Injectable({
   providedIn: 'root',
 })
-export class SupplierService {
-  names = 'Suppliers';
-  name = 'Supplier';
+export class OrderService {
+  names = 'Orders';
+  name = 'Order';
   constructor(private apiService: ApiService) {}
-  getSuppliers(searchvalue: any = null): Observable<Supplier[]> {
+  getOrders(searchvalue: any = null): Observable<Order[]> {
     return this.apiService.getList(searchvalue, this.names, this.name);
   }
 
-  getByid(id: number): Observable<Supplier> {
+  getByid(id: number): Observable<Order> {
     return this.apiService.getByid(id, this.names);
   }
-  update(data: Supplier, id: number): Observable<Supplier> {
+  update(data: Order, id: number): Observable<Order> {
     return this.apiService.update(data, id, this.names);
   }
-  add(data: Supplier): Observable<Supplier> {
+  add(data: Order): Observable<Order> {
     return this.apiService.add(data, this.names);
   }
   delete(id: number): Observable<any> {
