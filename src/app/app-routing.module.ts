@@ -19,6 +19,7 @@ import { EmployeeComponent } from './pages/employee/employee.component';
 import { EditEmployeeComponent } from './pages/employee/edit/edit.component';
 import { IndexEmployeeComponent } from './pages/employee/index/index.component';
 import { DeleteEmployeeComponent } from './pages/employee/delete/delete.component';
+import { IndexProductComponent } from './pages/product/index/index.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -30,7 +31,17 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'supplier', pathMatch: 'full' },
-      { path: 'product', component: ProductComponent },
+      {
+        path: 'product',
+        component: ProductComponent,
+        children: [
+          { path: '', redirectTo: 'index', pathMatch: 'full' },
+          {
+            path: 'index',
+            component: IndexProductComponent
+          },
+        ],
+      },
       {
         path: 'category',
         component: CategoryComponent,

@@ -1,0 +1,26 @@
+.wapper {
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+  border-left: 6px solid #ffd43b;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  background-color: var(--white-color);
+}
+.headtitle,
+.date-time {
+  font-size: 14px;
+  color: var(--background-color);
+  font-weight: 600;
+  margin: 0 20px;
+}
+.date-time {
+  font-size: 13px;
+  color: var(--black-color);
+}
