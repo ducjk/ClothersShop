@@ -30,6 +30,7 @@ import { DeleteEmployeeComponent } from './pages/employee/delete/delete.componen
 import { EditEmployeeComponent } from './pages/employee/edit/edit.component';
 import { OrderComponent } from './pages/order/order.component';
 import { IndexOrderComponent } from './pages/order/index/index.component';
+import { IndexProductComponent } from './pages/product/index/index.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +61,7 @@ import { IndexOrderComponent } from './pages/order/index/index.component';
     DeleteSupplierComponent,
     OrderComponent,
     IndexOrderComponent,
+    IndexProductComponent,
   ],
 
   imports: [

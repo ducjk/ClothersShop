@@ -49,4 +49,20 @@ export class ApiService {
     let url = `${this.urlAPI}/${names}/` + id;
     return this.http.delete<any>(url, { headers: this.headers });
   }
+  getExpand(searchvalue: any = null): Observable<any[]> {
+    if (searchvalue != null) {
+      return this.http.get<any[]>(
+        `http://localhost:3000/Products?_expand=Category&_expand=Supplier&ProductName_like=${searchvalue}`,
+        {
+          headers: this.headers,
+        }
+      );
+    }
+    return this.http.get<any[]>(
+      `http://localhost:3000/Products?_expand=Category&_expand=Supplier`,
+      {
+        headers: this.headers,
+      }
+    );
+  }
 }
