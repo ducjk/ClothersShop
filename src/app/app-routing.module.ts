@@ -1,109 +1,46 @@
-import { Component, NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
-import { ProductComponent } from './pages/product/product.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { MasterComponent } from './shared/master/master.component';
-import { SupplierComponent } from './pages/supplier/supplier.component';
+import { Injectable, NgModule } from '@angular/core';
+import { RouterModule, RouterStateSnapshot, Routes, TitleStrategy } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
-import { ProfileComponent } from './pages/profile/profile.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
-import { EditSupplierComponent } from './pages/supplier/edit/edit.component';
-import { IndexSupplierComponent } from './pages/supplier/index/index.component';
-import { DeleteSupplierComponent } from './pages/supplier/delete/delete.component';
-import { CategoryComponent } from './pages/category/category.component';
-import { EditCategoryComponent } from './pages/category/edit/edit.component';
-import { IndexCategoryComponent } from './pages/category/index/index.component';
-import { DeleteCategoryComponent } from './pages/category/delete/delete.component';
-import { EmployeeComponent } from './pages/employee/employee.component';
-import { EditEmployeeComponent } from './pages/employee/edit/edit.component';
-import { IndexEmployeeComponent } from './pages/employee/index/index.component';
-import { DeleteEmployeeComponent } from './pages/employee/delete/delete.component';
-import { OrderComponent } from './pages/order/order.component';
-import { IndexOrderComponent } from './pages/order/index/index.component';
-import { IndexProductComponent } from './pages/product/index/index.component';
+import { Title } from '@angular/platform-browser';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  {
+    path: 'login',
+    title: 'Đăng nhập',
+    loadChildren: () => import('./pages/login/login.module').then((m) => m.LoginModule),
+  },
+  {
+    path: 'register',
+    title: 'Đăng ký',
+    loadChildren: () => import('./pages/register/register.module').then((m) => m.RegisterModule),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'home',
-    component: MasterComponent,
+    loadChildren: () => import('./shared/master/master.module').then((m) => m.MasterModule),
     canActivate: [AuthGuard],
-    children: [
-      { path: '', redirectTo: 'supplier', pathMatch: 'full' },
-      {
-        path: 'product',
-        component: ProductComponent,
-        children: [
-          { path: '', redirectTo: 'index', pathMatch: 'full' },
-          {
-            path: 'index',
-            component: IndexProductComponent,
-          },
-        ],
-      },
-      {
-        path: 'category',
-        component: CategoryComponent,
-        children: [
-          { path: '', redirectTo: 'index', pathMatch: 'full' },
-          { path: 'edit/:id', component: EditCategoryComponent },
-          { path: 'index', component: IndexCategoryComponent },
-          {
-            path: 'delete/:id',
-            component: DeleteCategoryComponent,
-          },
-        ],
-      },
-      { path: 'profile', component: ProfileComponent },
-      {
-        path: 'supplier',
-        component: SupplierComponent,
-        children: [
-          { path: '', redirectTo: 'index', pathMatch: 'full' },
-          { path: 'edit/:id', component: EditSupplierComponent },
-          { path: 'index', component: IndexSupplierComponent },
-          {
-            path: 'delete/:id',
-            component: DeleteSupplierComponent,
-          },
-        ],
-      },
-      {
-        path: 'employee',
-        component: EmployeeComponent,
-        children: [
-          { path: 'edit/:id', component: EditEmployeeComponent },
-          { path: '', redirectTo: 'index', pathMatch: 'full' },
-          { path: 'index', component: IndexEmployeeComponent },
-          {
-            path: 'delete/:id',
-            component: DeleteEmployeeComponent,
-          },
-        ],
-      },
-      {
-        path: 'order',
-        component: OrderComponent,
-        children: [
-          { path: '', redirectTo: 'index', pathMatch: 'full' },
-          // { path: 'edit/:id', component: EditCategoryComponent },
-          { path: 'index', component: IndexOrderComponent },
-          // {
-          //   path: 'delete/:id',
-          //   component: DeleteCategoryComponent,
-          // },
-        ],
-      },
-    ],
   },
   { path: '**', component: NotfoundComponent },
 ];
 
+@Injectable({ providedIn: 'root' })
+export class TemplatePageTitleStrategy extends TitleStrategy {
+  constructor(private readonly title: Title) {
+    super();
+  }
+
+  override updateTitle(routerState: RouterStateSnapshot) {
+    const title = this.buildTitle(routerState);
+    if (title !== undefined) {
+      this.title.setTitle(`DH Shop | ${title}`);
+    }
+  }
+}
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
+  providers: [{ provide: TitleStrategy, useClass: TemplatePageTitleStrategy }],
 })
 export class AppRoutingModule {}
