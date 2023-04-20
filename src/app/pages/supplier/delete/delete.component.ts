@@ -28,7 +28,7 @@ export class DeleteSupplierComponent implements OnInit {
 
     this.router.paramMap.subscribe((params) => {
       let id: number = parseInt(params.get('id')!);
-      this.supplier.getByid(id).subscribe((res) => {
+      this.supplier.getById(id).subscribe((res) => {
         let mySup = res;
         this.deleteForm = this.formBuilder.group({
           SupplierName: [{ value: mySup.supplierName, disabled: true }],

@@ -33,7 +33,7 @@ export class EditSupplierComponent implements OnInit {
     this.router.paramMap.subscribe((params) => {
       let id: number = parseInt(params.get('id')!);
       if (id != 0) {
-        this.supplier.getByid(id).subscribe((res) => {
+        this.supplier.getById(id).subscribe((res) => {
           let mySup = res;
 
           this.editForm = this.formBuilder.group({

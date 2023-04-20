@@ -31,7 +31,7 @@ export class DeleteEmployeeComponent {
     this.router.paramMap.subscribe((params) => {
       let id: number = parseInt(params.get('id')!);
 
-      this.employee.getByid(id).subscribe((res) => {
+      this.employee.getById(id).subscribe((res) => {
         let myEmployee = res;
 
         this.deleteEmployeeForm = this.formBuilder.group({
