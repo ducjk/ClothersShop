@@ -53,8 +53,8 @@ export class LoginComponent implements OnInit {
         }
         this.cookieService.set('token', res.access_token);
         const tokenInfo = this.getDecodedAccessToken(res.access_token);
-        const { id, fullname, gender, birthday, photo, email, phone, address } = tokenInfo;
-        this.user = { id, fullname, gender, birthday, phone, email, photo, address };
+        const { id, fullName, gender, birthday, photo, email, phone, address } = tokenInfo;
+        this.user = { id, fullName, gender, birthday, phone, email, photo, address };
         sessionStorage.setItem('user', JSON.stringify(this.user));
 
         this.userService.setUser(this.user);

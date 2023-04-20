@@ -18,17 +18,17 @@ export class DeleteCategoryComponent {
   ) {}
   ngOnInit(): void {
     this.deleteForm = this.formBuilder.group({
-      CategoryName: [''],
-      Description: [''],
+      categoryName: [''],
+      description: [''],
     });
 
     this.router.paramMap.subscribe((params) => {
       let id: number = parseInt(params.get('id')!);
-      this.categoryService.getByid(id).subscribe((res) => {
+      this.categoryService.getById(id).subscribe((res) => {
         let mySup = res;
         this.deleteForm = this.formBuilder.group({
-          CategoryName: [{ value: mySup.CategoryName, disabled: true }],
-          Description: [{ value: mySup.Description, disabled: true }],
+          categoryName: [{ value: mySup.categoryName, disabled: true }],
+          description: [{ value: mySup.description, disabled: true }],
         });
       });
     });

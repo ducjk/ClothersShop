@@ -13,8 +13,8 @@ export class SupplierService {
     return this.apiService.getList(searchvalue, this.names, this.name);
   }
 
-  getByid(id: number): Observable<Supplier> {
-    return this.apiService.getByid(id, this.names);
+  getById(id: number): Observable<Supplier> {
+    return this.apiService.getById(id, this.names);
   }
   update(data: Supplier, id: number): Observable<Supplier> {
     return this.apiService.update(data, id, this.names);

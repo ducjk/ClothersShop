@@ -55,9 +55,9 @@
         <option>--Chọn Quốc Gia--</option>
         <option
           *ngFor="let country of countries"
-          [selected]="country.CountryName == editForm.value.Country"
+          [selected]="country.countryName == editForm.value.Country"
         >
-          {{ country.CountryName }}
+          {{ country.countryName }}
         </option>
       </select>
     </div>

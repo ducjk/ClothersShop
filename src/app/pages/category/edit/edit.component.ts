@@ -22,25 +22,25 @@ export class EditCategoryComponent {
   ) {}
   ngOnInit(): void {
     this.editForm = this.formBuilder.group({
-      CategoryName: ['', Validators.required],
-      Description: ['', Validators.required],
+      categoryName: ['', Validators.required],
+      description: ['', Validators.required],
     });
 
     this.router.paramMap.subscribe((params) => {
       let id: number = parseInt(params.get('id')!);
       if (id != 0) {
-        this.categoryService.getByid(id).subscribe((res) => {
-          let mySup = res;
+        this.categoryService.getById(id).subscribe((res) => {
+          let data= res;
 
           this.editForm = this.formBuilder.group({
-            CategoryName: [mySup.CategoryName],
-            Description: [mySup.Description],
+            CategoryName: [data.categoryName],
+            Description: [data.description],
           });
         });
       } else if (id == 0) {
         this.editForm = this.formBuilder.group({
-          CategoryName: ['', Validators.required],
-          Description: ['', Validators.required],
+          categoryName: ['', Validators.required],
+          description: ['', Validators.required],
         });
       }
     });

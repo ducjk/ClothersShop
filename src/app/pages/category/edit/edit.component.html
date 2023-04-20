@@ -1,23 +1,23 @@
 <div class="wrapper">
   <form [formGroup]="editForm" (ngSubmit)="save()" class="formInput">
     <div class="mb-3">
-      <label for="CategoryName" class="form-label">Tên loại hàng</label>
-      <input formControlName="CategoryName" type="text" class="form-control" id="CategoryName" />
+      <label for="categoryName" class="form-label">Tên loại hàng</label>
+      <input formControlName="categoryName" type="text" class="form-control" id="categoryName" />
     </div>
     <small
       *ngIf="
-        editForm.controls['CategoryName'].dirty && editForm.hasError('required', 'CategoryName')
+        editForm.controls['categoryName'].dirty && editForm.hasError('required', 'categoryName')
       "
       class="text-danger"
       >*
     </small>
 
     <div class="mb-3">
-      <label for="Description" class="form-label">Mô tả</label>
-      <input formControlName="Description" type="text" class="form-control" id="Description" />
+      <label for="description" class="form-label">Mô tả</label>
+      <input formControlName="description" type="text" class="form-control" id="description" />
     </div>
     <small
-      *ngIf="editForm.controls['Description'].dirty && editForm.hasError('required', 'Description')"
+      *ngIf="editForm.controls['description'].dirty && editForm.hasError('required', 'description')"
       class="text-danger"
       >*
     </small>

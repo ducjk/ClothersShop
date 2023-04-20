@@ -54,12 +54,12 @@
           *ngFor="let item of suppliers | paginate : { itemsPerPage: 5, currentPage: p }"
           class="th-body"
         >
-          <td>{{ item.SupplierName }}</td>
-          <td>{{ item.ContactName }}</td>
-          <td>{{ item.Address }}</td>
-          <td>{{ item.Phone }}</td>
-          <td>{{ item.Country }}</td>
-          <td>{{ item.City }}</td>
+          <td>{{ item.supplierName }}</td>
+          <td>{{ item.contactName }}</td>
+          <td>{{ item.address }}</td>
+          <td>{{ item.phone }}</td>
+          <td>{{ item.country }}</td>
+          <td>{{ item.city }}</td>
           <td>
             <div class="activity">
               <a routerLink="/home/supplier/edit/{{ item.id }}" class="btn-sup">

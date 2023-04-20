@@ -37,12 +37,12 @@ export class EditSupplierComponent implements OnInit {
           let mySup = res;
 
           this.editForm = this.formBuilder.group({
-            SupplierName: [mySup.SupplierName],
-            ContactName: [mySup.ContactName],
-            Address: [mySup.Address],
-            Phone: [mySup.Phone],
-            Country: [mySup.Country],
-            City: [mySup.City],
+            SupplierName: [mySup.supplierName],
+            ContactName: [mySup.contactName],
+            Address: [mySup.address],
+            Phone: [mySup.phone],
+            Country: [mySup.country],
+            City: [mySup.city],
           });
         });
       } else if (id == 0) {

@@ -19,8 +19,8 @@ export class ProductService {
     return this.apiService.getExpand(searchValue);
   }
 
-  getByid(id: number): Observable<Product> {
-    return this.apiService.getByid(id, this.names);
+  getById(id: number): Observable<Product> {
+    return this.apiService.getById(id, this.names);
   }
   update(data: Product, id: number): Observable<Product> {
     return this.apiService.update(data, id, this.names);

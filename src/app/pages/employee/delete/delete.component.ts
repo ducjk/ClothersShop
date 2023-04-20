@@ -35,7 +35,7 @@ export class DeleteEmployeeComponent {
         let myEmployee = res;
 
         this.deleteEmployeeForm = this.formBuilder.group({
-          fullname: [{ value: myEmployee.fullname, disabled: true }],
+          fullname: [{ value: myEmployee.fullName, disabled: true }],
           email: [{ value: myEmployee.email, disabled: true }],
           gender: [{ value: myEmployee.gender, disabled: true }],
           address: [{ value: myEmployee.address, disabled: true }],

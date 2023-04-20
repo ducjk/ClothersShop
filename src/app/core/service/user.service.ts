@@ -9,7 +9,7 @@ export class UserService {
   // private user!: User;
   private user = new BehaviorSubject<User>({
     id: 0,
-    fullname: '',
+    fullName: '',
     email: '',
     gender: '',
     address: '',

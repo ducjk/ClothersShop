@@ -51,8 +51,8 @@
           *ngFor="let item of categories | paginate : { itemsPerPage: 5, currentPage: p }"
           class="th-body"
         >
-          <td>{{ item.CategoryName }}</td>
-          <td>{{ item.Description }}</td>
+          <td>{{ item.categoryName }}</td>
+          <td>{{ item.description }}</td>
           <td>
             <div class="activity">
               <a routerLink="/home/category/edit/{{ item.id }}" class="btn-sup">

@@ -33,7 +33,7 @@ export class ApiService {
     }
     return this.http.get<any[]>(url, { headers: this.headers });
   }
-  getByid(id: number, names: string): Observable<any> {
+  getById(id: number, names: string): Observable<any> {
     let url = `${this.urlAPI}/${names}/` + id;
     return this.http.get<any>(url, { headers: this.headers });
   }

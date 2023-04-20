@@ -14,8 +14,8 @@ export class CategoryService {
     return this.apiService.getList(searchvalue, this.names, this.name);
   }
 
-  getByid(id: number): Observable<Category> {
-    return this.apiService.getByid(id, this.names);
+  getById(id: number): Observable<Category> {
+    return this.apiService.getById(id, this.names);
   }
   update(data: Category, id: number): Observable<Category[]> {
     return this.apiService.update(data, id, this.names);

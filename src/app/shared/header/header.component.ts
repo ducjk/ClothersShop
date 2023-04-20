@@ -25,7 +25,7 @@ export class HeaderComponent {
   logout() {
     this.userService.setUser({
       id: 0,
-      fullname: '',
+      fullName: '',
       email: '',
       gender: '',
       address: '',

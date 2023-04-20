@@ -13,8 +13,8 @@ export class OrderService {
     return this.apiService.getList(searchvalue, this.names, this.name);
   }
 
-  getByid(id: number): Observable<Order> {
-    return this.apiService.getByid(id, this.names);
+  getById(id: number): Observable<Order> {
+    return this.apiService.getById(id, this.names);
   }
   update(data: Order, id: number): Observable<Order> {
     return this.apiService.update(data, id, this.names);

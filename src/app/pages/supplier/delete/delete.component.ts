@@ -31,12 +31,12 @@ export class DeleteSupplierComponent implements OnInit {
       this.supplier.getByid(id).subscribe((res) => {
         let mySup = res;
         this.deleteForm = this.formBuilder.group({
-          SupplierName: [{ value: mySup.SupplierName, disabled: true }],
-          ContactName: [{ value: mySup.ContactName, disabled: true }],
-          Address: [{ value: mySup.Address, disabled: true }],
-          Phone: [{ value: mySup.Phone, disabled: true }],
-          Country: [{ value: mySup.Country, disabled: true }],
-          City: [{ value: mySup.City, disabled: true }],
+          SupplierName: [{ value: mySup.supplierName, disabled: true }],
+          ContactName: [{ value: mySup.contactName, disabled: true }],
+          Address: [{ value: mySup.address, disabled: true }],
+          Phone: [{ value: mySup.phone, disabled: true }],
+          Country: [{ value: mySup.country, disabled: true }],
+          City: [{ value: mySup.city, disabled: true }],
         });
       });
     });

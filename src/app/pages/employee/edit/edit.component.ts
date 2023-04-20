@@ -12,8 +12,6 @@ import { EmployeeService } from 'src/app/core/service/employee.service';
 export class EditEmployeeComponent {
   editEmployeeForm!: FormGroup;
   Employee!: Employee;
-  submited=false
-  img: string = 'http://dummyimage.com/176x196.png/dddddd/000000';
   constructor(
     private employee: EmployeeService,
     private formBuilder: FormBuilder,
@@ -22,7 +20,7 @@ export class EditEmployeeComponent {
   ) {}
   ngOnInit(): void {
     this.editEmployeeForm = this.formBuilder.group({
-      fullname: [''],
+      fullName: [''],
       email: [''],
       gender: [''],
       address: [''],
@@ -34,10 +32,10 @@ export class EditEmployeeComponent {
     this.router.paramMap.subscribe((params) => {
       let id: number = parseInt(params.get('id')!);
       if (id > 0) {
-        this.employee.getByid(id).subscribe((res) => {
+        this.employee.getById(id).subscribe((res) => {
           this.Employee = res;
           this.editEmployeeForm = this.formBuilder.group({
-            fullname: [this.Employee.fullname, Validators.required],
+            fullName: [this.Employee.fullName, Validators.required],
             email: [this.Employee.email, [Validators.required, Validators.email]],
             gender: [this.Employee.gender, Validators.required],
             address: [this.Employee.address, Validators.required],
@@ -48,7 +46,7 @@ export class EditEmployeeComponent {
         });
       } else if (id == 0) {
         this.editEmployeeForm = this.formBuilder.group({
-          fullname: ['', Validators.required],
+          fullName: ['', Validators.required],
           email: ['', [Validators.required, Validators.email]],
           gender: ['', Validators.required],
           address: ['', Validators.required],

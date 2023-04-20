@@ -35,7 +35,7 @@ export class ProfileComponent {
 
     this.editForm = this.formBuilder.group({
       id: [{ value: this.user.id, disabled: false }],
-      fullname: [{ value: this.user.fullname, disabled: false }],
+      fullname: [{ value: this.user.fullName, disabled: false }],
       email: [{ value: this.user.email, disabled: false }],
       address: [{ value: this.user.address, disabled: false }],
       birthday: [{ value: this.user.birthday, disabled: false }],
@@ -54,8 +54,8 @@ export class ProfileComponent {
       (res) => {
         console.log('res', res);
 
-        const { id, fullname, gender, birthday, photo, email, phone, address } = res;
-        this.userService.setUser({ id, fullname, gender, birthday, photo, email, phone, address });
+        const { id, fullName, gender, birthday, photo, email, phone, address } = res;
+        this.userService.setUser({ id, fullName, gender, birthday, photo, email, phone, address });
 
         sessionStorage.setItem('user', JSON.stringify(this.userService.getUser()));
       },

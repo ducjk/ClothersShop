@@ -1,5 +1,7 @@
-.wapper {
+.wrapper {
   padding: 20px;
+  min-height: calc(100vh - (var(--footer-height) + var(--header-height)));
+  width: 100%;
 }
 
 .header {

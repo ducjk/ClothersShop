@@ -57,17 +57,17 @@
           *ngFor="let item of products | paginate : { itemsPerPage: 5, currentPage: p }"
           class="th-body"
         >
-          <td>{{ item.ProductName }}</td>
+          <td>{{ item.productName }}</td>
           <td style="display: flex; justify-content: center">
-            <img src="{{ item.Photo[m] }}" alt="" />
+            <img src="{{ item.photo[m] }}" alt="" />
           </td>
-          <td>{{ item.Price }}</td>
-          <td>{{ item.Unit }}</td>
-          <td>{{ item.Category.CategoryName }}</td>
-          <td>{{ item.Supplier.SupplierName}}</td>
-          <td>{{ item.Color }}</td>
-          <td>{{ item.Size }}</td>
-          <td>{{ item.Quantity }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.unit }}</td>
+          <td>{{ item.Category.categoryName }}</td>
+          <td>{{ item.Supplier.supplierName}}</td>
+          <td>{{ item.color }}</td>
+          <td>{{ item.size }}</td>
+          <td>{{ item.quantity }}</td>
 
           <td>
             <div class="activity">

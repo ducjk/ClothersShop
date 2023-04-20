@@ -1,9 +1,9 @@
 export interface Order {
   id: number;
-  OrderList: [];
-  EmployeeID: number;
-  CustomerID: number;
-  OrderTime: string;
-  FinishedTime: string;
-  Status: number;
+  orderList: [];
+  EmployeeId: number;
+  CustomerId: number;
+  orderTime: string;
+  finishedTime: string;
+  status: number;
 }

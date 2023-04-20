@@ -4,7 +4,7 @@
       <div class="mb-3">
         <label for="exampleInputfullname1" class="form-label">Họ và Tên</label>
         <input
-          formControlName="fullname"
+          formControlName="fullName"
           type="text"
           class="form-control"
           id="exampleInputfullname1"
@@ -12,8 +12,8 @@
       </div>
       <small
         *ngIf="
-          editEmployeeForm.controls['fullname'].dirty &&
-          editEmployeeForm.hasError('required', 'fullname')
+          editEmployeeForm.controls['fullName'].dirty &&
+          editEmployeeForm.hasError('required', 'fullName')
         "
         class="text-danger"
         >*

@@ -1,9 +1,9 @@
 export interface Supplier {
   id: number;
-  SupplierName: string;
-  ContactName: string;
-  Address: string;
-  Phone: string;
-  Country: string;
-  City: string;
+  supplierName: string;
+  contactName: string;
+  address: string;
+  phone: string;
+  country: string;
+  city: string;
 }

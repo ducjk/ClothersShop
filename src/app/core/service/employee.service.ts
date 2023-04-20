@@ -16,8 +16,8 @@ export class EmployeeService {
     return this.apiService.getList(searchvalue, this.names, this.name);
   }
 
-  getByid(id: number): Observable<Employee> {
-    return this.apiService.getByid(id, this.names);
+  getById(id: number): Observable<Employee> {
+    return this.apiService.getById(id, this.names);
   }
   update(data: Employee, id: number): Observable<Employee> {
     return this.apiService.update(data, id, this.names);
