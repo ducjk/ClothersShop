@@ -7,14 +7,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { IndexEmployeeComponent } from './index/index.component';
 import { EditEmployeeComponent } from './edit/edit.component';
-import { DeleteEmployeeComponent } from './delete/delete.component';
+
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
     EmployeeComponent,
     IndexEmployeeComponent,
     EditEmployeeComponent,
-    DeleteEmployeeComponent,
+ 
   ],
   imports: [
     CommonModule,
@@ -23,6 +24,7 @@ import { DeleteEmployeeComponent } from './delete/delete.component';
     ReactiveFormsModule,
     HttpClientModule,
     NgxPaginationModule,
+    MatSelectModule,
   ],
 })
 export class EmployeeModule {}

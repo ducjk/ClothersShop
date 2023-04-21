@@ -6,10 +6,10 @@
     </div>
     <small
       *ngIf="
-        editForm.controls['categoryName'].dirty && editForm.hasError('required', 'categoryName')
+        editForm.controls['categoryName'].touched && editForm.hasError('required', 'categoryName')
       "
       class="text-danger"
-      >*
+      >Vui lòng nhập tên loại hàng
     </small>
 
     <div class="mb-3">
@@ -17,13 +17,15 @@
       <input formControlName="description" type="text" class="form-control" id="description" />
     </div>
     <small
-      *ngIf="editForm.controls['description'].dirty && editForm.hasError('required', 'description')"
+      *ngIf="
+        editForm.controls['description'].touched && editForm.hasError('required', 'description')
+      "
       class="text-danger"
-      >*
+      >Vui lòng nhập mô tả
     </small>
 
     <div class="button">
-      <button [disabled]="editForm.invalid" type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary">Save</button>
       <button type="button" class="btn btn-warning" routerLink="/home/category">Cancel</button>
     </div>
   </form>

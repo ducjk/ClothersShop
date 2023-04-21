@@ -28,4 +28,6 @@ export class IndexEmployeeComponent implements OnInit {
       this.Employees = res;
     });
   }
+
+  
 }
