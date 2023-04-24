@@ -12,6 +12,7 @@ import { CountriesService } from 'src/app/core/service/countries.service';
 })
 export class EditCategoryComponent {
   public editForm!: FormGroup;
+
   countries: Country[] = [];
   constructor(
     private categoryService: CategoryService,
@@ -30,11 +31,11 @@ export class EditCategoryComponent {
       let id: number = parseInt(params.get('id')!);
       if (id != 0) {
         this.categoryService.getById(id).subscribe((res) => {
-          let data= res;
+          let data = res;
 
           this.editForm = this.formBuilder.group({
-            CategoryName: [data.categoryName],
-            Description: [data.description],
+            categoryName: [data.categoryName],
+            description: [data.description],
           });
         });
       } else if (id == 0) {
@@ -46,19 +47,23 @@ export class EditCategoryComponent {
     });
   }
   save() {
-    this.router.paramMap.subscribe((params) => {
-      let id: number = parseInt(params.get('id')!);
-      if (id == 0) {
-        this.categoryService.add(this.editForm.value).subscribe((res) => {
-          alert('Thêm thành công');
-          this.route.navigate(['/home/category']);
-        });
-      } else if (id != 0) {
-        this.categoryService.update(this.editForm.value, id).subscribe((res) => {
-          alert('Chỉnh sửa thành công');
-          this.route.navigate(['/home/category']);
-        });
-      }
-    });
+    if (this.editForm.valid) {
+      this.router.paramMap.subscribe((params) => {
+        let id: number = parseInt(params.get('id')!);
+        if (id == 0) {
+          this.categoryService.add(this.editForm.value).subscribe((res) => {
+            alert('Thêm thành công');
+            this.route.navigate(['/home/category']);
+          });
+        } else if (id != 0) {
+          this.categoryService.update(this.editForm.value, id).subscribe((res) => {
+            alert('Chỉnh sửa thành công');
+            this.route.navigate(['/home/category']);
+          });
+        }
+      });
+    } else {
+      alert('You form is valid');
+    }
   }
 }
