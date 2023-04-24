@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ProfileService {
-  names = 'users';
+  names = 'Users';
   constructor(private apiService: ApiService) {}
 
   updateData(data: User, id: number): Observable<User> {

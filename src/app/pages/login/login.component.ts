@@ -31,10 +31,6 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
-
-    if (this.cookieService.get('token')) {
-      this.cookieService.deleteAll('token');
-    }
   }
 
   getDecodedAccessToken(token: string): any {
@@ -46,13 +42,16 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
+    console.log('submit login');
+
+    if (this.cookieService.get('token')) {
+      this.cookieService.delete('token');
+    }
     this.account.onLogin(this.loginForm.value).subscribe(
       (res: any) => {
-        if (this.cookieService.get('token')) {
-          this.cookieService.deleteAll('token');
-        }
         this.cookieService.set('token', res.access_token);
         const tokenInfo = this.getDecodedAccessToken(res.access_token);
+
         const { id, fullName, gender, birthday, photo, email, phone, address } = tokenInfo;
         this.user = { id, fullName, gender, birthday, phone, email, photo, address };
         sessionStorage.setItem('user', JSON.stringify(this.user));

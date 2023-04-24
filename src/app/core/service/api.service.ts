@@ -8,22 +8,18 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ApiService {
-  auth_token = this.cookieService.get('token');
-  headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    Authorization: 'Bearer ' + this.auth_token,
-  });
+  // auth_token = this.cookieService.get('token');
+  // headers = new HttpHeaders({
+  //   'Content-Type': 'application/json',
+  //   Authorization: 'Bearer ' + this.auth_token,
+  // });
 
   private urlAPI = environment.apiURL;
 
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 
-  setToken(token: string) {
-    this.auth_token = token;
-  }
-
   callAPI(url: string): Observable<any> {
-    return this.http.get<any>(`${this.urlAPI}${url}`, { headers: this.headers });
+    return this.http.get<any>(`${this.urlAPI}${url}`);
   }
 
   getList(searchvalue: any = null, names: string, name: string): Observable<any[]> {
@@ -31,38 +27,30 @@ export class ApiService {
     if (searchvalue != null) {
       url = `${url}?${name}Name_like=` + searchvalue;
     }
-    return this.http.get<any[]>(url, { headers: this.headers });
+    return this.http.get<any[]>(url);
   }
   getById(id: number, names: string): Observable<any> {
     let url = `${this.urlAPI}/${names}/` + id;
-    return this.http.get<any>(url, { headers: this.headers });
+    return this.http.get<any>(url);
   }
   update(data: any, id: number, names: string): Observable<any> {
     let url = `${this.urlAPI}/${names}/` + id;
-    return this.http.put<any>(url, data, { headers: this.headers });
+    return this.http.put<any>(url, data);
   }
   add(data: any, names: string): Observable<any> {
     let url = `${this.urlAPI}/${names}`;
-    return this.http.post<any>(url, data, { headers: this.headers });
+    return this.http.post<any>(url, data);
   }
   delete(id: number, names: string): Observable<any> {
     let url = `${this.urlAPI}/${names}/` + id;
-    return this.http.delete<any>(url, { headers: this.headers });
+    return this.http.delete<any>(url);
   }
   getExpand(searchvalue: any = null): Observable<any[]> {
     if (searchvalue != null) {
       return this.http.get<any[]>(
-        `http://localhost:3000/Products?_expand=Category&_expand=Supplier&ProductName_like=${searchvalue}`,
-        {
-          headers: this.headers,
-        }
+        `http://localhost:3000/Products?_expand=Category&_expand=Supplier&ProductName_like=${searchvalue}`
       );
     }
-    return this.http.get<any[]>(
-      `http://localhost:3000/Products?_expand=Category&_expand=Supplier`,
-      {
-        headers: this.headers,
-      }
-    );
+    return this.http.get<any[]>(`http://localhost:3000/Products?_expand=Category&_expand=Supplier`);
   }
 }
