@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Country } from 'src/app/components/country';
+import ValidaterForm from 'src/app/components/validaterForm';
 import { CategoryService } from 'src/app/core/service/category.service';
 import { CountriesService } from 'src/app/core/service/countries.service';
 
@@ -63,6 +64,7 @@ export class EditCategoryComponent {
         }
       });
     } else {
+      ValidaterForm.validateAllFormFileds(this.editForm);
       alert('You form is valid');
     }
   }

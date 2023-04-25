@@ -1,1 +1,178 @@
-<p>edit works!</p>
+<div class="background">
+  <div class="wrapper">
+    <form [formGroup]="editForm" (ngSubmit)="save()" class="formInput">
+      <!--productName-->
+      <div class="mb-3">
+        <label for="exampleInputproductname1" class="form-label">Tên mặt hàng</label>
+        <input
+          formControlName="productName"
+          type="text"
+          class="form-control"
+          id="exampleInputfullname1"
+        />
+        <!--Validation input productName-->
+        <div
+          *ngIf="
+            editForm.controls['productName'].invalid &&
+            (editForm.controls['productName'].touched || editForm.controls['productName'].dirty)
+          "
+        >
+          <small class="text-danger" *ngIf="editForm.controls['productName'].errors?.['required']"
+            >Vui lòng nhập mặt hàng</small
+          >
+        </div>
+      </div>
+      <!--price-->
+      <div class="mb-3">
+        <label for="exampleInputprice" class="form-label">Giá</label>
+        <input formControlName="price" type="text" class="form-control" id="exampleInputprice" />
+        <!--Validation input price-->
+        <div
+          *ngIf="
+            editForm.controls['price'].invalid &&
+            (editForm.controls['price'].touched || editForm.controls['price'].dirty)
+          "
+        >
+          <small class="text-danger" *ngIf="editForm.controls['price'].errors?.['required']"
+            >Vui lòng nhập price</small
+          >
+        </div>
+      </div>
+      <!--Category-->
+      <div class="mb-3 list-item">
+        <label for="exampleInputcategoryId" class="form-label">Loại hàng</label>
+        <select
+          class="form-control option-select"
+          formControlName="CategoryId"
+          id="exampleInputcategoryId"
+        >
+          <option>--Chọn loại hàng--</option>
+          <option *ngFor="let item of categories" [selected]="item.id == editForm.value.CategoryId">
+            {{ item.categoryName }}
+          </option>
+        </select>
+        <!--validation Category-->
+        <div
+          *ngIf="editForm.controls['CategoryId'].invalid && editForm.controls['CategoryId'].touched"
+        >
+          <small class="text-danger" *ngIf="editForm.controls['CategoryId'].errors?.['required']"
+            >Vui lòng chọn loại hàng</small
+          >
+        </div>
+      </div>
+      <!--supplier-->
+      <div class="mb-3 list-item">
+        <label for="exampleInputsupplierId" class="form-label">Nhà cung cấp</label>
+        <select
+          class="form-control option-select"
+          formControlName="SupplierId"
+          id="exampleInputcategoryId"
+        >
+          <option>--Chọn nhà cung cấp--</option>
+          <option *ngFor="let item of suppliers" [selected]="item.id == editForm.value.SupplierId">
+            {{ item.supplierName }}
+          </option>
+        </select>
+
+        <!--Validation supplier-->
+        <div
+          *ngIf="editForm.controls['SupplierId'].invalid && editForm.controls['SupplierId'].touched"
+        >
+          <small class="text-danger" *ngIf="editForm.controls['SupplierId'].errors?.['required']"
+            >Vui chọn nhà cung cấp</small
+          >
+        </div>
+      </div>
+      <!--unit-->
+      <div class="mb-3">
+        <label for="exampleInputunit" class="form-label">Đơn vị tính</label>
+        <input formControlName="unit" type="text" class="form-control" id="exampleInputunit" />
+        <!--validation unit-->
+        <div
+          *ngIf="
+            editForm.controls['unit'].invalid &&
+            (editForm.controls['unit'].touched || editForm.controls['unit'].dirty)
+          "
+        >
+          <small class="text-danger" *ngIf="editForm.controls['unit'].errors?.['required']"
+            >Vui lòng nhập đơn vị tính</small
+          >
+        </div>
+      </div>
+      <!--quantity-->
+      <div class="mb-3">
+        <label for="exampleInputsize" class="form-label">Số lượng</label>
+        <input formControlName="quantity" type="text" class="form-control" id="exampleInputsize" />
+        <div
+          *ngIf="
+            editForm.controls['quantity'].invalid &&
+            (editForm.controls['quantity'].touched || editForm.controls['quantity'].dirty)
+          "
+        >
+          <small class="text-danger" *ngIf="editForm.controls['quantity'].errors?.['required']"
+            >Vui lòng nhập số lượng
+          </small>
+        </div>
+      </div>
+      <!--Size-->
+      <div class="mb-3">
+        <label for="exampleInputsize" class="form-label">Size</label>
+        <input formControlName="size" type="text" class="form-control" id="exampleInputsize" />
+        <div
+          *ngIf="
+            editForm.controls['size'].invalid &&
+            (editForm.controls['size'].touched || editForm.controls['size'].dirty)
+          "
+        >
+          <small class="text-danger" *ngIf="editForm.controls['size'].errors?.['required']"
+            >Vui lòng nhập size
+          </small>
+        </div>
+      </div>
+      <!--color-->
+      <div class="mb-3">
+        <label for="exampleInputcolor" class="form-label">Màu sắc</label>
+        <input formControlName="color" type="text" class="form-control" id="exampleInputcolor" />
+        <div
+          *ngIf="
+            editForm.controls['color'].invalid &&
+            (editForm.controls['color'].touched || editForm.controls['color'].dirty)
+          "
+        >
+          <small class="text-danger" *ngIf="editForm.controls['color'].errors?.['required']"
+            >Vui lòng nhập màu mặt hàng
+          </small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <input
+          formControlName="photo"
+          type="file"
+          class="form-control"
+          name="uploadPhoto"
+          id="image"
+          onchange="document.getElementById('photo').src=window.URL.createObjectURL(this.files[0])"
+        />
+      </div>
+      <!--photo-->
+      <div class="mb-3">
+        <label for="exampleInputanh1" class="form-label"> Ảnh</label>
+        <img
+          id="photo"
+          [src]="editForm.value.photo"
+          class="img img-bordered"
+          style="width: 200px"
+        />
+      </div>
+      <small
+        *ngIf="editForm.controls['photo'].touched && editForm.hasError('required', 'photo')"
+        class="text-danger"
+        >*
+      </small>
+      <div class="button">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-warning" routerLink="/home/product">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

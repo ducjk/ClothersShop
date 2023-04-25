@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from 'src/app/components/employee';
+import ValidaterForm from 'src/app/components/validaterForm';
 import { EmployeeService } from 'src/app/core/service/employee.service';
 
 @Component({
@@ -76,6 +77,7 @@ export class EditEmployeeComponent {
         }
       });
     } else {
+      ValidaterForm.validateAllFormFileds(this.editEmployeeForm);
       alert('Nhập còn thiếu kìa má');
     }
   }

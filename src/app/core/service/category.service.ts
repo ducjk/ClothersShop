@@ -26,4 +26,5 @@ export class CategoryService {
   delete(id: number): Observable<any> {
     return this.apiService.delete(id, this.names);
   }
+  
 }
