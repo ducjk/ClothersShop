@@ -9,12 +9,12 @@ import { environment } from 'src/environments/environment';
 export class AccountService {
   apiURL = environment.apiURL;
   constructor(private http: HttpClient) {}
-  getList(): Observable<any> {
-    return this.http.get<any>('http://localhost:3000/Employees/');
-  }
-  getAccountById(id: number): Observable<any> {
-    return this.http.get<any>(`http://localhost:3000/Employees/${id}`);
-  }
+  // getList(): Observable<any> {
+  //   return this.http.get<any>('http://localhost:3000/Employees/');
+  // }
+  // getAccountById(id: number): Observable<any> {
+  //   return this.http.get<any>(`http://localhost:3000/Employees/${id}`);
+  // }
   getPost(acc: any): Observable<any> {
     {
       return this.http.post<any>('http://localhost:3000/Customer', acc);
@@ -22,6 +22,6 @@ export class AccountService {
   }
 
   onLogin(obj: any): Observable<any> {
-    return this.http.post('http://localhost:3000/auth/login', obj);
+    return this.http.post(`${this.apiURL}/auth/login`, obj);
   }
 }

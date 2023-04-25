@@ -11,6 +11,6 @@ export class ProfileService {
   constructor(private apiService: ApiService) {}
 
   updateData(data: User, id: number): Observable<User> {
-    return this.apiService.update(data, id, this.names);
+    return this.apiService.updateWithoutAllField(data, id, this.names);
   }
 }

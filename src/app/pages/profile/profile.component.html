@@ -2,17 +2,17 @@
   <div class="wrapper">
     <form [formGroup]="editForm" (ngSubmit)="save()" class="formInput">
       <div class="mb-3">
-        <label for="fullname" class="form-label">Họ và tên</label>
+        <label for="fullName" class="form-label">Họ và tên</label>
         <input
-          formControlName="fullname"
+          formControlName="fullName"
           type="text"
           class="form-control"
-          id="fullname"
+          id="fullName"
           [value]="this.user.fullName"
         />
       </div>
       <small
-        *ngIf="editForm.controls['fullname'].dirty && editForm.hasError('required', 'fullname')"
+        *ngIf="editForm.controls['fullName'].dirty && editForm.hasError('required', 'fullName')"
         class="text-danger"
         >*
       </small>

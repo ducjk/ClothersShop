@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
 import { InterceptorService } from './core/service/interceptor.service';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { DeleteComponent } from './shared/delete/delete.component';
 @NgModule({
   declarations: [AppComponent, NotfoundComponent, DeleteComponent],
