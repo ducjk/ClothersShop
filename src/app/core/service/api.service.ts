@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
@@ -19,10 +19,26 @@ export class ApiService {
   getList(searchvalue: any = null, names: string, name: string): Observable<any[]> {
     let url = `${this.urlAPI}/${names}`;
     if (searchvalue != null) {
-      url = `${url}?${name}Name_like=` + searchvalue;
+      url = `${url}?${name}_like=` + searchvalue;
     }
     return this.http.get<any[]>(url);
   }
+
+  getListWithPage(
+    searchValue: any = null,
+    page: number,
+    limit: number,
+    names: string,
+    attribute: string
+  ): Observable<HttpResponse<any[]>> {
+    let url = `${this.urlAPI}/${names}?_page=${page}&_limit=${limit}`;
+    if (searchValue != null) {
+      url = `${url}&${attribute}_like=` + searchValue;
+    }
+
+    return this.http.get<any[]>(url, { observe: 'response' });
+  }
+
   getById(id: number, names: string): Observable<any> {
     let url = `${this.urlAPI}/${names}/` + id;
     return this.http.get<any>(url);

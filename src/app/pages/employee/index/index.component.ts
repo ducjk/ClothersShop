@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Employee } from 'src/app/components/employee';
@@ -10,24 +11,40 @@ import { EmployeeService } from 'src/app/core/service/employee.service';
 })
 export class IndexEmployeeComponent implements OnInit {
   public searchForm!: FormGroup;
-  p: number = 1;
-  i: number = 1;
+  totalItem = 1;
+  currentPage = 1;
+  limit = 5;
+  listOptionLimit = [3, 4, 5, 6, 7];
+
   Employees: Employee[] = [];
   constructor(private employee: EmployeeService, private formBuilder: FormBuilder) {}
   ngOnInit(): void {
     this.searchForm = this.formBuilder.group({
       searchValue: [],
     });
-    this.employee.getEmployees(this.searchForm.value.searchValue).subscribe((res) => {
-      this.Employees = res;
-      console.log(this.Employees);
-    });
+
+    this.employee
+      .getEmployeesWithPage(this.searchForm.value.searchValue, this.currentPage, this.limit)
+      .subscribe((res: any) => {
+        this.totalItem = +res.headers.get('X-Total-Count');
+        this.Employees = res.body;
+      });
   }
   onSearch() {
-    this.employee.getEmployees(this.searchForm.value.searchValue).subscribe((res) => {
-      this.Employees = res;
-    });
+    this.employee
+      .getEmployeesWithPage(this.searchForm.value.searchValue, this.currentPage, this.limit)
+      .subscribe((res: any) => {
+        this.Employees = res.body;
+      });
   }
 
-  
+  onPageChange(pageNumber: number) {
+    this.currentPage = pageNumber;
+    this.onSearch();
+  }
+
+  onChangeLimit(value: string): void {
+    this.limit = +value;
+    this.onSearch();
+  }
 }

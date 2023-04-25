@@ -11,9 +11,14 @@ import { ApiService } from './api.service';
 export class EmployeeService {
   names = 'Employees';
   name = 'Employee';
+  attribute = 'fullName';
   constructor(private apiService: ApiService) {}
   getEmployees(searchvalue: any = null): Observable<Employee[]> {
     return this.apiService.getList(searchvalue, this.names, this.name);
+  }
+
+  getEmployeesWithPage(searchValue: any = null, page: number, limit: number) {
+    return this.apiService.getListWithPage(searchValue, page, limit, this.names, this.attribute);
   }
 
   getById(id: number): Observable<Employee> {
