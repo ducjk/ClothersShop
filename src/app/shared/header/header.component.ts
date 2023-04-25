@@ -34,7 +34,7 @@ export class HeaderComponent {
       photo: '',
     });
     sessionStorage.removeItem('user');
-    this.cookie.deleteAll('token');
+    this.cookie.delete('token');
     this.router.navigate(['/login']);
   }
 }
