@@ -3,26 +3,32 @@
     <div class="mb-3">
       <label for="categoryName" class="form-label">Tên loại hàng</label>
       <input formControlName="categoryName" type="text" class="form-control" id="categoryName" />
+      <div
+        *ngIf="
+          editForm.controls['categoryName'].invalid &&
+          (editForm.controls['categoryName'].touched || editForm.controls['categoryName'].dirty)
+        "
+      >
+        <small class="text-danger" *ngIf="editForm.controls['categoryName'].errors?.['required']"
+          >Vui lòng nhập loại hàng</small
+        >
+      </div>
     </div>
-    <small
-      *ngIf="
-        editForm.controls['categoryName'].touched && editForm.hasError('required', 'categoryName')
-      "
-      class="text-danger"
-      >Vui lòng nhập tên loại hàng
-    </small>
 
     <div class="mb-3">
       <label for="description" class="form-label">Mô tả</label>
       <input formControlName="description" type="text" class="form-control" id="description" />
+      <div
+        *ngIf="
+          editForm.controls['description'].invalid &&
+          (editForm.controls['description'].touched || editForm.controls['description'].dirty)
+        "
+      >
+        <small class="text-danger" *ngIf="editForm.controls['description'].errors?.['required']"
+          >Vui lòng nhập mô tả</small
+        >
+      </div>
     </div>
-    <small
-      *ngIf="
-        editForm.controls['description'].touched && editForm.hasError('required', 'description')
-      "
-      class="text-danger"
-      >Vui lòng nhập mô tả
-    </small>
 
     <div class="button">
       <button type="submit" class="btn btn-primary">Save</button>

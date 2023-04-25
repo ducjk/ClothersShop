@@ -1,82 +1,121 @@
 <div class="wrapper">
   <form [formGroup]="editForm" (ngSubmit)="save()" class="formInput">
+    <!--Supplier-->
     <div class="mb-3">
       <label for="exampleInputsupplierName1" class="form-label">Tên Nhà Cung Cấp</label>
       <input
-        formControlName="SupplierName"
+        formControlName="supplierName"
         type="text"
         class="form-control"
         id="exampleInputsupplierName1"
       />
+      <!--Supplier error display-->
+      <div
+        *ngIf="
+          editForm.controls['supplierName'].invalid &&
+          (editForm.controls['supplierName'].touched || editForm.controls['supplierName'].dirty)
+        "
+      >
+        <small class="text-danger" *ngIf="editForm.controls['supplierName'].errors?.['required']"
+          >Vui lòng nhập tên nhà cung cấp</small
+        >
+      </div>
     </div>
-    <small
-      *ngIf="
-        editForm.controls['SupplierName'].dirty && editForm.hasError('required', 'SupplierName')
-      "
-      class="text-danger"
-      >*
-    </small>
+    <!--contact name-->
 
     <div class="mb-3">
       <label for="exampleInputContactName1" class="form-label">Tên Nhà Giao Dịch</label>
       <input
-        formControlName="ContactName"
+        formControlName="contactName"
         type="text"
         class="form-control"
         id="exampleInputContactName1"
       />
+      <div
+        *ngIf="
+          editForm.controls['contactName'].invalid &&
+          (editForm.controls['contactName'].touched || editForm.controls['contactName'].dirty)
+        "
+      >
+        <small class="text-danger" *ngIf="editForm.controls['contactName'].errors?.['required']"
+          >Vui lòng nhập tên nhà giao dịch</small
+        >
+      </div>
     </div>
-    <small
-      *ngIf="editForm.controls['ContactName'].dirty && editForm.hasError('required', 'ContactName')"
-      class="text-danger"
-      >*
-    </small>
+
     <div class="mb-3">
       <label for="exampleInputAddress1" class="form-label">Địa Chỉ</label>
-      <input formControlName="Address" type="text" class="form-control" id="exampleInputAddress1" />
+      <input formControlName="address" type="text" class="form-control" id="exampleInputAddress1" />
+      <div
+        *ngIf="
+          editForm.controls['address'].invalid &&
+          (editForm.controls['address'].touched || editForm.controls['address'].dirty)
+        "
+      >
+        <small class="text-danger" *ngIf="editForm.controls['address'].errors?.['required']"
+          >Vui lòng nhập địa chỉ</small
+        >
+      </div>
     </div>
-    <small
-      *ngIf="editForm.controls['Address'].dirty && editForm.hasError('required', 'Address')"
-      class="text-danger"
-      >*
-    </small>
+
     <div class="mb-3">
       <label for="exampleInputPhone1" class="form-label">SĐT</label>
-      <input formControlName="Phone" type="text" class="form-control" id="exampleInputPhone1" />
+      <input formControlName="phone" type="text" class="form-control" id="exampleInputPhone1" />
+      <div
+        *ngIf="
+          editForm.controls['phone'].invalid &&
+          (editForm.controls['phone'].touched || editForm.controls['phone'].dirty)
+        "
+      >
+        <small class="text-danger" *ngIf="editForm.controls['phone'].errors?.['required']"
+          >Vui lòng nhập SĐT</small
+        >
+        <small class="text-danger" *ngIf="editForm.controls['phone'].errors?.['pattern']"
+          >Vui lòng nhập đúng SĐT</small
+        >
+      </div>
     </div>
-    <small
-      *ngIf="editForm.controls['Phone'].dirty && editForm.hasError('required', 'Phone')"
-      class="text-danger"
-      >*
-    </small>
+
     <div class="mb-3 country-item">
       <label for="exampleInputCountry1" class="form-label">Quốc Gia</label>
-      <select class="form-control option-select" formControlName="Country">
+      <select class="form-control option-select" formControlName="country">
         <option>--Chọn Quốc Gia--</option>
         <option
           *ngFor="let country of countries"
-          [selected]="country.countryName == editForm.value.Country"
+          [selected]="country.countryName == editForm.value.country"
         >
           {{ country.countryName }}
         </option>
       </select>
+      <div
+        *ngIf="
+          editForm.controls['country'].invalid &&
+          (editForm.controls['country'].touched || editForm.controls['country'].dirty)
+        "
+      >
+        <small class="text-danger" *ngIf="editForm.controls['country'].errors?.['required']"
+          >Vui lòng chọn quốc gia</small
+        >
+      </div>
     </div>
-    <small
-      *ngIf="editForm.controls['Country'].dirty && editForm.hasError('required', 'Country')"
-      class="text-danger"
-      >*
-    </small>
+
     <div class="mb-3 country-item">
       <label for="exampleInputCity1" class="form-label">Thành Phố</label>
-      <input formControlName="City" type="text" class="form-control" id="exampleInputCity1" />
+      <input formControlName="city" type="text" class="form-control" id="exampleInputCity1" />
+      <div
+        *ngIf="
+          editForm.controls['city'].invalid &&
+          (editForm.controls['city'].touched || editForm.controls['city'].dirty)
+        "
+      >
+        <small class="text-danger" *ngIf="editForm.controls['city'].errors?.['required']"
+          >Vui lòng nhập thành phố</small
+        >
+      </div>
     </div>
-    <small
-      *ngIf="editForm.controls['City'].dirty && editForm.hasError('required', 'City')"
-      class="text-danger"
-      >*
-    </small>
+
     <div class="button">
-      <button [disabled]="editForm.invalid" type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary">Save</button>
       <button type="button" class="btn btn-warning" routerLink="/home/supplier">Cancel</button>
     </div>
   </form>

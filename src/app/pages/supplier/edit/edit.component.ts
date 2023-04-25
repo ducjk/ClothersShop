@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { SupplierService } from 'src/app/core/service/supplier.service';
 import { Country } from 'src/app/components/country';
 import { CountriesService } from 'src/app/core/service/countries.service';
+import ValidaterForm from 'src/app/components/validaterForm';
 
 @Component({
   selector: 'app-edit',
@@ -22,12 +23,12 @@ export class EditSupplierComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.editForm = this.formBuilder.group({
-      SupplierName: ['', Validators.required],
-      ContactName: ['', Validators.required],
-      Address: ['', Validators.required],
-      Phone: ['', Validators.required],
-      Country: ['', Validators.required],
-      City: ['', Validators.required],
+      supplierName: ['', Validators.required],
+      contactName: ['', Validators.required],
+      address: ['', Validators.required],
+      phone: ['', Validators.required],
+      country: ['', Validators.required],
+      city: ['', Validators.required],
     });
 
     this.router.paramMap.subscribe((params) => {
@@ -37,22 +38,25 @@ export class EditSupplierComponent implements OnInit {
           let mySup = res;
 
           this.editForm = this.formBuilder.group({
-            SupplierName: [mySup.supplierName],
-            ContactName: [mySup.contactName],
-            Address: [mySup.address],
-            Phone: [mySup.phone],
-            Country: [mySup.country],
-            City: [mySup.city],
+            supplierName: [mySup.supplierName, Validators.required],
+            contactName: [mySup.contactName, Validators.required],
+            address: [mySup.address, Validators.required],
+            phone: [
+              mySup.phone,
+              [Validators.required, Validators.pattern('(09|03|07|08|05)+([0-9]{8})')],
+            ],
+            country: [mySup.country, Validators.required],
+            city: [mySup.city, Validators.required],
           });
         });
       } else if (id == 0) {
         this.editForm = this.formBuilder.group({
-          SupplierName: ['', Validators.required],
-          ContactName: ['', Validators.required],
-          Address: ['', Validators.required],
-          Phone: ['', Validators.required],
-          Country: ['', Validators.required],
-          City: ['', Validators.required],
+          supplierName: ['', Validators.required],
+          contactName: ['', Validators.required],
+          address: ['', Validators.required],
+          phone: ['', [Validators.required, Validators.pattern('(09|03|07|08|05)+([0-9]{8})')]],
+          country: ['', Validators.required],
+          city: ['', Validators.required],
         });
       }
     });
@@ -61,19 +65,24 @@ export class EditSupplierComponent implements OnInit {
     });
   }
   save() {
-    this.router.paramMap.subscribe((params) => {
-      let id: number = parseInt(params.get('id')!);
-      if (id == 0) {
-        this.supplier.add(this.editForm.value).subscribe((res) => {
-          alert('Thêm thành công');
-          this.route.navigate(['/home/supplier']);
-        });
-      } else if (id != 0) {
-        this.supplier.update(this.editForm.value, id).subscribe((res) => {
-          alert('Chỉnh sửa thành công');
-          this.route.navigate(['/home/supplier']);
-        });
-      }
-    });
+    if (this.editForm.valid) {
+      this.router.paramMap.subscribe((params) => {
+        let id: number = parseInt(params.get('id')!);
+        if (id == 0) {
+          this.supplier.add(this.editForm.value).subscribe((res) => {
+            alert('Thêm thành công');
+            this.route.navigate(['/home/supplier']);
+          });
+        } else if (id != 0) {
+          this.supplier.update(this.editForm.value, id).subscribe((res) => {
+            alert('Chỉnh sửa thành công');
+            this.route.navigate(['/home/supplier']);
+          });
+        }
+      });
+    } else {
+      ValidaterForm.validateAllFormFileds(this.editForm);
+      alert('Vui lòng nhập đầy đủ thông tin');
+    }
   }
 }

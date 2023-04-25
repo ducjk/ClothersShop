@@ -5,17 +5,12 @@ import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product.component';
 import { IndexProductComponent } from './index/index.component';
 import { EditProductComponent } from './edit/edit.component';
-import { DeleteProductComponent } from './delete/delete.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
-  declarations: [
-    ProductComponent,
-    IndexProductComponent,
-    EditProductComponent,
-    DeleteProductComponent,
-  ],
+  declarations: [ProductComponent, IndexProductComponent, EditProductComponent],
   imports: [
     CommonModule,
     ProductRoutingModule,
