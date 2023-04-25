@@ -1,169 +1,157 @@
-<div class="background">
-  <div class="wrapper">
-    <form [formGroup]="editEmployeeForm" (ngSubmit)="save()" class="formInput">
-      <!--fullName-->
-      <div class="mb-3">
-        <label for="exampleInputfullname1" class="form-label">Họ và Tên</label>
-        <input
-          formControlName="fullName"
-          type="text"
-          class="form-control"
-          id="exampleInputfullname1"
-        />
-        <!--Validation input fullName-->
-        <div
-          *ngIf="
-            editEmployeeForm.controls['fullName'].invalid &&
-            (editEmployeeForm.controls['fullName'].touched ||
-              editEmployeeForm.controls['fullName'].dirty)
-          "
-        >
-          <small
-            class="text-danger"
-            *ngIf="editEmployeeForm.controls['fullName'].errors?.['pattern']"
-            >Vui lòng nhập đúng họ tên</small
-          >
-          <small
-            class="text-danger"
-            *ngIf="editEmployeeForm.controls['fullName'].errors?.['required']"
-            >Vui lòng nhập đầy đủ họ tên</small
-          >
-        </div>
-      </div>
-      <!--Email-->
-      <div class="mb-3">
-        <label for="exampleInputemail" class="form-label">Email</label>
-        <input formControlName="email" type="email" class="form-control" id="exampleInputemail" />
-        <!--Validation input email-->
-        <div
-          *ngIf="
-            editEmployeeForm.controls['email'].invalid &&
-            (editEmployeeForm.controls['email'].touched || editEmployeeForm.controls['email'].dirty)
-          "
-        >
-          <small class="text-danger" *ngIf="editEmployeeForm.controls['email'].errors?.['email']"
-            >Vui lòng nhập đúng địa chỉ email</small
-          >
-          <small class="text-danger" *ngIf="editEmployeeForm.controls['email'].errors?.['required']"
-            >Vui lòng nhập email</small
-          >
-        </div>
-      </div>
-      <!--Gender-->
-      <div class="mb-3">
-        <label for="exampleInputgender" class="form-label">Giới Tính</label>
-        <select class="form-control option-select" formControlName="gender" id="exampleInputgender">
-          <option [selected]="editEmployeeForm.value.gender === 'Male'">Nam</option>
-          <option [selected]="editEmployeeForm.value.gender === 'Female'">Nữ</option>
-        </select>
-        <!--validation gender-->
-        <div
-          *ngIf="
-            editEmployeeForm.controls['gender'].invalid &&
-            editEmployeeForm.controls['gender'].touched
-          "
-        >
-          <small class="text-danger" *ngIf="editEmployeeForm.controls['email'].errors?.['required']"
-            >Vui lòng chọn giới tính</small
-          >
-        </div>
-      </div>
-      <!--address-->
-      <div class="mb-3">
-        <label for="exampleInputAddress1" class="form-label">Địa Chỉ</label>
-        <input
-          formControlName="address"
-          type="text"
-          class="form-control"
-          id="exampleInputAddress1"
-        />
-        <!--Validation address-->
-        <div
-          *ngIf="
-            editEmployeeForm.controls['address'].invalid &&
-            editEmployeeForm.controls['address'].touched
-          "
-        >
-          <small
-            class="text-danger"
-            *ngIf="editEmployeeForm.controls['address'].errors?.['required']"
-            >Vui lòng nhập địa chỉ</small
-          >
-        </div>
-      </div>
-      <!--Phone-->
-      <div class="mb-3">
-        <label for="exampleInputphone1" class="form-label">SĐT</label>
-        <input formControlName="phone" type="text" class="form-control" id="exampleInputphone1" />
-        <!--validation phone-->
-        <div
-          *ngIf="
-            editEmployeeForm.controls['phone'].invalid &&
-            (editEmployeeForm.controls['phone'].touched || editEmployeeForm.controls['phone'].dirty)
-          "
-        >
-          <small class="text-danger" *ngIf="editEmployeeForm.controls['phone'].errors?.['required']"
-            >Vui lòng nhập SĐT</small
-          >
-          <small class="text-danger" *ngIf="editEmployeeForm.controls['phone'].errors?.['pattern']"
-            >Vui lòng nhập đúng SĐT</small
-          >
-        </div>
-      </div>
-      <!--birthday-->
-      <div class="mb-3">
-        <label for="exampleInputbirthday1" class="form-label">Ngày Sinh</label>
-        <input
-          formControlName="birthday"
-          type="date"
-          class="form-control"
-          id="exampleInputbirthday1"
-          max="{{ maxDate }}"
-        />
-        <div
-          *ngIf="
-            editEmployeeForm.controls['birthday'].invalid &&
-            (editEmployeeForm.controls['birthday'].touched ||
-              editEmployeeForm.controls['birthday'].dirty)
-          "
-        >
-          <small
-            class="text-danger"
-            *ngIf="editEmployeeForm.controls['birthday'].errors?.['required']"
-            >Vui lòng nhập ngày sinh</small
-          >
-        </div>
-      </div>
-      <div class="mb-3">
-        <input
-          formControlName="anh"
-          type="file"
-          class="form-control"
-          name="uploadPhoto"
-          id="image"
-          onchange="document.getElementById('photo').src=window.URL.createObjectURL(this.files[0])"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputanh1" class="form-label"> Ảnh</label>
-        <img
-          id="photo"
-          [src]="editEmployeeForm.value.anh"
-          class="img img-bordered"
-          style="width: 200px"
-        />
-      </div>
-      <small
+<div class="wrapper">
+  <form [formGroup]="editEmployeeForm" (ngSubmit)="save()" class="formInput">
+    <!--fullName-->
+    <div class="mb-3">
+      <label for="exampleInputfullname1" class="form-label">Họ và Tên</label>
+      <input
+        formControlName="fullName"
+        type="text"
+        class="form-control"
+        id="exampleInputfullname1"
+      />
+      <!--Validation input fullName-->
+      <div
         *ngIf="
-          editEmployeeForm.controls['anh'].touched && editEmployeeForm.hasError('required', 'anh')
+          editEmployeeForm.controls['fullName'].invalid &&
+          (editEmployeeForm.controls['fullName'].touched ||
+            editEmployeeForm.controls['fullName'].dirty)
         "
-        class="text-danger"
-        >*
-      </small>
-      <div class="button">
-        <button type="submit" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-warning" routerLink="/home/employee">Cancel</button>
+      >
+        <small class="text-danger" *ngIf="editEmployeeForm.controls['fullName'].errors?.['pattern']"
+          >Vui lòng nhập đúng họ tên</small
+        >
+        <small
+          class="text-danger"
+          *ngIf="editEmployeeForm.controls['fullName'].errors?.['required']"
+          >Vui lòng nhập đầy đủ họ tên</small
+        >
       </div>
-    </form>
-  </div>
+    </div>
+    <!--Email-->
+    <div class="mb-3">
+      <label for="exampleInputemail" class="form-label">Email</label>
+      <input formControlName="email" type="email" class="form-control" id="exampleInputemail" />
+      <!--Validation input email-->
+      <div
+        *ngIf="
+          editEmployeeForm.controls['email'].invalid &&
+          (editEmployeeForm.controls['email'].touched || editEmployeeForm.controls['email'].dirty)
+        "
+      >
+        <small class="text-danger" *ngIf="editEmployeeForm.controls['email'].errors?.['email']"
+          >Vui lòng nhập đúng địa chỉ email</small
+        >
+        <small class="text-danger" *ngIf="editEmployeeForm.controls['email'].errors?.['required']"
+          >Vui lòng nhập email</small
+        >
+      </div>
+    </div>
+    <!--Gender-->
+    <div class="mb-3">
+      <label for="exampleInputgender" class="form-label">Giới Tính</label>
+      <select class="form-control option-select" formControlName="gender" id="exampleInputgender">
+        <option [selected]="editEmployeeForm.value.gender === 'Male'">Nam</option>
+        <option [selected]="editEmployeeForm.value.gender === 'Female'">Nữ</option>
+      </select>
+      <!--validation gender-->
+      <div
+        *ngIf="
+          editEmployeeForm.controls['gender'].invalid && editEmployeeForm.controls['gender'].touched
+        "
+      >
+        <small class="text-danger" *ngIf="editEmployeeForm.controls['email'].errors?.['required']"
+          >Vui lòng chọn giới tính</small
+        >
+      </div>
+    </div>
+    <!--address-->
+    <div class="mb-3">
+      <label for="exampleInputAddress1" class="form-label">Địa Chỉ</label>
+      <input formControlName="address" type="text" class="form-control" id="exampleInputAddress1" />
+      <!--Validation address-->
+      <div
+        *ngIf="
+          editEmployeeForm.controls['address'].invalid &&
+          editEmployeeForm.controls['address'].touched
+        "
+      >
+        <small class="text-danger" *ngIf="editEmployeeForm.controls['address'].errors?.['required']"
+          >Vui lòng nhập địa chỉ</small
+        >
+      </div>
+    </div>
+    <!--Phone-->
+    <div class="mb-3">
+      <label for="exampleInputphone1" class="form-label">SĐT</label>
+      <input formControlName="phone" type="text" class="form-control" id="exampleInputphone1" />
+      <!--validation phone-->
+      <div
+        *ngIf="
+          editEmployeeForm.controls['phone'].invalid &&
+          (editEmployeeForm.controls['phone'].touched || editEmployeeForm.controls['phone'].dirty)
+        "
+      >
+        <small class="text-danger" *ngIf="editEmployeeForm.controls['phone'].errors?.['required']"
+          >Vui lòng nhập SĐT</small
+        >
+        <small class="text-danger" *ngIf="editEmployeeForm.controls['phone'].errors?.['pattern']"
+          >Vui lòng nhập đúng SĐT</small
+        >
+      </div>
+    </div>
+    <!--birthday-->
+    <div class="mb-3">
+      <label for="exampleInputbirthday1" class="form-label">Ngày Sinh</label>
+      <input
+        formControlName="birthday"
+        type="date"
+        class="form-control"
+        id="exampleInputbirthday1"
+        max="{{ maxDate }}"
+      />
+      <div
+        *ngIf="
+          editEmployeeForm.controls['birthday'].invalid &&
+          (editEmployeeForm.controls['birthday'].touched ||
+            editEmployeeForm.controls['birthday'].dirty)
+        "
+      >
+        <small
+          class="text-danger"
+          *ngIf="editEmployeeForm.controls['birthday'].errors?.['required']"
+          >Vui lòng nhập ngày sinh</small
+        >
+      </div>
+    </div>
+    <div class="mb-3">
+      <input
+        formControlName="anh"
+        type="file"
+        class="form-control"
+        name="uploadPhoto"
+        id="image"
+        onchange="document.getElementById('photo').src=window.URL.createObjectURL(this.files[0])"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputanh1" class="form-label"> Ảnh</label>
+      <img
+        id="photo"
+        [src]="editEmployeeForm.value.anh"
+        class="img img-bordered"
+        style="width: 200px"
+      />
+    </div>
+    <small
+      *ngIf="
+        editEmployeeForm.controls['anh'].touched && editEmployeeForm.hasError('required', 'anh')
+      "
+      class="text-danger"
+      >*
+    </small>
+    <div class="button">
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="button" class="btn btn-warning" routerLink="/home/employee">Cancel</button>
+    </div>
+  </form>
 </div>
