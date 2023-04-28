@@ -4,7 +4,7 @@ import { Supplier } from './supplier';
 export interface Product {
   id: number;
   productName: string;
-  price: string;
+  price: number;
   CategoryId: number;
   SupplierId: number;
   unit: string;

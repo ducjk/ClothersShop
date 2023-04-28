@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { OrderComponent } from './order.component';
 import { IndexOrderComponent } from './index/index.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 const routes: Routes = [
   {
@@ -10,6 +11,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'index', pathMatch: 'full' },
       { path: 'index', component: IndexOrderComponent },
+      { path: 'orderDetail/:id', component: OrderDetailComponent },
     ],
   },
 ];

@@ -1,0 +1,96 @@
+.wrapper {
+  background-color: var(--white-color);
+  border-radius: 6px;
+  padding: 12px;
+}
+.button-group {
+  display: flex;
+  justify-content: right;
+}
+.form {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 20px 0;
+}
+.form-group {
+  width: 36%;
+}
+
+.form-content {
+  display: flex;
+  padding: 8px;
+}
+
+.content-label {
+  width: 50%;
+  text-align: right;
+  margin-right: 20px;
+}
+.content-item {
+  width: 50%;
+}
+.fillter {
+  margin-right: 10px;
+}
+.button > a {
+  margin-right: 5px;
+  border: 1px solid rgba($color: #000000, $alpha: 0.2);
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 6px 8px;
+  color: white;
+}
+.button-delete {
+  background-color: var(--danger-color);
+}
+.button-cancel {
+  background-color: var(--primary-color);
+}
+.table-responsive {
+  margin: 0 10px;
+}
+
+.table-content {
+  margin: 8px 0 0;
+}
+.table {
+  width: 100%;
+}
+
+.table,
+.table th,
+.table td {
+  border: 1px solid #dee2e6;
+  border-collapse: collapse;
+}
+.table .th-body:hover {
+  background-color: #dee2e6;
+}
+.th-primary {
+  background-color: #eeeeee;
+  color: #212529;
+}
+.activity {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  border: none;
+}
+
+.btn-sup {
+  font-size: 1.8rem;
+  padding: 4px 6px;
+  background-color: #f7c3c2;
+  border-radius: 4px;
+  margin: 4px;
+}
+.fa-edit {
+  color: var(--primary-color);
+}
+.total {
+  text-align: right;
+}
+.chosse-status {
+  padding: 3px;
+  outline: none;
+}

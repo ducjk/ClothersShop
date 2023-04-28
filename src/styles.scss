@@ -10,6 +10,7 @@
   --text-color: #212529;
   --logo-color: #f8f9fa;
   --background-color: #001c40;
+  --danger-color: #dd4b39;
   // pixel
   --header-height: 5.6rem;
   --footer-height: 5.3rem;
@@ -42,12 +43,15 @@ body {
   }
 }
 
-html,
-body {
-  height: 100%;
+a {
+  text-decoration: none;
+  outline: none;
+  color: var(--text-color);
 }
-body {
-  margin: 0;
+
+button {
+  outline: none;
+  border: none;
 }
 
 .btn-delete {
