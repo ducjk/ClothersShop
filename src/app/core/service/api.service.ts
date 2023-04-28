@@ -38,7 +38,7 @@ export class ApiService {
 
     return this.http.get<any[]>(url, { observe: 'response' });
   }
-
+  
   getById(id: number, names: string): Observable<any> {
     let url = `${this.urlAPI}/${names}/` + id;
     return this.http.get<any>(url);

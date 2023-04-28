@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
 import { InterceptorService } from './core/service/interceptor.service';
 import { DeleteComponent } from './shared/delete/delete.component';
+
 @NgModule({
   declarations: [AppComponent, NotfoundComponent, DeleteComponent],
 

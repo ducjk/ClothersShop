@@ -9,9 +9,13 @@ import { Observable } from 'rxjs';
 export class CustomerService {
   names = 'Customers';
   name = 'Customer';
+  attribute = 'customerName';
   constructor(private apiService: ApiService) {}
   getCustomer(searchvalue: any = null): Observable<Customer[]> {
     return this.apiService.getList(searchvalue, this.names, this.name);
+  }
+  getCustomerWithPage(searchValue: any = null, page: number, limit: number) {
+    return this.apiService.getListWithPage(searchValue, page, limit, this.names, this.attribute);
   }
 
   getById(id: number): Observable<Customer> {

@@ -44,6 +44,12 @@ const routes: Routes = [
         loadChildren: () =>
           import('../../pages/product/product.module').then((m) => m.ProductModule),
       },
+      {
+        path: 'customer',
+        title: 'Khách hàng',
+        loadChildren: () =>
+          import('../../pages/customer/customer.module').then((m) => m.CustomerModule),
+      },
     ],
   },
 ];

@@ -1,0 +1,125 @@
+<div class="wrapper">
+  <div class="button-group">
+    <div class="fillter">
+      <select class="chosse-status">
+        <option>--Chọn trạng thái--</option>
+        <option>Xác nhận đơn hàng</option>
+        <option>Chuyển giao đơn hàng</option>
+        <option>Hoàn tất đơn hàng</option>
+        <option>Từ chối đơn hàng</option>
+        <option>Hủy đơn hàng</option>
+      </select>
+    </div>
+    <div class="button">
+      <a class="button-delete" href="">Xoá đơn hàng</a>
+      <a class="button-cancel" href="">Quay lại</a>
+    </div>
+  </div>
+  <div class="form" *ngIf="OrderDetails">
+    <div class="form-group">
+      <div class="form-content">
+        <label class="content-label">Mã đơn hàng:</label>
+        <div class="content-item">
+          <p class="content">{{ OrderDetails.id }}</p>
+        </div>
+      </div>
+      <div class="form-content">
+        <label class="content-label">Ngày lập đơn hàng:</label>
+        <div class="content-item">
+          <p class="content">{{ OrderDetails.orderTime }}</p>
+        </div>
+      </div>
+      <div class="form-content">
+        <label class="content-label">Nhân viên phụ trách:</label>
+        <div class="content-item">
+          <p class="content">{{ OrderDetails.employeeName }}</p>
+        </div>
+      </div>
+      <div class="form-content">
+        <label class="content-label">Ngày nhận đơn hàng:</label>
+        <div class="content-item">
+          <p class="content">{{ OrderDetails.acceptTime }}</p>
+        </div>
+      </div>
+
+      <div class="form-content">
+        <label class="content-label">Trạng thái đơn hàng:</label>
+        <div class="content-item">
+          <p class="content">{{ OrderDetails.status }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-content">
+        <label class="content-label">Khách hàng:</label>
+        <div class="content-item">
+          <p class="content">{{ OrderDetails.customerName }}</p>
+        </div>
+      </div>
+      <div class="form-content">
+        <label class="content-label">Địa chỉ:</label>
+        <div class="content-item">
+          <p class="content">{{ OrderDetails.Customer.address }}</p>
+        </div>
+      </div>
+      <div class="form-content">
+        <label class="content-label">Email:</label>
+        <div class="content-item">
+          <p class="content">{{ OrderDetails.Customer.email }}</p>
+        </div>
+      </div>
+      <div class="form-content">
+        <label class="content-label">SĐT:</label>
+        <div class="content-item">
+          <p class="content">{{ OrderDetails.Customer.phone }}</p>
+        </div>
+      </div>
+
+      <div class="form-content">
+        <label class="content-label">Thời điểm hoàn tất:</label>
+        <div class="content-item">
+          <p class="content">{{ OrderDetails.finishedTime }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="table-responsive table-content">
+    <table class="table">
+      <thead>
+        <tr class="th-primary">
+          <th>STT</th>
+          <th>Tên hàng</th>
+          <th>Số lượng</th>
+          <th>Giá</th>
+          <th>Thành tiền</th>
+          <th>Tính năng</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="th-body" *ngFor="let item of OrderDetails.orderDetail; index as i">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.productName }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.price * item.quantity }}</td>
+          <td>
+            <div class="activity">
+              <a routerLink="/home/category/edit" class="btn-sup">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a href="" class="btn-sup" routerLink="/home/category/delete/" style="color: red">
+                <i class="fa fa-trash"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="total-group">
+      <div class="total">
+        <p>Tổng Tiền: {{ sumTotal | currency : 'USD' }}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,16 +12,35 @@ import { OrderService } from 'src/app/core/service/order.service';
 })
 export class IndexOrderComponent {
   public searchForm!: FormGroup;
-  p: number = 1;
-  i: number = 1;
+  totalItem = 1;
+  currentPage = 1;
+  limit = 5;
+  listOptionLimit = [3, 4, 5, 6, 7];
+
   orders: Order[] = [];
   constructor(private orderService: OrderService, private formBuilder: FormBuilder) {}
   ngOnInit(): void {
     this.searchForm = this.formBuilder.group({
       searchValue: [],
     });
-    this.orderService.getOrders(this.searchForm.value.searchValue).subscribe((res) => {
+    this.orderService.getExpand(this.searchForm.value.searchValue).subscribe((res) => {
       this.orders = res;
     });
+  }
+  onSearch() {
+    this.orderService
+      .getOrderWithPage(this.searchForm.value.searchValue, this.currentPage, this.limit)
+      .subscribe((res: any) => {
+        this.orders = res.body;
+      });
+  }
+  onPageChange(pageNumber: number) {
+    this.currentPage = pageNumber;
+    this.onSearch();
+  }
+
+  onChangeLimit(value: string): void {
+    this.limit = +value;
+    this.onSearch();
   }
 }
