@@ -8,9 +8,14 @@ import { ApiService } from './api.service';
 export class SupplierService {
   names = 'Suppliers';
   name = 'Supplier';
+  attribute = 'supplierName';
   constructor(private apiService: ApiService) {}
   getSuppliers(searchvalue: any = null): Observable<Supplier[]> {
     return this.apiService.getList(searchvalue, this.names, this.name);
+  }
+
+  getSuppliersWithPage(searchValue: any = null, page: number, limit: number) {
+    return this.apiService.getListWithPage(searchValue, page, limit, this.names, this.attribute);
   }
 
   getById(id: number): Observable<Supplier> {

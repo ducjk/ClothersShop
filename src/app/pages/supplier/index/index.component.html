@@ -28,11 +28,10 @@
   </div>
   <div class="fillter">
     <span>Hiện </span>
-    <select class="chosse-page-size">
-      <option>5</option>
-      <option>10</option>
-      <option>15</option>
-      <option>20</option>
+    <select #pageLimit (change)="onChangeLimit(pageLimit.value)" class="chosse-page-size">
+      <option *ngFor="let item of listOptionLimit" [selected]="item === limit">
+        {{ item }}
+      </option>
     </select>
     <span> danh mục</span>
   </div>
@@ -51,7 +50,10 @@
       </thead>
       <tbody>
         <tr
-          *ngFor="let item of suppliers | paginate : { itemsPerPage: 5, currentPage: p }"
+          *ngFor="
+            let item of Suppliers
+              | paginate : { itemsPerPage: limit, currentPage: currentPage, totalItems: totalItem }
+          "
           class="th-body"
         >
           <td>{{ item.supplierName }}</td>
@@ -65,14 +67,9 @@
               <a routerLink="/home/supplier/edit/{{ item.id }}" class="btn-sup">
                 <i class="fa fa-edit"></i>
               </a>
-              <a
-                href=""
-                class="btn-sup"
-                routerLink="/home/supplier/delete/{{ item.id }}"
-                style="color: red"
-              >
+              <button class="btn-delete" style="color: red" (click)="showDeleteMessage(item.id)">
                 <i class="fa fa-trash"></i>
-              </a>
+              </button>
             </div>
           </td>
         </tr>
@@ -81,9 +78,16 @@
   </div>
   <div class="pagination">
     <pagination-controls
-      (pageChange)="p = $event"
+      (pageChange)="onPageChange($event)"
       previousLabel="Trước"
       nextLabel="Sau"
     ></pagination-controls>
   </div>
+  <app-delete
+    *ngIf="selectedDelete"
+    [id]="idItem"
+    [names]="names"
+    (closePopup)="removeAction()"
+    (successRemove)="removedItem($event)"
+  ></app-delete>
 </div>

@@ -10,21 +10,64 @@ import { CategoryService } from 'src/app/core/service/category.service';
 })
 export class IndexCategoryComponent {
   public searchForm!: FormGroup;
-  p: number = 1;
-  i: number = 1;
-  categories: Category[] = [];
+  totalItem = 1;
+  currentPage = 1;
+  limit = 5;
+  listOptionLimit = [3, 4, 5, 6, 7];
+
+  selectedDelete = false;
+  idItem = 0;
+  names = 'Categories';
+
+  Categories: Category[] = [];
+
   constructor(private categorySevice: CategoryService, private formBuilder: FormBuilder) {}
   ngOnInit(): void {
     this.searchForm = this.formBuilder.group({
       searchValue: [],
     });
-    this.categorySevice.getCategories(this.searchForm.value.searchValue).subscribe((res) => {
-      this.categories = res;
-    });
+    this.categorySevice
+      .getCategoriesWithPage(this.searchForm.value.searchValue, this.currentPage, this.limit)
+      .subscribe((res: any) => {
+        this.totalItem = +res.headers.get('X-Total-Count');
+        this.Categories = res.body;
+      });
   }
   onSearch() {
-    this.categorySevice.getCategories(this.searchForm.value.searchValue).subscribe((res) => {
-      this.categories = res;
-    });
+    this.categorySevice
+      .getCategoriesWithPage(this.searchForm.value.searchValue, this.currentPage, this.limit)
+      .subscribe((res: any) => {
+        this.totalItem = +res.headers.get('X-Total-Count');
+        this.Categories = res.body;
+      });
+  }
+
+  onPageChange(pageNumber: number) {
+    this.currentPage = pageNumber;
+    this.onSearch();
+  }
+
+  onChangeLimit(value: string): void {
+    this.limit = +value;
+    this.onSearch();
+  }
+
+  // deleteItem
+
+  showDeleteMessage(id: number) {
+    this.selectedDelete = true;
+    this.idItem = id;
+  }
+
+  removeAction() {
+    this.selectedDelete = false;
+    this.idItem = 0;
+  }
+
+  removedItem(check: boolean) {
+    if (check) {
+      this.Categories = this.Categories.filter((item) => item.id !== this.idItem);
+    }
+    this.idItem = 0;
   }
 }

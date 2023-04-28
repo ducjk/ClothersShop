@@ -64,9 +64,9 @@ export class ApiService {
   getExpand(searchvalue: any = null): Observable<any[]> {
     if (searchvalue != null) {
       return this.http.get<any[]>(
-        `http://localhost:3000/Products?_expand=Category&_expand=Supplier&ProductName_like=${searchvalue}`
+        `${this.urlAPI}/Products?_expand=Category&_expand=Supplier&productName_like=${searchvalue}`
       );
     }
-    return this.http.get<any[]>(`http://localhost:3000/Products?_expand=Category&_expand=Supplier`);
+    return this.http.get<any[]>(`${this.urlAPI}/Products?_expand=Category&_expand=Supplier`);
   }
 }

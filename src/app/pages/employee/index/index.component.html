@@ -58,7 +58,7 @@
               >
                 <i class="fa fa-edit"> </i>
               </a>
-              <a href="" class="btn btn-xs btn-danger btn-profile">
+              <a (click)="showDeleteMessage(item.id)" class="btn btn-xs btn-danger btn-profile">
                 <i class="fa fa-trash"> </i>
               </a>
             </div>
@@ -99,4 +99,11 @@
       nextLabel="Sau"
     ></pagination-controls>
   </div>
+  <app-delete
+    *ngIf="selectedDelete"
+    [id]="idItem"
+    [names]="names"
+    (closePopup)="removeAction()"
+    (successRemove)="removedItem($event)"
+  ></app-delete>
 </div>

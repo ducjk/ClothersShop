@@ -8,15 +8,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { CommonModule } from '@angular/common';
 import { IndexCategoryComponent } from './index/index.component';
 import { EditCategoryComponent } from './edit/edit.component';
-import { DeleteCategoryComponent } from './delete/delete.component';
+import { DeleteModule } from 'src/app/shared/delete/delete.module';
 
 @NgModule({
-  declarations: [
-    CategoryComponent,
-    IndexCategoryComponent,
-    EditCategoryComponent,
-    DeleteCategoryComponent,
-  ],
+  declarations: [CategoryComponent, IndexCategoryComponent, EditCategoryComponent],
   imports: [
     CommonModule,
     CategoryRoutingModule,
@@ -24,6 +19,7 @@ import { DeleteCategoryComponent } from './delete/delete.component';
     ReactiveFormsModule,
     HttpClientModule,
     NgxPaginationModule,
+    DeleteModule,
   ],
 })
 export class CategoryModule {}

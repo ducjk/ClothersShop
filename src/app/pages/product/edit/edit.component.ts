@@ -16,6 +16,8 @@ import { SupplierService } from 'src/app/core/service/supplier.service';
 })
 export class EditProductComponent {
   product!: Product;
+  listOfAttribute = [];
+
   categories: Category[] = [];
   suppliers!: Supplier[];
   editForm!: FormGroup;
@@ -99,4 +101,6 @@ export class EditProductComponent {
       alert('Nhập còn thiếu kìa má');
     }
   }
+
+  showDeleteMessage(id: number) {}
 }

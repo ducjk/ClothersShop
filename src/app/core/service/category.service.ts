@@ -9,9 +9,15 @@ import { Observable } from 'rxjs';
 export class CategoryService {
   names = 'Categories';
   name = 'Category';
+  attribute = 'categoryName';
+
   constructor(private apiService: ApiService) {}
   getCategories(searchvalue: any = null): Observable<Category[]> {
     return this.apiService.getList(searchvalue, this.names, this.name);
+  }
+
+  getCategoriesWithPage(searchValue: any = null, page: number, limit: number) {
+    return this.apiService.getListWithPage(searchValue, page, limit, this.names, this.attribute);
   }
 
   getById(id: number): Observable<Category> {
@@ -26,5 +32,4 @@ export class CategoryService {
   delete(id: number): Observable<any> {
     return this.apiService.delete(id, this.names);
   }
-  
 }

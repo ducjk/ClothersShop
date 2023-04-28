@@ -16,6 +16,10 @@ export class IndexEmployeeComponent implements OnInit {
   limit = 5;
   listOptionLimit = [3, 4, 5, 6, 7];
 
+  selectedDelete = false;
+  idItem = 0;
+  names = 'Employees';
+
   Employees: Employee[] = [];
   constructor(private employee: EmployeeService, private formBuilder: FormBuilder) {}
   ngOnInit(): void {
@@ -34,6 +38,7 @@ export class IndexEmployeeComponent implements OnInit {
     this.employee
       .getEmployeesWithPage(this.searchForm.value.searchValue, this.currentPage, this.limit)
       .subscribe((res: any) => {
+        this.totalItem = +res.headers.get('X-Total-Count');
         this.Employees = res.body;
       });
   }
@@ -46,5 +51,24 @@ export class IndexEmployeeComponent implements OnInit {
   onChangeLimit(value: string): void {
     this.limit = +value;
     this.onSearch();
+  }
+
+  // deleteItem
+
+  showDeleteMessage(id: number) {
+    this.selectedDelete = true;
+    this.idItem = id;
+  }
+
+  removeAction() {
+    this.selectedDelete = false;
+    this.idItem = 0;
+  }
+
+  removedItem(check: boolean) {
+    if (check) {
+      this.Employees = this.Employees.filter((item) => item.id !== this.idItem);
+    }
+    this.idItem = 0;
   }
 }

@@ -28,14 +28,14 @@
   </div>
   <div class="fillter">
     <span>Hiện </span>
-    <select class="chosse-page-size">
-      <option>5</option>
-      <option>10</option>
-      <option>15</option>
-      <option>20</option>
+    <select #pageLimit (change)="onChangeLimit(pageLimit.value)" class="chosse-page-size">
+      <option *ngFor="let item of listOptionLimit" [selected]="item === limit">
+        {{ item }}
+      </option>
     </select>
     <span> danh mục</span>
   </div>
+
   <div class="table-responsive table-content">
     <table class="table">
       <thead>
@@ -44,44 +44,32 @@
           <th>Ảnh</th>
           <th>Giá</th>
           <th>Đơn vị tính</th>
-          <th>Loại hàng</th>
-          <th>Nhà cung cấp</th>
-          <th>Màu</th>
-          <th>Size</th>
-          <th>Số lượng</th>
-          <th>Tính năng</th>
+          <th style="width: 11rem">Tính năng</th>
         </tr>
       </thead>
       <tbody>
         <tr
-          *ngFor="let item of products | paginate : { itemsPerPage: 5, currentPage: p }"
+          *ngFor="
+            let item of products
+              | paginate : { itemsPerPage: limit, currentPage: currentPage, totalItems: totalItem }
+          "
           class="th-body"
         >
           <td>{{ item.productName }}</td>
-          <td style="display: flex; justify-content: center">
-            <img src="{{ item.photo[m] }}" alt="" />
+          <td class="item-photo" style="width: 11rem">
+            <img [src]="item.photo[index]" class="photo" alt="" />
           </td>
           <td>{{ item.price }}</td>
           <td>{{ item.unit }}</td>
-          <td>{{ item.Category.categoryName }}</td>
-          <td>{{ item.Supplier.supplierName }}</td>
-          <td>{{ item.color }}</td>
-          <td>{{ item.size }}</td>
-          <td>{{ item.quantity }}</td>
 
           <td>
             <div class="activity">
               <a routerLink="/home/product/edit/{{ item.id }}" class="btn-sup">
                 <i class="fa fa-edit"></i>
               </a>
-              <a
-                href=""
-                class="btn-sup"
-                routerLink="/home/product/delete/{{ item.id }}"
-                style="color: red"
-              >
+              <button class="btn-delete" style="color: red" (click)="showDeleteMessage(item.id)">
                 <i class="fa fa-trash"></i>
-              </a>
+              </button>
             </div>
           </td>
         </tr>
@@ -90,9 +78,16 @@
   </div>
   <div class="pagination">
     <pagination-controls
-      (pageChange)="p = $event"
+      (pageChange)="onPageChange($event)"
       previousLabel="Trước"
       nextLabel="Sau"
     ></pagination-controls>
   </div>
+  <app-delete
+    *ngIf="selectedDelete"
+    [id]="idItem"
+    [names]="names"
+    (closePopup)="removeAction()"
+    (successRemove)="removedItem($event)"
+  ></app-delete>
 </div>

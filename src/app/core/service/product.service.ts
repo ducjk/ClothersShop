@@ -11,12 +11,18 @@ import { HttpClient } from '@angular/common/http';
 export class ProductService {
   names = 'Products';
   name = 'Product';
+
+  attribute = 'productName';
   constructor(private apiService: ApiService, private http: HttpClient) {}
   // getProducts(searchvalue: any = null): Observable<Product[]> {
   //   return this.apiService.getList(searchvalue, this.names, this.name);
   // }
-  getProducts(searchValue:any=null): Observable<Product[]> {
+  getProducts(searchValue: any = null): Observable<Product[]> {
     return this.apiService.getExpand(searchValue);
+  }
+
+  getProductsWithPage(searchValue: any = null, page: number, limit: number) {
+    return this.apiService.getListWithPage(searchValue, page, limit, this.names, this.attribute);
   }
 
   getById(id: number): Observable<Product> {

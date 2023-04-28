@@ -9,14 +9,10 @@ import { IndexEmployeeComponent } from './index/index.component';
 import { EditEmployeeComponent } from './edit/edit.component';
 
 import { MatSelectModule } from '@angular/material/select';
+import { DeleteModule } from 'src/app/shared/delete/delete.module';
 
 @NgModule({
-  declarations: [
-    EmployeeComponent,
-    IndexEmployeeComponent,
-    EditEmployeeComponent,
- 
-  ],
+  declarations: [EmployeeComponent, IndexEmployeeComponent, EditEmployeeComponent],
   imports: [
     CommonModule,
     EmployeeRoutingModule,
@@ -25,6 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
     HttpClientModule,
     NgxPaginationModule,
     MatSelectModule,
+    DeleteModule,
   ],
 })
 export class EmployeeModule {}

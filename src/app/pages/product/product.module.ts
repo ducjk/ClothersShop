@@ -8,6 +8,7 @@ import { EditProductComponent } from './edit/edit.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { DeleteModule } from 'src/app/shared/delete/delete.module';
 
 @NgModule({
   declarations: [ProductComponent, IndexProductComponent, EditProductComponent],
@@ -17,6 +18,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    DeleteModule,
   ],
 })
 export class ProductModule {}
