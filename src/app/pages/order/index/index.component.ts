@@ -23,7 +23,7 @@ export class IndexOrderComponent {
     this.searchForm = this.formBuilder.group({
       searchValue: [],
     });
-    this.orderService.getExpand(this.searchForm.value.searchValue).subscribe((res) => {
+    this.orderService.getOrders(this.searchForm.value.searchValue).subscribe((res) => {
       this.orders = res;
     });
   }

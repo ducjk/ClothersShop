@@ -15,37 +15,37 @@
       <a class="button-cancel" href="">Quay lại</a>
     </div>
   </div>
-  <div class="form" *ngIf="OrderDetails">
+  <div class="form" *ngIf="Order">
     <div class="form-group">
       <div class="form-content">
         <label class="content-label">Mã đơn hàng:</label>
         <div class="content-item">
-          <p class="content">{{ OrderDetails.id }}</p>
+          <p class="content">{{ Order.id }}</p>
         </div>
       </div>
       <div class="form-content">
         <label class="content-label">Ngày lập đơn hàng:</label>
         <div class="content-item">
-          <p class="content">{{ OrderDetails.orderTime }}</p>
+          <p class="content">{{ Order.orderTime }}</p>
         </div>
       </div>
       <div class="form-content">
         <label class="content-label">Nhân viên phụ trách:</label>
         <div class="content-item">
-          <p class="content">{{ OrderDetails.employeeName }}</p>
+          <p class="content">{{ Order.employeeName }}</p>
         </div>
       </div>
       <div class="form-content">
         <label class="content-label">Ngày nhận đơn hàng:</label>
         <div class="content-item">
-          <p class="content">{{ OrderDetails.acceptTime }}</p>
+          <p class="content">{{ Order.acceptTime }}</p>
         </div>
       </div>
 
       <div class="form-content">
         <label class="content-label">Trạng thái đơn hàng:</label>
         <div class="content-item">
-          <p class="content">{{ OrderDetails.status }}</p>
+          <p class="content">{{ Order.status }}</p>
         </div>
       </div>
     </div>
@@ -54,32 +54,32 @@
       <div class="form-content">
         <label class="content-label">Khách hàng:</label>
         <div class="content-item">
-          <p class="content">{{ OrderDetails.customerName }}</p>
+          <p class="content">{{ Order.customerName }}</p>
         </div>
       </div>
       <div class="form-content">
         <label class="content-label">Địa chỉ:</label>
         <div class="content-item">
-          <p class="content">{{ OrderDetails.Customer.address }}</p>
+          <p class="content">{{ Order.Customer.address }}</p>
         </div>
       </div>
       <div class="form-content">
         <label class="content-label">Email:</label>
         <div class="content-item">
-          <p class="content">{{ OrderDetails.Customer.email }}</p>
+          <p class="content">{{ Order.Customer.email }}</p>
         </div>
       </div>
       <div class="form-content">
         <label class="content-label">SĐT:</label>
         <div class="content-item">
-          <p class="content">{{ OrderDetails.Customer.phone }}</p>
+          <p class="content">{{ Order.Customer.phone }}</p>
         </div>
       </div>
 
       <div class="form-content">
         <label class="content-label">Thời điểm hoàn tất:</label>
         <div class="content-item">
-          <p class="content">{{ OrderDetails.finishedTime }}</p>
+          <p class="content">{{ Order.finishedTime }}</p>
         </div>
       </div>
     </div>
@@ -97,7 +97,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="th-body" *ngFor="let item of OrderDetails.orderDetail; index as i">
+        <tr class="th-body" *ngFor="let item of OrderDetails; index as i">
           <td>{{ i + 1 }}</td>
           <td>{{ item.productName }}</td>
           <td>{{ item.quantity }}</td>
@@ -105,7 +105,7 @@
           <td>{{ item.price * item.quantity }}</td>
           <td>
             <div class="activity">
-              <a routerLink="/home/category/edit" class="btn-sup">
+              <a routerLink="/home/order/editDetail/{{ item.id }}" class="btn-sup">
                 <i class="fa fa-edit"></i>
               </a>
               <a href="" class="btn-sup" routerLink="/home/category/delete/" style="color: red">
