@@ -8,10 +8,6 @@ export interface Product {
   CategoryId: number;
   SupplierId: number;
   unit: string;
-  photo: [];
-  size: [];
-  color: [];
+  photo: string;
   quantity: number;
-  Category: Category;
-  Supplier: Supplier;
 }

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SupplierComponent } from './supplier.component';
 import { EditSupplierComponent } from './edit/edit.component';
 import { IndexSupplierComponent } from './index/index.component';
+import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'index', pathMatch: 'full' },
       { path: 'edit/:id', title: 'Chỉnh sửa nhà cung cấp', component: EditSupplierComponent },
       { path: 'index', component: IndexSupplierComponent },
+      { path: 'test', component: TestComponent },
     ],
   },
 ];

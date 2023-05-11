@@ -1,5 +1,10 @@
 <div class="wrapper">
-  <form [formGroup]="editEmployeeForm" (ngSubmit)="save()" class="formInput">
+  <form
+    [formGroup]="editEmployeeForm"
+    (ngSubmit)="save()"
+    class="formInput"
+    enctype="multipart/form-data"
+  >
     <!--fullName-->
     <div class="mb-3">
       <label for="exampleInputfullname1" class="form-label">Họ và Tên</label>
@@ -125,30 +130,32 @@
     </div>
     <div class="mb-3">
       <input
-        formControlName="anh"
         type="file"
         class="form-control"
         name="uploadPhoto"
         id="image"
+        accept="image/*"
+        (change)="onFileSelected($event)"
         onchange="document.getElementById('photo').src=window.URL.createObjectURL(this.files[0])"
       />
     </div>
     <div class="mb-3">
-      <label for="exampleInputanh1" class="form-label"> Ảnh</label>
+      <label for="exampleInputphoto1" class="form-label"> Ảnh</label>
       <img
         id="photo"
-        [src]="editEmployeeForm.value.anh"
+        [src]="editEmployeeForm.value.photo"
         class="img img-bordered"
         style="width: 200px"
       />
     </div>
     <small
       *ngIf="
-        editEmployeeForm.controls['anh'].touched && editEmployeeForm.hasError('required', 'anh')
+        editEmployeeForm.controls['photo'].touched && editEmployeeForm.hasError('required', 'photo')
       "
       class="text-danger"
       >*
     </small>
+
     <div class="button">
       <button type="submit" class="btn btn-primary">Save</button>
       <button type="button" class="btn btn-warning" routerLink="/home/employee">Cancel</button>

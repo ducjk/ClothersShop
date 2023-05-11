@@ -10,10 +10,14 @@ import { environment } from 'src/environments/environment';
 export class ApiService {
   private urlAPI = environment.apiURL;
 
-  constructor(private http: HttpClient, private cookieService: CookieService) {}
+  constructor(private http: HttpClient) {}
 
   callAPI(url: string): Observable<any> {
-    return this.http.get<any>(`${this.urlAPI}${url}`);
+    return this.http.get<any>(`${this.urlAPI}/${url}`);
+  }
+
+  callAPIgetList(url: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.urlAPI}/${url}`);
   }
 
   getList(searchvalue: any = null, names: string, name: string): Observable<any[]> {
@@ -38,7 +42,7 @@ export class ApiService {
 
     return this.http.get<any[]>(url, { observe: 'response' });
   }
-  
+
   getById(id: number, names: string): Observable<any> {
     let url = `${this.urlAPI}/${names}/` + id;
     return this.http.get<any>(url);
@@ -57,16 +61,20 @@ export class ApiService {
     let url = `${this.urlAPI}/${names}`;
     return this.http.post<any>(url, data);
   }
+  postImage(data: any): Observable<any> {
+    let url = `${this.urlAPI}/images`;
+    return this.http.post<any>(url, data);
+  }
   delete(id: number, names: string): Observable<any> {
     let url = `${this.urlAPI}/${names}/` + id;
     return this.http.delete<any>(url);
   }
-  getExpand(searchvalue: any = null): Observable<any[]> {
-    if (searchvalue != null) {
-      return this.http.get<any[]>(
-        `${this.urlAPI}/Products?_expand=Category&_expand=Supplier&productName_like=${searchvalue}`
-      );
-    }
-    return this.http.get<any[]>(`${this.urlAPI}/Products?_expand=Category&_expand=Supplier`);
-  }
+  // getExpand(searchvalue: any = null): Observable<any[]> {
+  //   if (searchvalue != null) {
+  //     return this.http.get<any[]>(
+  //       `${this.urlAPI}/Products?_expand=Category&_expand=Supplier&productName_like=${searchvalue}`
+  //     );
+  //   }
+  //   return this.http.get<any[]>(`${this.urlAPI}/Products?_expand=Category&_expand=Supplier`);
+  // }
 }

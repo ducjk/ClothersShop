@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <form [formGroup]="editForm" (ngSubmit)="save()" class="formInput">
+  <form [formGroup]="editForm" (ngSubmit)="save()" class="formInput" enctype="multipart/form-data">
     <!--productName-->
     <div class="mb-3">
       <label for="exampleInputproductname1" class="form-label">Tên mặt hàng</label>
@@ -115,21 +115,23 @@
     </div>
     <div class="mb-3">
       <input
-        formControlName="photo"
         type="file"
         class="form-control"
         name="uploadPhoto"
+        accept="image/*"
         id="image"
+        (change)="onFileSelected($event)"
         onchange="document.getElementById('photo').src=window.URL.createObjectURL(this.files[0])"
       />
     </div>
+
     <!--photo-->
     <div class="mb-3">
       <label for="exampleInputanh1" class="form-label"> Ảnh</label>
       <div class="content-img">
         <img
           id="photo"
-          src="https://taimienphi.vn/tmp/cf/aut/anh-gai-xinh-1.jpg"
+          [src]="editForm.value.photo"
           class="img img-bordered"
           style="width: 200px"
         />
@@ -146,86 +148,42 @@
     </div>
   </form>
 </div>
-<div class="wrapper">
+<div class="wrapper" *ngIf="product && product.id !== 0">
   <div class="table-responsive table-content">
     <table class="table">
       <thead>
         <tr class="th-primary">
           <th>Ảnh</th>
           <th>Mô tả/ Tiêu đề</th>
-          <th>Ẩn ảnh</th>
+          <th>Độ ưu tiên</th>
           <th>Của màu nào</th>
           <th style="width: 11rem">
-            <button class="btn-add btn-add-item btn-content" (click)="showDeleteMessage(1)">
+            <button class="btn-add btn-add-item btn-content" (click)="showEditForm(0)">
               <i class="fa fa-plus"></i>
             </button>
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr class="th-body">
+        <tr class="th-body" *ngFor="let item of ProductPhotos">
           <td class="item-photo" style="width: 11rem" class="table-item">
-            <img src="https://taimienphi.vn/tmp/cf/aut/anh-gai-xinh-1.jpg" class="photo" alt="" />
+            <img [src]="item.urlImg" class="photo" [alt]="item.description" />
           </td>
-          <td class="table-item">Ảnh gái xinh</td>
-          <td class="table-item" style="width: 14rem">No</td>
-          <td class="table-item" style="width: 20rem">Đỏ</td>
+          <td class="table-item">{{ item.description }}</td>
+          <td class="table-item" style="width: 14rem">
+            {{ item.priority }}
+          </td>
+          <td class="table-item" style="width: 20rem">{{ item.color }}</td>
 
           <td>
             <div class="activity">
-              <a routerLink="/home/product/edit/" class="btn-sup btn-content">
+              <button class="btn-sup btn-content" (click)="showEditForm(item.id)">
                 <i class="fa fa-edit"></i>
-              </a>
-              <button
-                class="btn-delete btn-content"
-                style="color: red"
-                (click)="showDeleteMessage(1)"
-              >
-                <i class="fa fa-trash"></i>
               </button>
-            </div>
-          </td>
-        </tr>
-        <tr class="th-body">
-          <td class="item-photo" style="width: 11rem" class="table-item">
-            <img src="https://taimienphi.vn/tmp/cf/aut/anh-gai-xinh-1.jpg" class="photo" alt="" />
-          </td>
-          <td class="table-item">Ảnh gái xinh</td>
-          <td class="table-item" style="width: 14rem">No</td>
-          <td class="table-item" style="width: 20rem">Đỏ</td>
-
-          <td>
-            <div class="activity">
-              <a routerLink="/home/product/edit/" class="btn-sup btn-content">
-                <i class="fa fa-edit"></i>
-              </a>
               <button
                 class="btn-delete btn-content"
                 style="color: red"
-                (click)="showDeleteMessage(1)"
-              >
-                <i class="fa fa-trash"></i>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr class="th-body">
-          <td class="item-photo" style="width: 11rem" class="table-item">
-            <img src="https://taimienphi.vn/tmp/cf/aut/anh-gai-xinh-1.jpg" class="photo" alt="" />
-          </td>
-          <td class="table-item">Ảnh gái xinh</td>
-          <td class="table-item" style="width: 14rem">No</td>
-          <td class="table-item" style="width: 20rem">Đỏ</td>
-
-          <td>
-            <div class="activity">
-              <a routerLink="/home/product/edit/" class="btn-sup btn-content">
-                <i class="fa fa-edit"></i>
-              </a>
-              <button
-                class="btn-delete btn-content"
-                style="color: red"
-                (click)="showDeleteMessage(1)"
+                (click)="showDeleteMessage(item.id)"
               >
                 <i class="fa fa-trash"></i>
               </button>
@@ -236,7 +194,118 @@
     </table>
   </div>
 </div>
-<div class="wrapper">
+
+<app-delete
+  *ngIf="selectedDelete"
+  [id]="idItem"
+  [names]="names"
+  (closePopup)="removeAction()"
+  (successRemove)="removedItem($event)"
+></app-delete>
+
+<dialog class="editModel" (click)="closeModal($event)">
+  <div class="modal-wrapper" *ngIf="ProductPhoto">
+    <form
+      [formGroup]="editPhotoForm"
+      (ngSubmit)="savePhoto()"
+      class="formInput"
+      method="dialog"
+      enctype="multipart/form-data"
+    >
+      <!--productName-->
+      <div class="mb-3">
+        <label for="exampleInputproductname1" class="form-label">Mô tả</label>
+        <input formControlName="description" type="text" class="form-control" id="description" />
+        <!--Validation input description-->
+        <div
+          *ngIf="
+            editPhotoForm.controls['description'].invalid &&
+            (editPhotoForm.controls['description'].touched ||
+              editPhotoForm.controls['description'].dirty)
+          "
+        >
+          <small
+            class="text-danger"
+            *ngIf="editPhotoForm.controls['description'].errors?.['required']"
+            >Vui lòng nhập mô tả</small
+          >
+        </div>
+      </div>
+
+      <div class="mb-3 list-item">
+        <label for="priority" class="form-label">Độ ưu tiên</label>
+        <select class="form-control option-select" formControlName="priority" id="priority">
+          <option *ngFor="let i of Priorities" [selected]="i === editPhotoForm.value.priority">
+            {{ i }}
+          </option>
+        </select>
+        <!--validation priority-->
+        <div
+          *ngIf="
+            editPhotoForm.controls['priority'].invalid && editPhotoForm.controls['priority'].touched
+          "
+        >
+          <small class="text-danger" *ngIf="editPhotoForm.controls['priority'].errors?.['required']"
+            >Vui lòng chọn độ ưu tiên của ảnh</small
+          >
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="color" class="form-label">Màu sắc</label>
+        <input formControlName="color" type="text" class="form-control" id="color" />
+        <!--validation color-->
+        <div
+          *ngIf="
+            editPhotoForm.controls['color'].invalid &&
+            (editPhotoForm.controls['color'].touched || editPhotoForm.controls['color'].dirty)
+          "
+        >
+          <small class="text-danger" *ngIf="editPhotoForm.controls['color'].errors?.['required']"
+            >Vui lòng màu sắc sản phẩm</small
+          >
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <input
+          type="file"
+          class="form-control"
+          name="uploadPhotoDetail"
+          id="imageDetail"
+          accept="image/*"
+          (change)="onPhotoSelected($event)"
+          onchange="document.getElementById('photoDetail').src=window.URL.createObjectURL(this.files[0])"
+        />
+      </div>
+      <!--photo-->
+      <div class="mb-3">
+        <label for="photoDetail" class="form-label">Ảnh</label>
+        <div class="content-img">
+          <img
+            id="photoDetail"
+            [src]="editPhotoForm.value.urlImg"
+            class="img img-bordered"
+            style="width: 200px"
+          />
+        </div>
+      </div>
+      <small
+        *ngIf="editPhotoForm.controls['urlImg'].touched && editForm.hasError('required', 'urlImg')"
+        class="text-danger"
+        >*
+      </small>
+      <div class="button">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-warning" (click)="closeModalWithCancel()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</dialog>
+
+<!-- <div class="wrapper" *ngIf="product && product.id !== 0">
   <div class="table-responsive table-content">
     <table class="table">
       <thead>
@@ -334,4 +403,4 @@
       </tbody>
     </table>
   </div>
-</div>
+</div> -->

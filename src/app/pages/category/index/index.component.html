@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="Search">
-    <div class="search-form" style="padding: 12px">
+    <div class="search-form">
       <form class="frmSearch" [formGroup]="searchForm" (ngSubmit)="onSearch()">
         <div class="input-group">
           <input
@@ -60,9 +60,9 @@
               <a routerLink="/home/category/edit/{{ item.id }}" class="btn-sup">
                 <i class="fa fa-edit"></i>
               </a>
-              <a (click)="showDeleteMessage(item.id)" class="btn-sup" style="color: red">
+              <button (click)="showDeleteMessage(item.id)" class="btn-sup" style="color: red">
                 <i class="fa fa-trash"></i>
-              </a>
+              </button>
             </div>
           </td>
         </tr>

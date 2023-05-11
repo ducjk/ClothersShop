@@ -24,6 +24,11 @@ export class EmployeeService {
   getById(id: number): Observable<Employee> {
     return this.apiService.getById(id, this.names);
   }
+
+  postImgae(data: FormData) {
+    return this.apiService.postImage(data);
+  }
+
   update(data: Employee, id: number): Observable<Employee> {
     return this.apiService.update(data, id, this.names);
   }

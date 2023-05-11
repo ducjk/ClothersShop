@@ -20,11 +20,12 @@ export class DeleteComponent {
   deleteItem() {
     this.apiService.delete(this.id, this.names).subscribe(
       (next) => {
-        console.log('next: ', next);
         this.successRemove.emit(true);
         this.closePopUp();
       },
       (error) => {
+        console.log('error: ', error);
+
         this.successRemove.emit(false);
         this.closePopUp();
       }

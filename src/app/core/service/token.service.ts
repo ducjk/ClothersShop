@@ -17,6 +17,12 @@ export class TokenService {
     return this.token;
   }
 
+  setToken(token: string) {
+    this.removeToken();
+    this.token = token;
+    this.cookieSerice.set('token', token);
+  }
+
   refreshToken(email: string): Observable<any> {
     return this.http.post(`${this.apiURL}/auth/refreshtoken`, { email });
   }

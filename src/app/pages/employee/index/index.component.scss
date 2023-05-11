@@ -80,10 +80,11 @@
 }
 
 .img-circle {
-  max-width: 80px;
-  max-height: 80px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   border: 1px solid var(--white-color);
+  object-fit: cover;
 }
 
 .content-item {

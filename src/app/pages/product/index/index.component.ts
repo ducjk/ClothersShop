@@ -21,8 +21,6 @@ export class IndexProductComponent {
   idItem = 0;
   names = 'Products';
 
-  index = 0;
-
   constructor(private productService: ProductService, private formBuilder: FormBuilder) {}
   ngOnInit(): void {
     this.searchForm = this.formBuilder.group({
