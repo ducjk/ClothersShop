@@ -21,6 +21,7 @@ export class IndexEmployeeComponent implements OnInit {
   names = 'Employees';
 
   Employees: Employee[] = [];
+
   constructor(private employee: EmployeeService, private formBuilder: FormBuilder) {}
   ngOnInit(): void {
     this.searchForm = this.formBuilder.group({

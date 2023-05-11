@@ -54,7 +54,7 @@
         <tr
           class="th-body"
           *ngFor="
-            let item of customers
+            let item of Customers
               | paginate : { itemsPerPage: limit, currentPage: currentPage, totalItems: totalItem }
           "
         >
@@ -66,17 +66,12 @@
           <td>{{ item.email }}</td>
           <td>
             <div class="activity">
-              <a routerLink="/home/category/edit/{{ item.id }}" class="btn-sup">
+              <a routerLink="/home/customer/edit/{{ item.id }}" class="btn-sup">
                 <i class="fa fa-edit"></i>
               </a>
-              <a
-                href=""
-                class="btn-sup"
-                routerLink="/home/category/delete/{{ item.id }}"
-                style="color: red"
-              >
+              <button (click)="showDeleteMessage(item.id)" class="btn-sup" style="color: red">
                 <i class="fa fa-trash"></i>
-              </a>
+              </button>
             </div>
           </td>
         </tr>
@@ -90,4 +85,12 @@
       nextLabel="Sau"
     ></pagination-controls>
   </div>
+
+  <app-delete
+    *ngIf="selectedDelete"
+    [id]="idItem"
+    [names]="names"
+    (closePopup)="removeAction()"
+    (successRemove)="removedItem($event)"
+  ></app-delete>
 </div>

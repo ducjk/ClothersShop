@@ -1,1 +1,128 @@
-<p>edit works!</p>
+<div class="wrapper">
+  <form [formGroup]="editCustomerForm" (ngSubmit)="save()" class="formInput">
+    <div class="mb-3">
+      <label for="exampleInputcustomerName1" class="form-label">Tên Khách Hàng</label>
+      <input
+        formControlName="customerName"
+        type="text"
+        class="form-control"
+        id="exampleInputcustomerName1"
+      />
+      <div
+        *ngIf="
+          editCustomerForm.controls['customerName'].invalid &&
+          (editCustomerForm.controls['customerName'].touched ||
+            editCustomerForm.controls['customerName'].dirty)
+        "
+      >
+        <small
+          class="text-danger"
+          *ngIf="editCustomerForm.controls['customerName'].errors?.['required']"
+          >Vui lòng nhập tên nhà khách hàng</small
+        >
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputemail" class="form-label">Email</label>
+      <input formControlName="email" type="text" class="form-control" id="exampleInputemail" />
+      <div
+        *ngIf="
+          editCustomerForm.controls['email'].invalid &&
+          (editCustomerForm.controls['email'].touched || editCustomerForm.controls['email'].dirty)
+        "
+      >
+        <small class="text-danger" *ngIf="editCustomerForm.controls['email'].errors?.['required']"
+          >Vui lòng đúng định dạng email</small
+        >
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputAddress1" class="form-label">Địa Chỉ</label>
+      <input formControlName="address" type="text" class="form-control" id="exampleInputAddress1" />
+      <div
+        *ngIf="
+          editCustomerForm.controls['address'].invalid &&
+          (editCustomerForm.controls['address'].touched ||
+            editCustomerForm.controls['address'].dirty)
+        "
+      >
+        <small class="text-danger" *ngIf="editCustomerForm.controls['address'].errors?.['required']"
+          >Vui lòng nhập địa chỉ</small
+        >
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputPhone1" class="form-label">SĐT</label>
+      <input formControlName="phone" type="text" class="form-control" id="exampleInputPhone1" />
+      <div
+        *ngIf="
+          editCustomerForm.controls['phone'].invalid &&
+          (editCustomerForm.controls['phone'].touched || editCustomerForm.controls['phone'].dirty)
+        "
+      >
+        <small class="text-danger" *ngIf="editCustomerForm.controls['phone'].errors?.['required']"
+          >Vui lòng nhập SĐT</small
+        >
+        <small class="text-danger" *ngIf="editCustomerForm.controls['phone'].errors?.['pattern']"
+          >Vui lòng nhập đúng SĐT</small
+        >
+      </div>
+    </div>
+
+    <div class="mb-3 country-item">
+      <label for="exampleInputCountry1" class="form-label">Quốc Gia</label>
+      <select class="form-control option-select" formControlName="country">
+        <option>--Chọn Quốc Gia--</option>
+        <option
+          *ngFor="let country of countries"
+          [selected]="country.countryName == editCustomerForm.value.country"
+        >
+          {{ country.countryName }}
+        </option>
+      </select>
+      <div
+        *ngIf="
+          editCustomerForm.controls['country'].invalid &&
+          (editCustomerForm.controls['country'].touched ||
+            editCustomerForm.controls['country'].dirty)
+        "
+      >
+        <small class="text-danger" *ngIf="editCustomerForm.controls['country'].errors?.['required']"
+          >Vui lòng chọn quốc gia</small
+        >
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputbirthday1" class="form-label">Ngày Sinh</label>
+      <input
+        formControlName="birthday"
+        type="date"
+        class="form-control"
+        id="exampleInputbirthday1"
+        max="{{ maxDate }}"
+      />
+      <div
+        *ngIf="
+          editCustomerForm.controls['birthday'].invalid &&
+          (editCustomerForm.controls['birthday'].touched ||
+            editCustomerForm.controls['birthday'].dirty)
+        "
+      >
+        <small
+          class="text-danger"
+          *ngIf="editCustomerForm.controls['birthday'].errors?.['required']"
+          >Vui lòng nhập ngày sinh</small
+        >
+      </div>
+    </div>
+
+    <div class="button">
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="button" class="btn btn-warning" routerLink="/home/supplier">Cancel</button>
+    </div>
+  </form>
+</div>

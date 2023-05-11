@@ -19,7 +19,7 @@ export class EditSupplierComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: ActivatedRoute,
     private route: Router,
-    private country: CountriesService
+    private countriesService: CountriesService
   ) {}
   ngOnInit(): void {
     this.editForm = this.formBuilder.group({
@@ -60,7 +60,7 @@ export class EditSupplierComponent implements OnInit {
         });
       }
     });
-    this.country.getCountries().subscribe((res) => {
+    this.countriesService.getCountries().subscribe((res) => {
       this.countries = res;
     });
   }

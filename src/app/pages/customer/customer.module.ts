@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { CustomerComponent } from './customer.component';
 import { IndexCustomerComponent } from './index/index.component';
 import { EditCustomerComponent } from './edit/edit.component';
+import { DeleteModule } from 'src/app/shared/delete/delete.module';
 
 @NgModule({
   declarations: [CustomerComponent, IndexCustomerComponent, EditCustomerComponent],
@@ -19,6 +20,7 @@ import { EditCustomerComponent } from './edit/edit.component';
     ReactiveFormsModule,
     HttpClientModule,
     NgxPaginationModule,
+    DeleteModule,
   ],
 })
 export class CustomerModule {}

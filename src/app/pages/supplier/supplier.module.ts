@@ -8,10 +8,9 @@ import { EditSupplierComponent } from './edit/edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DeleteModule } from 'src/app/shared/delete/delete.module';
-import { TestComponent } from './test/test.component';
 
 @NgModule({
-  declarations: [SupplierComponent, IndexSupplierComponent, EditSupplierComponent, TestComponent],
+  declarations: [SupplierComponent, IndexSupplierComponent, EditSupplierComponent],
   imports: [
     CommonModule,
     SupplierRoutingModule,

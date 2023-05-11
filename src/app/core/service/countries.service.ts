@@ -12,6 +12,6 @@ export class CountriesService {
   constructor(private apiService: ApiService) {}
 
   getCountries(): Observable<Country[]> {
-    return this.apiService.callAPI('/Countries');
+    return this.apiService.callAPI('Countries');
   }
 }
