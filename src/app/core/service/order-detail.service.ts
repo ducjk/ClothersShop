@@ -17,4 +17,10 @@ export class OrderDetailService {
   getById(id: number): Observable<orderDetail> {
     return this.apiService.getById(id, this.names);
   }
+  update(data: orderDetail, id: number): Observable<orderDetail[]> {
+    return this.apiService.updateWithoutAllField(data, id, this.names);
+  }
+  add(data: orderDetail): Observable<orderDetail[]> {
+    return this.apiService.add(data, this.names);
+  }
 }

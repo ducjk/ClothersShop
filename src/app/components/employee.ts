@@ -1,5 +1,4 @@
 export interface Employee {
-  id: number;
   fullName: string;
   email: string;
   gender: string;
@@ -7,4 +6,5 @@ export interface Employee {
   phone: string;
   birthday: string;
   photo: string;
+  id: number;
 }

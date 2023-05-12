@@ -1,14 +1,23 @@
 <div class="background-model">
   <div class="model">
-    <p class="text-alert">Bạn có muốn xóa không</p>
+    <p class="text-alert">Chỉnh sửa chi tiết đơn hàng</p>
     <div class="form-group">
-      <div class="body">
-        
-      </div>
-    </div>
-    <div class="action">
-      <button class="cancel btn-model" routerLink="/home/order">Hủy</button>
-      <button class="accept btn-model">Ok</button>
+      <form [formGroup]="editForm" class="formInput" (ngSubmit)="onUpdate()">
+        <div class="mb-3">
+          <label for="productName" class="form-label">Tên mặt hàng</label>
+          <input formControlName="productName" type="text" class="form-control" id="productName" />
+        </div>
+
+        <div class="mb-3">
+          <label for="quantity" class="form-label">Số lượng</label>
+          <input formControlName="quantity" type="number" class="form-control" id="quantity" />
+        </div>
+
+        <div class="button">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-warning" routerLink="/home/order">Cancel</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

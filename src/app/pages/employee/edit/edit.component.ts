@@ -29,7 +29,7 @@ export class EditEmployeeComponent {
       address: [''],
       phone: [''],
       birthday: [''],
-      anh: [''],
+      photo: [''],
     });
 
     this.router.paramMap.subscribe((params) => {
@@ -44,7 +44,7 @@ export class EditEmployeeComponent {
             address: [this.Employee.address, Validators.required],
             phone: [this.Employee.phone, Validators.required],
             birthday: [this.Employee.birthday, Validators.required],
-            anh: [this.Employee.photo],
+            photo: [this.Employee.photo],
           });
         });
       } else if (id == 0) {
@@ -55,7 +55,7 @@ export class EditEmployeeComponent {
           address: ['', Validators.required],
           phone: ['', [Validators.required, Validators.pattern('(09|03|07|08|05)+([0-9]{8})')]],
           birthday: ['', [Validators.required]],
-          anh: [''],
+          photo: [''],
         });
       }
     });

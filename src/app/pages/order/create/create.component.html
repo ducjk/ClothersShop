@@ -1,0 +1,136 @@
+<div class="wrapper">
+  <div class="product-group">
+    <div class="form-search">
+      <form class="frmSearch" [formGroup]="searchForm" (ngSubmit)="onSearch()">
+        <div class="input-group">
+          <input
+            class="inputSearch"
+            formControlName="searchValue"
+            type="text"
+            placeholder="Tìm kiếm ở đây"
+            autofocus
+          />
+          <div class="input-group-btn">
+            <button class="btn btn-info" type="submit">
+              <i class="glyphicon glyphicon-search"></i>Tìm kiếm
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="table-product">
+      <table class="table">
+        <thead>
+          <tr class="th-primary">
+            <th>Tên sản phẩm</th>
+            <th>Ảnh</th>
+            <th>Giá</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let item of product
+                | paginate
+                  : { itemsPerPage: limit, currentPage: currentPage, totalItems: totalItem }
+            "
+            class="th-body"
+          >
+            <td>{{ item.productName }}</td>
+            <td class="item-photo">
+              <img [src]="item.photo[index]" class="photo" alt="" />
+            </td>
+            <td>{{ item.price }}</td>
+            <td>
+              <button class="btn-cart" (click)="onAddItem(item)">
+                <i class="fa fa-shopping-cart"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pagination">
+      <pagination-controls
+        (pageChange)="onPageChange($event)"
+        previousLabel="Trước"
+        nextLabel="Sau"
+      ></pagination-controls>
+    </div>
+  </div>
+  <div class="cart">
+    <h4>Danh sách mặt hàng đã chọn</h4>
+    <table class="table-cart">
+      <thead>
+        <tr class="row-table">
+          <th>Tên hàng</th>
+          <th>Số lượng</th>
+          <th>Giá</th>
+          <th>Thành tiền</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody
+        *ngFor="
+          let item of listOfProducts
+            | paginate : { itemsPerPage: limit, currentPage: currentPage, totalItems: totalItem }
+        "
+      >
+        <td>{{ item.productName }}</td>
+        <td>
+          <input
+            [(ngModel)]="item.quantity"
+            required
+            type="number"
+            min="1"
+            (change)="onChange(item.quantity, item.productId)"
+          />
+        </td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.total }}</td>
+        <td>
+          <button class="btn-delete" (click)="onDelete(item.productId)">
+            <i class="fa fa-close"></i>
+          </button>
+        </td>
+      </tbody>
+    </table>
+    <div class="total-group">
+      <div class="total">
+        <p>Tổng Tiền: {{ sumTotal | currency : 'USD' }}</p>
+      </div>
+    </div>
+    <!--Form nhập thông tin nhân viên và khách hàng-->
+    <div class="add-order">
+      <form class="form" method="post" [formGroup]="orderForm" (ngSubmit)="onAddOrder()">
+        <h4>Nhập thông tin về khách hàng và nhân viên phụ trách đơn hàng</h4>
+        <div class="form-group">
+          <div class="option-cus">
+            <label>Khách hàng:</label>
+            <select formControlName="CustomerId">
+              <option selected>--Chọn khách hàng--</option>
+              <option *ngFor="let i of customers" [value]="i.id">
+                {{ i.customerName }}
+              </option>
+            </select>
+          </div>
+          <div class="option-em">
+            <label>Nhân viên phụ trách:</label>
+            <select class="" formControlName="EmployeeId">
+              <option>--Chọn nhân viên--</option>
+              <option *ngFor="let i of employees" [value]="i.id">
+                {{ i.fullName }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group-button">
+          <div class="button">
+            <button type="submit" class="btn btn-primary">Lập đơn hàng</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -125,7 +125,7 @@
     </div>
     <div class="mb-3">
       <input
-        formControlName="anh"
+        formControlName="photo"
         type="file"
         class="form-control"
         name="uploadPhoto"
@@ -137,14 +137,14 @@
       <label for="exampleInputanh1" class="form-label"> Ảnh</label>
       <img
         id="photo"
-        [src]="editEmployeeForm.value.anh"
+        [src]="editEmployeeForm.value.photo"
         class="img img-bordered"
         style="width: 200px"
       />
     </div>
     <small
       *ngIf="
-        editEmployeeForm.controls['anh'].touched && editEmployeeForm.hasError('required', 'anh')
+        editEmployeeForm.controls['photo'].touched && editEmployeeForm.hasError('required', 'photo')
       "
       class="text-danger"
       >*

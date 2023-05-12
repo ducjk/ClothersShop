@@ -1,18 +1,18 @@
 <div class="wrapper">
   <div class="button-group">
     <div class="fillter">
-      <select class="chosse-status">
+      <select #item class="chosse-status" (change)="onStatus(item.value)">
         <option>--Chọn trạng thái--</option>
-        <option>Xác nhận đơn hàng</option>
-        <option>Chuyển giao đơn hàng</option>
-        <option>Hoàn tất đơn hàng</option>
-        <option>Từ chối đơn hàng</option>
-        <option>Hủy đơn hàng</option>
+        <option value="1">Xác nhận đơn hàng</option>
+        <option value="2">Chuyển giao đơn hàng</option>
+        <option value="3">Hoàn tất đơn hàng</option>
+        <option value="-1">Từ chối đơn hàng</option>
+        <option value="-2">Hủy đơn hàng</option>
       </select>
     </div>
     <div class="button">
-      <a class="button-delete" href="">Xoá đơn hàng</a>
-      <a class="button-cancel" href="">Quay lại</a>
+      <a class="button-delete" (click)="showDeleteMessage(Order.id)">Xoá đơn hàng</a>
+      <a class="button-cancel" routerLink="/home/order">Quay lại</a>
     </div>
   </div>
   <div class="form" *ngIf="Order">
@@ -108,9 +108,9 @@
               <a routerLink="/home/order/editDetail/{{ item.id }}" class="btn-sup">
                 <i class="fa fa-edit"></i>
               </a>
-              <a href="" class="btn-sup" routerLink="/home/category/delete/" style="color: red">
+              <button class="btn-sup" (click)="showDeleteMessage(item.id)" style="color: red">
                 <i class="fa fa-trash"></i>
-              </a>
+              </button>
             </div>
           </td>
         </tr>
@@ -121,5 +121,12 @@
         <p>Tổng Tiền: {{ sumTotal | currency : 'USD' }}</p>
       </div>
     </div>
+    <app-delete
+      *ngIf="selectedDelete"
+      [id]="idItem"
+      [names]="names"
+      (closePopup)="removeAction()"
+      (successRemove)="removedItem($event)"
+    ></app-delete>
   </div>
 </div>
