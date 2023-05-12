@@ -1,0 +1,85 @@
+.wrapper {
+  background-color: var(--white-color);
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+.product-group {
+  width: 30%;
+  border: double;
+  padding: 6px;
+}
+.photo {
+  width: 8rem;
+  height: 8rem;
+  border: none;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.inputSearch {
+  flex: 1;
+  border-radius: 4px !important;
+  margin-right: 20px;
+  height: 30px;
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.3);
+  padding-left: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.inputSearch:focus {
+  background-color: rgba(255, 255, 255, 1);
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+.Search {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 6px 0 16px 0;
+}
+.btn-cart {
+  color: #ff3030;
+}
+.cart {
+  position: relative;
+  width: 50%;
+}
+.table-cart {
+  width: 100%;
+}
+
+.table,
+.table th,
+.table td {
+  border: 1px solid #dee2e6;
+  border-collapse: collapse;
+}
+.table .th-body:hover {
+  background-color: #dee2e6;
+}
+.row-table {
+  background-color: #eeeeee;
+  color: #212529;
+}
+.total {
+  text-align: right;
+}
+.add-order {
+  position: absolute;
+  top: 60%;
+}
+.form-group {
+  display: flex;
+  justify-content: space-between;
+}
+.form-group-button {
+  margin-top: 8px;
+}
+.option-em {
+  margin-left: 8px;
+}
+button {
+  font-size: 14px;
+}

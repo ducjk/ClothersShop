@@ -42,6 +42,22 @@ export class ApiService {
 
     return this.http.get<any[]>(url, { observe: 'response' });
   }
+  getListWithPageOrStatus(
+    searchValue: any = null,
+    status: any = null,
+    page: number,
+    limit: number,
+    names: string,
+    attribute: string
+  ): Observable<HttpResponse<any[]>> {
+    let url = `${this.urlAPI}/${names}?_page=${page}&_limit=${limit}`;
+    if (searchValue != null) {
+      if (status != null) url = `${url}&${attribute}_like=${searchValue}&status=${status}`;
+      else url = `${url}&${attribute}_like=${searchValue}`;
+    }
+
+    return this.http.get<any[]>(url, { observe: 'response' });
+  }
 
   getById(id: number, names: string): Observable<any> {
     let url = `${this.urlAPI}/${names}/` + id;
@@ -69,12 +85,12 @@ export class ApiService {
     let url = `${this.urlAPI}/${names}/` + id;
     return this.http.delete<any>(url);
   }
-  // getExpand(searchvalue: any = null): Observable<any[]> {
-  //   if (searchvalue != null) {
-  //     return this.http.get<any[]>(
-  //       `${this.urlAPI}/Products?_expand=Category&_expand=Supplier&productName_like=${searchvalue}`
-  //     );
-  //   }
-  //   return this.http.get<any[]>(`${this.urlAPI}/Products?_expand=Category&_expand=Supplier`);
-  // }
+  getExpand(searchvalue: any = null): Observable<any[]> {
+    if (searchvalue != null) {
+      return this.http.get<any[]>(
+        `${this.urlAPI}/Products?_expand=Category&_expand=Supplier&productName_like=${searchvalue}`
+      );
+    }
+    return this.http.get<any[]>(`${this.urlAPI}/Products?_expand=Category&_expand=Supplier`);
+  }
 }

@@ -7,15 +7,26 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { CommonModule } from '@angular/common';
 import { IndexOrderComponent } from './index/index.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
-
+import { EditDetailComponent } from './edit-detail/edit-detail.component';
+import { DeleteModule } from '../../shared/delete/delete.module';
+import { CreateOrderComponent } from './create/create.component';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
-  declarations: [OrderComponent, IndexOrderComponent, OrderDetailComponent],
+  declarations: [
+    OrderComponent,
+    IndexOrderComponent,
+    OrderDetailComponent,
+    EditDetailComponent,
+    CreateOrderComponent,
+  ],
   imports: [
     CommonModule,
     OrderRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    DeleteModule,
+    MatMenuModule,
   ],
 })
 export class OrderModule {}

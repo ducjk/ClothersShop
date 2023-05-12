@@ -15,9 +15,9 @@ export class ProductService {
   attribute = 'productName';
   constructor(private apiService: ApiService, private http: HttpClient) {}
 
-  // getProducts(searchValue: any = null): Observable<Product[]> {
-  //   return this.apiService.getExpand(searchValue);
-  // }
+  getProducts(searchValue: any = null): Observable<Product[]> {
+    return this.apiService.getExpand(searchValue);
+  }
 
   getProductsWithPage(searchValue: any = null, page: number, limit: number) {
     return this.apiService.getListWithPage(searchValue, page, limit, this.names, this.attribute);

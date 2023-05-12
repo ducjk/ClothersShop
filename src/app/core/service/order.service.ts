@@ -37,6 +37,9 @@ export class OrderService {
   update(data: Order, id: number): Observable<Order> {
     return this.apiService.update(data, id, this.names);
   }
+  updateAllField(data: Order, id: number): Observable<Order> {
+    return this.apiService.updateWithoutAllField(data, id, this.names);
+  }
   add(data: Order): Observable<Order> {
     return this.apiService.add(data, this.names);
   }
