@@ -1,11 +1,11 @@
 <header class="header">
   <nav class="navigation">
     <span class="account">
-      <img src="../../../assets/img/curved14.jpg" alt="avatar" class="avatar" />
+      <img [src]="user.photo" alt="avatar" class="avatar" />
       <span class="name-account">{{ user.fullName }}</span>
       <span class="arrow"> </span>
       <div class="sub-account">
-        <img src="../../../assets/img/curved14.jpg" alt="avatar" class="sub-avatar" />
+        <img [src]="user.photo" alt="avatar" class="sub-avatar" />
         <span class="text-description">Member since 14/04/2023</span>
         <div class="infor-sub">
           <a routerLink="/home/profile" class="profile btn-sub">Profile</a>

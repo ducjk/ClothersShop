@@ -1,6 +1,11 @@
 <div class="background">
   <div class="wrapper">
-    <form [formGroup]="editForm" (ngSubmit)="save()" class="formInput">
+    <form
+      [formGroup]="editForm"
+      (ngSubmit)="save()"
+      class="formInput"
+      enctype="multipart/form-data"
+    >
       <div class="mb-3">
         <label for="fullName" class="form-label">Họ và tên</label>
         <input
@@ -56,6 +61,32 @@
       </div>
       <small
         *ngIf="editForm.controls['phone'].dirty && editForm.hasError('required', 'phone')"
+        class="text-danger"
+        >*
+      </small>
+
+      <div class="mb-3">
+        <input
+          type="file"
+          class="form-control"
+          name="uploadPhoto"
+          id="image"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+          onchange="document.getElementById('photo').src=window.URL.createObjectURL(this.files[0])"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputphoto1" class="form-label"> Ảnh</label>
+        <img
+          id="photo"
+          [src]="editForm.value.photo"
+          class="img img-bordered"
+          style="width: 200px"
+        />
+      </div>
+      <small
+        *ngIf="editForm.controls['photo'].touched && editForm.hasError('required', 'photo')"
         class="text-danger"
         >*
       </small>

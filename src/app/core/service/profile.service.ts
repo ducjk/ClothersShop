@@ -13,4 +13,8 @@ export class ProfileService {
   updateData(data: User, id: number): Observable<User> {
     return this.apiService.updateWithoutAllField(data, id, this.names);
   }
+
+  postImgae(data: FormData) {
+    return this.apiService.postImage(data);
+  }
 }
