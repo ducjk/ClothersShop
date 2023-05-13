@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { debounceTime } from 'rxjs';
 import { Supplier } from 'src/app/components/supplier';
 import { SupplierService } from 'src/app/core/service/supplier.service';
+import { Subject } from 'rxjs';
+
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -17,6 +20,8 @@ export class IndexSupplierComponent implements OnInit {
   selectedDelete = false;
   idItem = 0;
   names = 'Suppliers';
+
+  private searchInputSubject = new Subject<string>();
 
   Suppliers: Supplier[] = [];
 
@@ -34,6 +39,15 @@ export class IndexSupplierComponent implements OnInit {
   }
 
   // filter
+
+  //debounce but it's not work :))
+  // onSearchInput() {
+  //   this.searchInputSubject.next(this.searchForm.value.searchValue);
+
+  //   this.searchInputSubject.pipe(debounceTime(300)).subscribe(() => {
+  //     this.onSearch();
+  //   });
+  // }
 
   onSearch() {
     this.supplierService

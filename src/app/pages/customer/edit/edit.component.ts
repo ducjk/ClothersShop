@@ -109,6 +109,5 @@ export class EditCustomerComponent {
       month = '0' + month;
     }
     this.maxDate = year + '-' + month + '-' + toDayDate;
-    console.log(this.maxDate);
   }
 }

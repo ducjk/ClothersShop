@@ -254,8 +254,6 @@ export class EditProductComponent {
   }
 
   showImg(url: string) {
-    console.log('url: ', url);
-
     this.editPhotoForm.value.photo = url;
   }
 

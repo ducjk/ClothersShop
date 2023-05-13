@@ -30,5 +30,6 @@ export class TokenService {
   removeToken() {
     this.token = '';
     this.cookieSerice.delete('token');
+    sessionStorage.clear();
   }
 }

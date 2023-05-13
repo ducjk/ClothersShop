@@ -7,103 +7,74 @@ import {
   HttpResponse,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable, throwError, BehaviorSubject } from 'rxjs';
-import { catchError, map, switchMap, filter, take, finalize } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, delay, finalize, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { TokenService } from './token.service';
+import { LoadService } from './load.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InterceptorService implements HttpInterceptor {
-  private refreshingTokenSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private tokenRefreshedSubject: BehaviorSubject<string | null> = new BehaviorSubject<
-    string | null
-  >(null);
+  token!: string;
+  omitCalls = ['auth'];
+  skipInterceptor = false;
 
-  constructor(private router: Router, private readonly tokenService: TokenService) {}
+  constructor(
+    private router: Router,
+    private readonly tokenService: TokenService,
+    private loadingService: LoadService
+  ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = this.tokenService.getToken();
-    if (token) {
-      req = this.addTokenToRequest(req, token);
+    this.loadingService.show();
+    console.log('start call api...');
+
+    this.omitCalls.forEach((api) => {
+      if (req.url.includes(api)) {
+        this.skipInterceptor = true;
+      }
+    });
+
+    this.token = this.tokenService.getToken();
+    if (this.token || this.skipInterceptor) {
+      const tokenizedReq = req.clone({
+        headers: req.headers.set('Authorization', 'Bearer ' + this.token),
+        withCredentials: true,
+      });
+
+      return next.handle(tokenizedReq).pipe(
+        delay(300),
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 401) {
+            // Token expired or invalid, perform your desired action here
+            this.handleUnauthorizedError();
+          }
+          // You can handle other error codes here if needed
+          return throwError(error);
+        }),
+        map((event: HttpEvent<any>) => {
+          if (event instanceof HttpResponse) {
+            // Handle successful responses here if needed
+          }
+          return event;
+        }),
+        finalize(() => {
+          this.loadingService.hidden();
+          console.log('finish call api...');
+        })
+      );
+    } else {
+      // Token is missing, perform your desired action here
+      this.handleUnauthorizedError();
     }
 
-    return next.handle(req).pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 401 && !req.url.includes('/auth/refresh')) {
-          if (this.refreshingTokenSubject.value) {
-            return this.tokenRefreshedSubject.pipe(
-              filter((token) => token !== null),
-              take(1),
-              switchMap((newToken) => {
-                req = this.addTokenToRequest(req, newToken!);
-                return next.handle(req);
-              })
-            );
-          } else {
-            this.refreshingTokenSubject.next(true);
-
-            return this.refreshToken().pipe(
-              switchMap((newToken) => {
-                this.tokenRefreshedSubject.next(newToken);
-
-                req = this.addTokenToRequest(req, newToken);
-                return next.handle(req);
-              }),
-              catchError((refreshError: HttpErrorResponse) => {
-                if (refreshError.status === 401) {
-                  this.handleUnauthorizedError();
-                } else {
-                  console.error('Token refresh failed:', refreshError.message);
-                }
-                return throwError(refreshError);
-              }),
-              finalize(() => {
-                this.refreshingTokenSubject.next(false);
-              })
-            );
-          }
-        }
-
-        if (error.status === 400) {
-          console.error('Login failed:', error.message);
-        }
-
-        return throwError(error);
-      }),
-      map((event: HttpEvent<any>) => {
-        if (event instanceof HttpResponse) {
-          // Handle successful responses here if needed
-        }
-        return event;
-      })
-    );
-  }
-
-  private addTokenToRequest(request: HttpRequest<any>, token: string): HttpRequest<any> {
-    return request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }
-
-  private refreshToken(): Observable<string> {
-    const user = JSON.parse(sessionStorage.getItem('user') || '{}');
-    const email = user.email;
-    return this.tokenService.refreshToken(email).pipe(
-      map((response: any) => {
-        const newToken = response.access_token;
-
-        this.tokenService.setToken(newToken);
-
-        return newToken;
-      })
-    );
+    return next.handle(req);
   }
 
   private handleUnauthorizedError(): void {
+    alert('Phiên đăng nhập đã hết hạn, vui lòng đănng nhập lại!');
     this.tokenService.removeToken();
     this.router.navigateByUrl('/login');
   }
