@@ -4,14 +4,14 @@
       <form class="frmSearch" [formGroup]="searchForm" (ngSubmit)="onSearch()">
         <div class="input-group">
           <div class="fillter">
-            <select class="chosse-page-size">
-              <option selected>--Trạng Thái--</option>
-              <option>Chờ xác nhận</option>
-              <option>Đã Xác nhận</option>
-              <option>Đang giao</option>
-              <option>Hoàn thành</option>
-              <option>Từ chối</option>
-              <option>Đã hủy</option>
+            <select class="chosse-page-size" formControlName="status">
+              <option value="-5">--Trạng Thái--</option>
+              <option value="0">Chờ xác nhận</option>
+              <option value="1">Đã Xác nhận</option>
+              <option value="2">Đang giao</option>
+              <option value="3">Hoàn thành</option>
+              <option value="-1">Từ chối</option>
+              <option value="-2">Đã hủy</option>
             </select>
           </div>
           <input

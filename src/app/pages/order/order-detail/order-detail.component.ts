@@ -6,7 +6,6 @@ import { Order } from 'src/app/components/order';
 import { orderDetail } from 'src/app/components/order-detail';
 import { OrderDetailService } from 'src/app/core/service/order-detail.service';
 import { OrderService } from 'src/app/core/service/order.service';
-import { EditDetailComponent } from '../edit-detail/edit-detail.component';
 
 @Component({
   selector: 'app-order-detail',
@@ -78,7 +77,7 @@ export class OrderDetailComponent implements OnInit {
             confirm('Xác nhận thành công');
           });
         } else if (i === 2 && this.Order.status === 1) {
-          this.Order.status = 1;
+          this.Order.status = 2;
           this.orderService.updateAllField(this.Order, this.id).subscribe((res) => {
             confirm('Xác nhận chuyển hàng thành công');
           });

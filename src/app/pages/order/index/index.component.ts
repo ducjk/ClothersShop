@@ -5,7 +5,7 @@ import { Order } from 'src/app/components/order';
 import { Supplier } from 'src/app/components/supplier';
 import { EmployeeService } from 'src/app/core/service/employee.service';
 import { OrderService } from 'src/app/core/service/order.service';
-import { EditDetailComponent } from '../edit-detail/edit-detail.component';
+
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -23,21 +23,30 @@ export class IndexOrderComponent {
   ngOnInit(): void {
     this.searchForm = this.formBuilder.group({
       searchValue: [],
-      status: '',
+      status: -5,
     });
-    this.orderService.getOrders(this.searchForm.value.searchValue).subscribe((res) => {
-      this.orders = res;
-    });
-  }
-  onSearch() {
     this.orderService
-      .getOrderWithPage(
+      .getOrderWithPageOfStatus(
         this.searchForm.value.searchValue,
-
+        this.searchForm.value.status,
         this.currentPage,
         this.limit
       )
       .subscribe((res: any) => {
+        this.totalItem = +res.headers.get('X-Total-Count');
+        this.orders = res.body;
+      });
+  }
+  onSearch() {
+    this.orderService
+      .getOrderWithPageOfStatus(
+        this.searchForm.value.searchValue,
+        parseInt(this.searchForm.value.status),
+        this.currentPage,
+        this.limit
+      )
+      .subscribe((res: any) => {
+        this.totalItem = +res.headers.get('X-Total-Count');
         this.orders = res.body;
       });
   }

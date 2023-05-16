@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { OrderComponent } from './order.component';
 import { IndexOrderComponent } from './index/index.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
-import { EditDetailComponent } from './edit-detail/edit-detail.component';
+
 import { CreateOrderComponent } from './create/create.component';
 
 const routes: Routes = [
@@ -14,7 +14,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'index', pathMatch: 'full' },
       { path: 'index', component: IndexOrderComponent },
       { path: 'orderDetail/:id', component: OrderDetailComponent },
-      { path: 'editDetail/:id', component: EditDetailComponent },
+
       { path: 'create', component: CreateOrderComponent },
     ],
   },
