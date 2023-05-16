@@ -15,7 +15,7 @@ const routes: Routes = [
       { path: 'index', component: IndexOrderComponent },
       { path: 'orderDetail/:id', component: OrderDetailComponent },
       { path: 'editDetail/:id', component: EditDetailComponent },
-      { path: 'create', component: CreateOrderComponent },
+      { path: 'create', title: 'Tạo mới hóa đơn', component: CreateOrderComponent },
     ],
   },
 ];
