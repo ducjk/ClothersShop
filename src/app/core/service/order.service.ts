@@ -17,6 +17,16 @@ export class OrderService {
   getOrderWithPage(searchValue: any = null, page: number, limit: number) {
     return this.apiService.getListWithPage(searchValue, page, limit, this.names, this.attribute);
   }
+  getOrderWithPageOfStatus(searchValue: any = null, status: number, page: number, limit: number) {
+    return this.apiService.getListWithPageOrStatus(
+      searchValue,
+      status,
+      page,
+      limit,
+      this.names,
+      this.attribute
+    );
+  }
 
   getExpand(searchvalue: any = null): Observable<any[]> {
     if (searchvalue != null) {

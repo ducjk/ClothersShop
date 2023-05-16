@@ -6,9 +6,11 @@
   justify-content: space-between;
 }
 .product-group {
-  width: 30%;
-  border: double;
-  padding: 6px;
+  width: 40%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 4px 4px rgba(166, 117, 117, 0.3);
+  padding: 10px;
+  border-radius: 6px;
 }
 .photo {
   width: 8rem;

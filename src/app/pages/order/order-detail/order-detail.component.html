@@ -93,7 +93,6 @@
           <th>Số lượng</th>
           <th>Giá</th>
           <th>Thành tiền</th>
-          <th>Tính năng</th>
         </tr>
       </thead>
       <tbody>
@@ -103,16 +102,6 @@
           <td>{{ item.quantity }}</td>
           <td>{{ item.price }}</td>
           <td>{{ item.price * item.quantity }}</td>
-          <td>
-            <div class="activity">
-              <a routerLink="/home/order/editDetail/{{ item.id }}" class="btn-sup">
-                <i class="fa fa-edit"></i>
-              </a>
-              <button class="btn-sup" (click)="showDeleteMessage(item.id)" style="color: red">
-                <i class="fa fa-trash"></i>
-              </button>
-            </div>
-          </td>
         </tr>
       </tbody>
     </table>
