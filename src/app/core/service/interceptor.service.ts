@@ -45,7 +45,7 @@ export class InterceptorService implements HttpInterceptor {
       });
 
       return next.handle(tokenizedReq).pipe(
-        delay(300),
+        delay(600),
         catchError((error: HttpErrorResponse) => {
           if (error.status === 401) {
             // Token expired or invalid, perform your desired action here
