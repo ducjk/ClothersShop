@@ -101,15 +101,14 @@
     </div>
     <!--Form nhập thông tin nhân viên và khách hàng-->
     <div class="add-order">
-      <form class="form" method="post" [formGroup]="orderForm" (ngSubmit)="onAddOrder()">
+      <form class="form" [formGroup]="orderForm" (ngSubmit)="onAddOrder()">
         <h4>Nhập thông tin về khách hàng và nhân viên phụ trách đơn hàng</h4>
         <div class="form-group">
           <div class="option-cus">
             <label>Khách hàng:</label>
             <select formControlName="CustomerId">
-              <option class="option" selected>--Chọn khách hàng--</option>
-              <option *ngFor="let i of customers" [value]="i.id">
-                {{ i.customerName }}
+              <option *ngFor="let cus of customers" [value]="cus.id">
+                {{ cus.customerName }}
               </option>
             </select>
           </div>
