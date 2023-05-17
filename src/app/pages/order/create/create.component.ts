@@ -5,7 +5,6 @@ import { Customer } from 'src/app/components/customer';
 import { Employee } from 'src/app/components/employee';
 import { ItemCart } from 'src/app/components/itemCart';
 import { Order } from 'src/app/components/order';
-import { orderDetail } from 'src/app/components/order-detail';
 import { Product } from 'src/app/components/product';
 import { CustomerService } from 'src/app/core/service/customer.service';
 import { EmployeeService } from 'src/app/core/service/employee.service';
@@ -21,6 +20,7 @@ import { ProductService } from 'src/app/core/service/product.service';
 export class CreateOrderComponent {
   searchForm!: FormGroup;
   orderForm!: FormGroup;
+
   product!: Product[];
   employees!: Employee[];
   customers!: Customer[];
@@ -36,7 +36,7 @@ export class CreateOrderComponent {
   sumTotal = 0;
   order!: Order[];
   orderItem!: Order;
-  orderCart = {};
+  value!: number;
   constructor(
     private productService: ProductService,
     private formBuilder: FormBuilder,
@@ -48,18 +48,6 @@ export class CreateOrderComponent {
     this.jstoday = formatDate(this.day, 'dd-MM-yyyy hh:mm:ss a', 'en-US', 'UCT+7');
   }
   ngOnInit(): void {
-    this.searchForm = this.formBuilder.group({
-      searchValue: [],
-    });
-    this.productService.getProducts().subscribe((res) => {
-      this.product = res;
-    });
-    this.employeeService.getEmployees().subscribe((res) => {
-      this.employees = res;
-    });
-    this.customerService.getCustomer().subscribe((res) => {
-      this.customers = res;
-    });
     this.orderForm = this.formBuilder.group({
       CustomerId: '',
       EmployeeId: '',
@@ -68,6 +56,22 @@ export class CreateOrderComponent {
       acceptTime: '',
       shippingTime: '',
       finishedTime: '',
+    });
+    this.searchForm = this.formBuilder.group({
+      searchValue: [],
+    });
+    this.productService
+      .getProductsWithPage(this.searchForm.value.searchValue, this.currentPage, this.limit)
+      .subscribe((res: any) => {
+        this.totalItem = +res.headers.get('X-Total-Count');
+        this.product = res.body;
+      });
+
+    this.employeeService.getEmployees().subscribe((res: Employee[]) => {
+      this.employees = res;
+    });
+    this.customerService.getCustomer().subscribe((res: Customer[]) => {
+      this.customers = res;
     });
   }
 
@@ -103,7 +107,6 @@ export class CreateOrderComponent {
         price: itemProduct.price,
         total: itemProduct.price,
       };
-
       this.listOfProducts.push(itemCart);
     }
     this.sumTotal = this.listOfProducts.reduce((ar: any, item: any) => {
@@ -134,7 +137,13 @@ export class CreateOrderComponent {
     });
   }
   onDelete(id: number): void {
-    this.listOfProducts = this.listOfProducts.filter((p: any) => {
+    this.listOfProducts.forEach((product: ItemCart) => {
+      if (product.productId === id) {
+        this.sumTotal -= product.total;
+      }
+    });
+
+    this.listOfProducts = this.listOfProducts.filter((p: ItemCart) => {
       return p.productId !== id;
     });
   }
@@ -142,11 +151,10 @@ export class CreateOrderComponent {
   onChange(quantity: number, productId: number): void {
     this.listOfProducts.forEach((itemcart: ItemCart) => {
       if (itemcart.productId === productId) {
+        this.sumTotal -= itemcart.total;
         itemcart.total = quantity * itemcart.price;
         this.sumTotal += itemcart.total;
       }
     });
-    console.log('quantity: ', quantity);
-    console.log('productId: ', productId);
   }
 }

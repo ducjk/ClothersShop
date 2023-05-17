@@ -52,9 +52,9 @@ export class ApiService {
   ): Observable<HttpResponse<any[]>> {
     let url = `${this.urlAPI}/${names}?_page=${page}&_limit=${limit}`;
     if (searchValue != null) {
-      if (status != -5) url = `${url}&${attribute}_like=${searchValue}&status=${status}`;
-      else url = `${url}&${attribute}_like=${searchValue}`;
+      url = `${url}&${attribute}_like=${searchValue}`;
     }
+    if (status != -5) url = `${url}&status=${status}`;
 
     return this.http.get<any[]>(url, { observe: 'response' });
   }

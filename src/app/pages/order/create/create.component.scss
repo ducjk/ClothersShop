@@ -8,13 +8,15 @@
 .product-group {
   width: 40%;
   border: 1px solid rgba(0, 0, 0, 0.5);
-  box-shadow: 1px 4px 4px rgba(166, 117, 117, 0.3);
+  box-shadow: 1px 8px 8px rgba(111, 103, 103, 0.3);
   padding: 10px;
   border-radius: 6px;
+  height: 500px;
+  position: relative;
 }
 .photo {
-  width: 8rem;
-  height: 8rem;
+  width: 6rem;
+  height: 6rem;
   border: none;
   object-fit: cover;
   border-radius: 6px;
@@ -34,8 +36,9 @@
   background-color: rgba(255, 255, 255, 1);
 }
 .pagination {
-  display: flex;
-  justify-content: center;
+  position: absolute;
+  top: 460px;
+  left: 140px;
 }
 .Search {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -49,7 +52,14 @@
   width: 50%;
 }
 .table-cart {
+  position: relative;
   width: 100%;
+  height: 280px;
+  border: 1px solid;
+  padding: 6px 6px;
+  border-radius: 6px;
+  box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.5);
+  overflow-y: scroll;
 }
 
 .table,
@@ -57,6 +67,7 @@
 .table td {
   border: 1px solid #dee2e6;
   border-collapse: collapse;
+  padding: 4px 4px;
 }
 .table .th-body:hover {
   background-color: #dee2e6;
@@ -68,20 +79,40 @@
 .total {
   text-align: right;
 }
+.total-group {
+  padding-right: 4px;
+  position: absolute;
+  width: 100%;
+  top: 325px;
+}
 .add-order {
   position: absolute;
-  top: 60%;
+  top: 70%;
+  width: 100%;
+  height: 150px;
+  border: 1px solid;
+  padding: 8px 8px;
+  border-radius: 6px;
+  box-shadow: 1px 6px 6px rgba(11, 16, 16, 0.5);
 }
 .form-group {
   display: flex;
   justify-content: space-between;
 }
 .form-group-button {
-  margin-top: 8px;
+  margin-top: 20px;
+  text-align: right;
 }
 .option-em {
   margin-left: 8px;
 }
 button {
   font-size: 14px;
+}
+.table-product {
+  margin-top: 6px;
+  height: 80%;
+}
+.th-primary {
+  background-color: #b9d3ee;
 }
