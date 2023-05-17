@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -23,12 +24,16 @@ export class OrderDetailComponent implements OnInit {
   selectedDelete = false;
   idItem = 0;
   names = 'OrderDetails';
+  day = new Date();
+  today = '';
   constructor(
     private orderService: OrderService,
     private formBuilder: FormBuilder,
     private router: ActivatedRoute,
     private orderDetailService: OrderDetailService
-  ) {}
+  ) {
+    this.today = formatDate(this.day, 'dd-MM-yyyy hh:mm:ss a', 'en-US', 'UCT+7');
+  }
   ngOnInit(): void {
     this.router.paramMap.subscribe((params) => {
       this.id = parseInt(params.get('id')!);
@@ -73,6 +78,7 @@ export class OrderDetailComponent implements OnInit {
 
         if (i === 1 && this.Order.status === 0) {
           this.Order.status = 1;
+          this.Order.acceptTime = this.today;
           this.orderService.updateAllField(this.Order, this.id).subscribe((res) => {
             confirm('Xác nhận thành công');
           });
@@ -83,6 +89,7 @@ export class OrderDetailComponent implements OnInit {
           });
         } else if (i === 3 && this.Order.status === 2) {
           this.Order.status = 3;
+          this.Order.finishedTime  = this.today;
           this.orderService.updateAllField(this.Order, this.id).subscribe((res) => {
             confirm('Hoàn tất đơn hàng thành công');
           });

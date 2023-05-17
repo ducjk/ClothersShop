@@ -18,6 +18,7 @@
         </div>
       </form>
     </div>
+    <!--DAnh sach san pham-->
     <div class="table-product">
       <table class="table">
         <thead>
@@ -59,46 +60,43 @@
       ></pagination-controls>
     </div>
   </div>
+  <!-- danh sach mat hang da chon-->
   <div class="cart">
     <h4>Danh sách mặt hàng đã chọn</h4>
-    <table class="table-cart">
-      <thead>
-        <tr class="row-table">
-          <th>Tên hàng</th>
-          <th>Số lượng</th>
-          <th>Giá</th>
-          <th>Thành tiền</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody
-        *ngFor="
-          let item of listOfProducts
-            | paginate : { itemsPerPage: limit, currentPage: currentPage, totalItems: totalItem }
-        "
-      >
-        <td>{{ item.productName }}</td>
-        <td>
-          <input
-            [(ngModel)]="item.quantity"
-            required
-            type="number"
-            min="1"
-            (change)="onChange(item.quantity, item.productId)"
-          />
-        </td>
-        <td>{{ item.price }}</td>
-        <td>{{ item.total }}</td>
-        <td>
-          <button class="btn-delete" (click)="onDelete(item.productId)">
-            <i class="fa fa-close"></i>
-          </button>
-        </td>
-      </tbody>
-    </table>
+    <div class="table-cart">
+      <table class="table table-cart-cart">
+        <thead>
+          <tr class="row-table">
+            <th>Tên hàng</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Thành tiền</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let item of listOfProducts">
+          <td>{{ item.productName }}</td>
+          <td>
+            <input
+              [(ngModel)]="item.quantity"
+              required
+              type="number"
+              min="1"
+              (change)="onChange(item.quantity, item.productId)"
+            />
+          </td>
+          <td>{{ item.price }}</td>
+          <td>
+            {{ item.total }}
+            <button class="btn-delete" (click)="onDelete(item.productId)">
+              <i class="fa fa-close"></i>
+            </button>
+          </td>
+        </tbody>
+      </table>
+    </div>
     <div class="total-group">
       <div class="total">
-        <p>Tổng Tiền: {{ sumTotal | currency : 'USD' }}</p>
+        <p>Tổng Tiền: {{ sumTotal | currency : 'VND' : '' }} VND</p>
       </div>
     </div>
     <!--Form nhập thông tin nhân viên và khách hàng-->
@@ -109,7 +107,7 @@
           <div class="option-cus">
             <label>Khách hàng:</label>
             <select formControlName="CustomerId">
-              <option selected>--Chọn khách hàng--</option>
+              <option class="option" selected>--Chọn khách hàng--</option>
               <option *ngFor="let i of customers" [value]="i.id">
                 {{ i.customerName }}
               </option>
@@ -117,8 +115,8 @@
           </div>
           <div class="option-em">
             <label>Nhân viên phụ trách:</label>
-            <select class="" formControlName="EmployeeId">
-              <option>--Chọn nhân viên--</option>
+            <select class="option" formControlName="EmployeeId">
+              <option selected>--Chọn nhân viên--</option>
               <option *ngFor="let i of employees" [value]="i.id">
                 {{ i.fullName }}
               </option>

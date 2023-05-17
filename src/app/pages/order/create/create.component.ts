@@ -51,9 +51,14 @@ export class CreateOrderComponent {
     this.searchForm = this.formBuilder.group({
       searchValue: [],
     });
-    this.productService.getProducts().subscribe((res) => {
-      this.product = res;
-    });
+    this.productService
+      .getProductsWithPage(this.searchForm.value.searchValue, this.currentPage, this.limit)
+      .subscribe((res: any) => {
+        this.totalItem = +res.headers.get('X-Total-Count');
+        this.product = res.body;
+        console.log(this.product);
+      });
+
     this.employeeService.getEmployees().subscribe((res) => {
       this.employees = res;
     });
@@ -97,14 +102,16 @@ export class CreateOrderComponent {
         this.listOfProducts[idx].quantity * this.listOfProducts[idx].price;
     } else {
       let itemCart: ItemCart = {
+        id: Date.now(),
         productId: itemProduct.id,
         productName: itemProduct.productName,
         quantity: 1,
         price: itemProduct.price,
         total: itemProduct.price,
       };
-
+      console.log('itemcart:', itemCart);
       this.listOfProducts.push(itemCart);
+      console.log(this.listOfProducts);
     }
     this.sumTotal = this.listOfProducts.reduce((ar: any, item: any) => {
       return (ar += item.total);
@@ -134,7 +141,13 @@ export class CreateOrderComponent {
     });
   }
   onDelete(id: number): void {
-    this.listOfProducts = this.listOfProducts.filter((p: any) => {
+    this.listOfProducts.forEach((product: ItemCart) => {
+      if (product.productId === id) {
+        this.sumTotal -= product.total;
+      }
+    });
+
+    this.listOfProducts = this.listOfProducts.filter((p: ItemCart) => {
       return p.productId !== id;
     });
   }
@@ -142,11 +155,10 @@ export class CreateOrderComponent {
   onChange(quantity: number, productId: number): void {
     this.listOfProducts.forEach((itemcart: ItemCart) => {
       if (itemcart.productId === productId) {
+        this.sumTotal -= itemcart.total;
         itemcart.total = quantity * itemcart.price;
         this.sumTotal += itemcart.total;
       }
     });
-    console.log('quantity: ', quantity);
-    console.log('productId: ', productId);
   }
 }

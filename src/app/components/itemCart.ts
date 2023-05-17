@@ -4,4 +4,5 @@ export interface ItemCart {
   quantity: 1;
   price: number;
   total: number;
+  id: number;
 }
