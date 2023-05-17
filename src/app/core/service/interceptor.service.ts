@@ -29,7 +29,6 @@ export class InterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.loadingService.show();
-    console.log('start call api...');
 
     this.omitCalls.forEach((api) => {
       if (req.url.includes(api)) {
@@ -62,7 +61,6 @@ export class InterceptorService implements HttpInterceptor {
         }),
         finalize(() => {
           this.loadingService.hidden();
-          console.log('finish call api...');
         })
       );
     } else {

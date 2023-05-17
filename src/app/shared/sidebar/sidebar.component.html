@@ -38,7 +38,12 @@
     <span class="title">Quản lý bán hàng</span>
     <ul class="list-item">
       <li class="item">
-        <a class="item-link" routerLink="/home/order/create" routerLinkActive="active">
+        <a
+          class="item-link"
+          routerLink="/home/order/create"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <i class="fa-solid fa-truck-field-un icon-item"></i>
           Lập đơn hàng
         </a>
